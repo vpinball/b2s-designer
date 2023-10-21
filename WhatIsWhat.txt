@@ -1,0 +1,9 @@
+The main project:
+- B2SBackglassDesigner: The Backglass Designer to generate directB2S-Backglasses
+
+Tools:
+- B2SVPinMAMEStarter: Launches Testmode from the Designer
+- directb2sReelSoundsONOFF.cmd: This script will disable the sounds played by the server by telling the server that the sounds do not exist.
+
+Additional info:
+- The code is all VB.net (The plugin code was my first VB.net code, since I'm more into C#).
