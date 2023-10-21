@@ -1,4 +1,4 @@
-name: b2s-backglass
+name: b2s-designer
 on:
   push:
 
@@ -8,7 +8,7 @@ defaults:
 
 jobs:
   build-designer:
-    name: Build B2SBackglassDesigner-${{ matrix.config }}-win-${{ matrix.platform }}
+    name: Build B2S.designer-${{ matrix.config }}-win-${{ matrix.platform }}
     runs-on: windows-2019
     strategy:
       fail-fast: false
@@ -56,5 +56,5 @@ jobs:
           cp license.txt tmp
       - uses: actions/upload-artifact@v3
         with:
-         name: B2SBackglassDesigner-${{ steps.version.outputs.tag }}-${{ matrix.config }}-win-${{ matrix.platform }}
+         name: B2S.Designer-${{ steps.version.outputs.tag }}-${{ matrix.config }}-win-${{ matrix.platform }}
          path: tmp
