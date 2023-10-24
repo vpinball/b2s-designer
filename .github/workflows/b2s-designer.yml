@@ -30,7 +30,7 @@ jobs:
           perl -i -pe"s/AssemblyInformationalVersion\(\".*\"\)/AssemblyInformationalVersion\(\"${TAG}\"\)/g" "${ASSEMBLY_INFO}"
           ASSEMBLY_INFO="b2sbackglassdesigner/b2sbackglassdesigner/My Project/AssemblyInfo.vb"
           VERSION=$(grep -Eo "AssemblyVersion\(.*\)" "${ASSEMBLY_INFO}" | grep -Eo "[0-9\.]+" | tail -1)
-          TAG="${VERSION}-${SHA7}"
+          TAG="${VERSION}-${SHA7}-${{ github.run_number }}"
           perl -i -pe"s/AssemblyInformationalVersion\(\".*\"\)/AssemblyInformationalVersion\(\"${TAG}\"\)/g" "${ASSEMBLY_INFO}"
           echo "tag=${TAG}" >> $GITHUB_OUTPUT
       - uses: microsoft/setup-msbuild@v1.1
