@@ -14,9 +14,9 @@ jobs:
       fail-fast: false
       matrix:
         include:
-          - platform: x86
+          - platform: x64
             config: Debug
-          - platform: x86
+          - platform: x64
             config: Release
     steps:
       - uses: actions/checkout@v3
