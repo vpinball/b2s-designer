@@ -1,7 +1,7 @@
-# VPinball Code of Conduct
+# B2S Designer Code of Conduct
 
 This code of conduct outlines our expectations for participants within
-the VPinball community, as well as steps for reporting unacceptable behavior.
+the B2S Designer community, as well as steps for reporting unacceptable behavior.
 We are committed to providing a welcoming and inspiring community for
 all and expect our code of conduct to be honored. Anyone who violates
 this code of conduct may be banned from the community.
@@ -66,7 +66,7 @@ representative at an online or offline event.
 
 Instances of abusive, harassing, or otherwise unacceptable behavior may be
 reported to the community leaders responsible for enforcement at
-[INSERT CONTACT METHOD].
+[B2S Designer devs](mailto:VisualPinballX+b2s-designer@gmail.com?subject=[GitHub]%20Code%20of%20Conduct%20Enforcement)
 
 All complaints will be reviewed and investigated promptly and fairly.
 

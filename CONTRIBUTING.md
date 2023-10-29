@@ -31,14 +31,14 @@ All types of contributions are encouraged and valued. See the [Table of Contents
 This project and everyone participating in it is governed by the
 [B2S Designer Code of Conduct](CODE_OF_CONDUCT.md).
 By participating, you are expected to uphold this code. Please report unacceptable behavior
-to [INSERT CONTACT METHOD].
-
+to [B2S Designer devs](mailto:VisualPinballX+b2s-designer@gmail.com?subject=[GitHub]%20Code%20of%20Conduct%20report).
 
 ## I Have a Question
 
-> If you want to ask a question, we assume that you have read the available [Documentation](../../wiki).
+> If you want to ask a question, we assume that you have read the available [Documentation](https://htmlpreview.github.io/?https://raw.githubusercontent.com/vpinball/b2s-designer/master/b2sbackglassdesigner/b2sbackglassdesigner/htmlhelp/Introduction.htm).
 
 Before you ask a question, it is best to search for existing [Issues](../../issues) that might help you. In case you have found a suitable issue and still need clarification, you can write your question in this issue. It is also advisable to search the internet for answers first.
+There are good sites available such as [VP Universe](https://vpuniverse.com/search), [VP Forums](https://www.vpforums.org/index.php?app=core&module=search) and Virtual Pinball Chat at [Discord](https://discord.com/)
 
 If you then still feel the need to ask a question and need clarification, we recommend the following:
 
@@ -76,9 +76,9 @@ Depending on how large the project is, you may want to outsource the questioning
 A good bug report shouldn't leave others needing to chase you up for more information. Therefore, we ask you to investigate carefully, collect information and describe the issue in detail in your report. Please complete the following steps in advance to help us fix any potential bug as fast as possible.
 
 - Make sure that you are using the latest version.
-- Determine if your bug is really a bug and not an error on your side e.g. using incompatible environment components/versions (Make sure that you have read the [documentation](../../wiki). If you are looking for support, you might want to check [this section](#i-have-a-question)).
+- Determine if your bug is really a bug and not an error on your side e.g. using incompatible environment components/versions (Make sure that you have read the [documentation](https://htmlpreview.github.io/?https://raw.githubusercontent.com/vpinball/b2s-designer/master/b2sbackglassdesigner/b2sbackglassdesigner/htmlhelp/Introduction.htm). If you are looking for support, you might want to check [this section](#i-have-a-question)).
 - To see if other users have experienced (and potentially already solved) the same issue you are having, check if there is not already a bug report existing for your bug or error in the [bug tracker](../../issues?q=label%3Abug).
-- Also make sure to search the internet (including Stack Overflow) to see if users outside of the GitHub community have discussed the issue.
+- Also make sure to search the internet (VPU & VPForums) to see if users outside of the GitHub community have discussed the issue.
 - Collect information about the bug:
   - Stack trace (Traceback)
   - OS, Platform and Version (Windows, Linux, macOS, x86, ARM)
@@ -89,7 +89,7 @@ A good bug report shouldn't leave others needing to chase you up for more inform
 <!-- omit in toc -->
 #### How Do I Submit a Good Bug Report?
 
-> You must never report security related issues, vulnerabilities or bugs including sensitive information to the issue tracker, or elsewhere in public. Instead sensitive bugs must be sent by email to [INSERT CONTACT METHOD].
+> You must never report security related issues, vulnerabilities or bugs including sensitive information to the issue tracker, or elsewhere in public. Instead sensitive bugs must be sent by email to [B2S Designer devs](mailto:VisualPinballX+b2s-designer@gmail.com?subject=[GitHub]%20security%20vulnerabilities).
 <!-- You may add a PGP key to allow the messages to be sent encrypted as well. -->
 
 We use GitHub issues to track bugs and errors. If you run into an issue with the project:
@@ -116,7 +116,7 @@ This section guides you through submitting an enhancement suggestion for B2S Des
 #### Before Submitting an Enhancement
 
 - Make sure that you are using the latest version.
-- Read the [documentation](../../wiki) carefully and find out if the functionality is already covered, maybe by an individual configuration.
+- Read the [documentation](https://htmlpreview.github.io/?https://raw.githubusercontent.com/vpinball/b2s-designer/master/b2sbackglassdesigner/b2sbackglassdesigner/htmlhelp/Introduction.htm). carefully and find out if the functionality is already covered, maybe by an individual configuration.
 - Perform a [search](../../issues) to see if the enhancement has already been suggested. If it has, add a comment to the existing issue instead of opening a new one.
 - Find out whether your idea fits with the scope and aims of the project. It's up to you to make a strong case to convince the project's developers of the merits of this feature. Keep in mind that we want features that will be useful to the majority of our users and not just a small subset. If you're just targeting a minority of users, consider writing an add-on/plugin library.
 
@@ -134,22 +134,21 @@ Enhancement suggestions are tracked as [GitHub issues](../../issues).
 <!-- You might want to create an issue template for enhancement suggestions that can be used as a guide and that defines the structure of the information to be included. If you do so, reference it here in the description. -->
 
 ### Your First Code Contribution
-<!-- TODO
-include Setup of env, IDE and typical getting started instructions?
 
--->
+- Fork this repository in the main menu.
+- Download the latest Developer version of Visual Studio.
+- Double click the Solution file (*.sln) in the repository.
+- It should be possible to just press Build->Build Solution and test the produced result.
 
 ### Improving The Documentation
-<!-- TODO
-Updating, improving and correcting the documentation
 
--->
+- Fork this repository in the main menu.
+- The Documentation is stored as HTML files in the repository.
 
 ## Styleguides
 ### Commit Messages
-<!-- TODO
 
--->
+Commit Messages should have the issue number and a descriptive text on what was changed.
 
 ## Join The Project Team
 <!-- TODO -->
