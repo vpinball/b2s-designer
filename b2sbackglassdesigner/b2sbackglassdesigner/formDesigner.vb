@@ -1220,7 +1220,7 @@ Public Class formDesigner
         tsmiTranslucent.Checked = (DefaultOpacity <> 1)
         MyBase.SaveSettings()
         For Each form As Form In Me.OwnedForms
-            If TypeOf form Is formBase Then
+            If TypeOf form Is B2SBackglassDesigner.formBase Then
                 form.Opacity = DefaultOpacity
             End If
         Next

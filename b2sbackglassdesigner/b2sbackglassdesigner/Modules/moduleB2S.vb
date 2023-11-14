@@ -2,7 +2,7 @@
 
 Module moduleB2S
 
-    Public Const AppTitle As String = "B2S Backglass Designer"
+    Public Const AppTitle As String = "B2S Designer"
 
     Public Const MaxBulbIntensity As Integer = 5
 

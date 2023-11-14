@@ -56,5 +56,5 @@ jobs:
           cp license.txt tmp
       - uses: actions/upload-artifact@v3
         with:
-         name: B2S.Designer-${{ steps.version.outputs.tag }}-${{ matrix.config }}-win-${{ matrix.platform }}
+         name: B2S.Designer-${{ steps.version.outputs.tag }}-${{ matrix.config }}-win-AnyCPU
          path: tmp

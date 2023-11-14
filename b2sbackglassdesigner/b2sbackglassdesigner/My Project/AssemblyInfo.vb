@@ -8,10 +8,10 @@ Imports System.Runtime.InteropServices
 
 ' Die Werte der Assemblyattribute überprüfen
 
-<Assembly: AssemblyTitle("B2S Backglass Designer")> 
-<Assembly: AssemblyDescription("")> 
+<Assembly: AssemblyTitle("B2S Designer")>
+<Assembly: AssemblyDescription("The WYSIWYG editor for directB2S backglass files")>
 <Assembly: AssemblyCompany("")> 
-<Assembly: AssemblyProduct("B2S Backglass Designer")> 
+<Assembly: AssemblyProduct("B2S Designer")>
 <Assembly: AssemblyCopyright("Copyright (c) 2012-2023")> 
 <Assembly: AssemblyTrademark("A Herweh & B2S Team production")> 
 
@@ -31,6 +31,6 @@ Imports System.Runtime.InteropServices
 ' übernehmen, indem Sie "*" eingeben:
 ' <Assembly: AssemblyVersion("1.0.*")> 
 
-<Assembly: AssemblyVersion("1.27.0.2")> 
-<Assembly: AssemblyFileVersion("1.27.0.2")> 
-<Assembly: AssemblyInformationalVersion("1.27.0.2")> 
+<Assembly: AssemblyVersion("1.28.0.0")> 
+<Assembly: AssemblyFileVersion("1.28.0.0")> 
+<Assembly: AssemblyInformationalVersion("1.28.0.0")> 
