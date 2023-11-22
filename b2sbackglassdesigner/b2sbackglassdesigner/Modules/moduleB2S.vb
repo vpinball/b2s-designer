@@ -33,12 +33,12 @@ Module moduleB2S
     End Property
     Public ReadOnly Property SettingsFileName As String
         Get
-            Return IO.Path.Combine(BackglassProjectsPath, Application.ProductName.Replace(" ", "") & ".Settings.xml")
+            Return IO.Path.Combine(BackglassProjectsPath, "B2SBackglassDesigner.Settings.xml")
         End Get
     End Property
     Public ReadOnly Property ImportFileName() As String
         Get
-            Return IO.Path.Combine(BackglassProjectsPath, Application.ProductName.Replace(" ", "") & ".Import.xml")
+            Return IO.Path.Combine(BackglassProjectsPath, "B2SBackglassDesigner.Import.xml")
         End Get
     End Property
 
