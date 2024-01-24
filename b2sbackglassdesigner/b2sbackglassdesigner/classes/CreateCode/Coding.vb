@@ -231,13 +231,18 @@ Public Class Coding
                         End If
                         Dim index As Integer = 0
                         Do While True
-                            Dim currentname As String = reelname & "_" & If(index < 10, index.ToString("D" & length - 1), "Empty")
+                            Dim currentname As String
+                            If reeltype.StartsWith("EMR_CT") Or InStr(reeltype, "EMR_CT") > 0 Then
+                                currentname = reelname & "_" & index.ToString("D" & 2)
+                            Else
+                                currentname = reelname & "_" & If(index < 10, index.ToString("D" & length - 1), "Empty")
+                            End If
                             Dim reelimage As Image = Nothing
                             If reeltype.StartsWith(ImportedStartString) Then
                                 Try
                                     Select Case reeltype.Substring(8, 5)
                                         Case "EMR_T" : reelimage = GeneralData.currentData.ImportedReelImageSets(CInt(reeltype.Substring(13).Replace("_0", "")))(index)
-                                        Case "EMR_CT" : reelimage = GeneralData.currentData.ImportedCreditReelImageSets(CInt(reeltype.Substring(14).Replace("_0", "")))(index)
+                                        Case "EMR_C" : reelimage = GeneralData.currentData.ImportedCreditReelImageSets(CInt(reeltype.Substring(14).Replace("_0", "")))(index)
                                         Case "LED_T" : reelimage = GeneralData.currentData.ImportedLEDImageSets(CInt(reeltype.Substring(13).Replace("_0", "")))(index)
                                     End Select
                                 Catch ex As IndexOutOfRangeException
@@ -254,9 +259,11 @@ Public Class Coding
                                     reelimages(reelname).Add(currentname, reelimage)
                                 End If
                                 ' maybe get out here
-                                If index < 0 Or index > 10 Then
+                                If index < 0 Then
                                     Exit Do
                                 End If
+                            ElseIf index > 25 Then ' Safety belt, never try more than 25 rounds
+                                Exit Do
                             Else
                                 ' do not add the empty image because it isn't needed
                                 If isLED AndAlso index >= 0 Then
