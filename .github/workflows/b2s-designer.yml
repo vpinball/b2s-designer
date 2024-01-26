@@ -54,6 +54,7 @@ jobs:
           fi
           cp b2sbackglassdesigner/b2sbackglassdesigner/htmlhelp/B2SBackglassDesigner.chm tmp
           cp license.txt tmp
+          cp Changelog.txt tmp
       - uses: actions/upload-artifact@v3
         with:
          name: B2S.Designer-${{ steps.version.outputs.tag }}-${{ matrix.config }}-win-AnyCPU
