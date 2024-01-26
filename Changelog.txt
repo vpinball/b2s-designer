@@ -1,6 +1,6 @@
 2.0.0
 - EM credit reel: numbers 10 to 16 not saved
-  Thanks to Hauntfreaks, Wildman and Cliffy we solved this problem.
+  Thanks to tweety231323, Hauntfreaks, Wildman and Cliffy we solved this problem so quick.
 
 1.28.1.0
 - the XML files that are generated are named incorrectly
