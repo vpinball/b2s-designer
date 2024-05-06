@@ -1,0 +1,7 @@
+﻿################################################################################
+# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
+################################################################################
+
+/.vs/b2s-designer/v17
+/b2sbackglassdesigner/.vs/B2SBackglassDesigner/FileContentIndex
+/b2sbackglassdesigner/b2sbackglassdesigner/obj/x64/Debug
