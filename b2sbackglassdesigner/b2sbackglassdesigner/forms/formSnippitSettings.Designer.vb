@@ -80,7 +80,7 @@ Partial Class formSnippitSettings
         'numericZOrder
         '
         resources.ApplyResources(Me.numericZOrder, "numericZOrder")
-        Me.numericZOrder.Maximum = New Decimal(New Integer() {19, 0, 0, 0})
+        Me.numericZOrder.Maximum = New Decimal(New Integer() {9, 0, 0, 0})
         Me.numericZOrder.Name = "numericZOrder"
         '
         'lblZOrder
