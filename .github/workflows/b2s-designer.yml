@@ -33,7 +33,7 @@ jobs:
           TAG="${VERSION}-${SHA7}-${{ github.run_number }}"
           perl -i -pe"s/AssemblyInformationalVersion\(\".*\"\)/AssemblyInformationalVersion\(\"${TAG}\"\)/g" "${ASSEMBLY_INFO}"
           echo "tag=${TAG}" >> $GITHUB_OUTPUT
-      - uses: microsoft/setup-msbuild@v1.1
+      - uses: microsoft/setup-msbuild@v2
       - name: Build
         run: |
           msbuild B2SVPinMAMEStarter/B2SVPinMAMEStarter.sln /t:Rebuild /p:Configuration=${{ matrix.config }} /p:Platform=${{ matrix.platform }}
@@ -55,7 +55,7 @@ jobs:
           cp b2sbackglassdesigner/b2sbackglassdesigner/htmlhelp/B2SBackglassDesigner.chm tmp
           cp license.txt tmp
           cp Changelog.txt tmp
-      - uses: actions/upload-artifact@v3
+      - uses: actions/upload-artifact@v4
         with:
          name: B2S.Designer-${{ steps.version.outputs.tag }}-${{ matrix.config }}-win-AnyCPU
          path: tmp
