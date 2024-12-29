@@ -928,10 +928,10 @@ Public Class B2STabPage
         ' add new bulb
         Dim newBulb As Illumination.BulbInfo = New Illumination.BulbInfo
         With newBulb
-            If Mouse.LastBulbSize <> Nothing Then
+            If Mouse.LastBulbSize <> Nothing Then 'size of last bulb
                 .Size = Mouse.LastBulbSize
-            Else
-                .Size = New Size(300, 100)
+            Else 'no bulb in memory
+                .Size = New Size(200, 100) 'default bulb size
             End If
             If Mouse.LastBulbIntensity <> Nothing Then .Intensity = Mouse.LastBulbIntensity
             If Mouse.LastBulbLightColor <> Nothing Then .LightColor = Mouse.LastBulbLightColor
@@ -1005,14 +1005,32 @@ Public Class B2STabPage
                         End If
                 End Select
             End If
-            If CurrentPictureBox IsNot Nothing Then
-                Dim x As Integer = CurrentPictureBox.Left * -1
-                If CurrentPictureBox.Parent IsNot Nothing Then x += (CurrentPictureBox.Parent.Width - 50) / 2 - .Size.Width
-                Dim y As Integer = CurrentPictureBox.Top * -1
-                If CurrentPictureBox.Parent IsNot Nothing Then y += (CurrentPictureBox.Parent.Height - 50) / 2 - .Size.Height
-                .Location = New Point(x / Mouse.factor, y / Mouse.factor)
-            Else
-                .Location = New Point(10, 10)
+            'new bulb location
+            Dim locationSet As Boolean = False
+            Dim shift As Integer = 20 'new bulb distance from walls or duplicated bulbs
+            Dim offset As Decimal = 0.2 'new bulb offset from top left corner
+            If Mouse.SelectedBulb IsNot Nothing Then 'existing bulb frame selected so duplicate there with shift
+                Dim bulbX As Integer = Mouse.SelectedBulb.Location.X
+                Dim bulbY As Integer = Mouse.SelectedBulb.Location.Y
+                If bulbX > shift And bulbY > -shift Then 'old bulb not too close to top or left walls
+                    .Location = New Point(bulbX - shift, bulbY + shift) 'shift down and left from previous bulb
+                    locationSet = True 'location set so don't overwrite below
+                End If
+            End If
+            If locationSet = False Then 'bulb location not yet set
+                If CurrentPictureBox IsNot Nothing Then 'offset bulb over and down from top left corner of user viewing window
+                    Dim x As Integer = offset * CurrentPictureBox.Size.Width 'portion of canvas width
+                    Dim y As Integer = offset * CurrentPictureBox.Size.Height 'portion of canvas height
+                    If CurrentPictureBox.Parent IsNot Nothing Then 'CurrentPictureBox.Parent is the user's viewing window
+                        Dim viewW As Integer = offset * CurrentPictureBox.Parent.Width 'portion of viewing width
+                        Dim viewH As Integer = offset * CurrentPictureBox.Parent.Height 'portion of viewing height
+                        If viewW < x Then x = viewW - CurrentPictureBox.Left 'view width smaller than canvas so migrate to window location
+                        If viewH < y Then y = viewH - CurrentPictureBox.Top 'view height smaller than canvas so migrate to window location
+                    End If
+                    .Location = New Point(x / Mouse.factor, y / Mouse.factor) 'adjusted for zoom level otherwise not desired 20%
+                Else 'generic location
+                    .Location = New Point(50, 50) '50 pixels from corner so not along edges
+                End If
             End If
         End With
         If BackglassData.IsDMDImageShown Then
