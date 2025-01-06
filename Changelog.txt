@@ -1,3 +1,7 @@
+2.1.0
+- Increased Max ZOrder to 19 from 9 by jonesyUK
+- Fixed bug (Issue #13) with Illumination_AddBulb(), thanks funjup for the fix!
+
 2.0.0
 - EM credit reel: numbers 10 to 16 not saved
   Thanks to tweety231323, Hauntfreaks, Wildman and Cliffy we solved this problem so quick.
