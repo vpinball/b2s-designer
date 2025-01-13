@@ -1,6 +1,13 @@
 2.1.0
 - Increased Max ZOrder to 19 from 9 by jonesyUK
-- Fixed bug (Issue #13) with Illumination_AddBulb(), thanks funjup for the fix!
+- Fixed bug (Issue #13) thanks funjup for the fix!
+  Adding a new bulb frame would sometimes calculate it's location having negative coordinates, placing it off the workspace, especially if zoomed in or having a large frame duplicated.
+
+  Now:
+
+  - if a frame is selected (in focus), it will duplicate it with a small shift (20 pixels) so can easily be grabbed, and can be counted if duplicating multiples.
+  - if a frame was recently selected but no longer in focus, the new frame will be placed with a certain offset (20%) from the top left corner of the user's viewing window. This way a new frame is always placed within the user's working area as they move around the canvas when zoomed in.
+  - if no previous frame was selected to duplicate, the default Size is now 200x100px (was 300x100).
 
 2.0.0
 - EM credit reel: numbers 10 to 16 not saved
