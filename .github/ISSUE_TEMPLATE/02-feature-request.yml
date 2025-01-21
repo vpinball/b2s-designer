@@ -8,6 +8,14 @@ body:
         ### Thank you for taking the time to submit a feature request. In order to process it as quickly as possible, we need the following information.
         ### However, before you open a feature request, please search for the behaviour in the existing issues and discuss it in the community forums at [vpuniverse](https://vpuniverse.com/files/file/2119-b2s-designer) or [vpforums](https://www.vpforums.org/index.php?showforum=89).
         ---
+  - type: input
+    id: version
+    attributes:
+      label: Version
+      description: What version of B2S Designer are you using? Please confirm the same behaviour in the latest release!
+      placeholder: 2.1.0
+    validations:
+      required: true
   - type: textarea
     id: steps
     attributes:
@@ -23,15 +31,7 @@ body:
   - type: textarea
     id: solution
     attributes:
-      label: Describe the solution you'd like ✅
+      label: Expected behavior and solution proposal ✅
       description: A clear and concise description of what you expected to happen.
-    validations:
-      required: true
-  - type: input
-    id: version
-    attributes:
-      label: Version
-      description: What version of B2S Designer are you using?
-      placeholder: 2.1.0
     validations:
       required: true
