@@ -10,3 +10,20 @@ Documentation is available in the package as html-help but can also be read [onl
 
 To build either B2S.Server or B2S.Designer, open the *.sln files in Visual Studio (any version from 2019 should work) and select **build**->**Build Solution** from the menu.
 Microsoft has prepared VM's that include Windows 11 and Visual Studio in one bundle. The licence for these is usually 3 months. This is an easy way to test if it works without having to install lots of different components.
+
+## Linux users
+
+You can run this application on linux with wine:
+
+```shell-session
+export WINEPREFIX=./wine
+export WINEARCH=win32
+winetricks dotnet40
+winetricks gdiplus
+# I could not make it run with wine-mono but it was fine with dotnet
+winetricks remove_mono
+winetricks dotnet48
+
+# The application can now be started with
+wine B2SBackglassDesigner.exe
+```
