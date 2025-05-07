@@ -12,7 +12,7 @@ Imports System.Runtime.InteropServices
 <Assembly: AssemblyDescription("The WYSIWYG editor for directB2S backglass files")>
 <Assembly: AssemblyCompany("")> 
 <Assembly: AssemblyProduct("B2S Designer")>
-<Assembly: AssemblyCopyright("Copyright (c) 2012-2024")> 
+<Assembly: AssemblyCopyright("Copyright (c) 2012-2025")> 
 <Assembly: AssemblyTrademark("A Herweh & B2S Team production")> 
 
 <Assembly: ComVisible(False)>
@@ -31,6 +31,6 @@ Imports System.Runtime.InteropServices
 ' übernehmen, indem Sie "*" eingeben:
 ' <Assembly: AssemblyVersion("1.0.*")> 
 
-<Assembly: AssemblyVersion("2.1.0.0")> 
-<Assembly: AssemblyFileVersion("2.1.0.0")> 
-<Assembly: AssemblyInformationalVersion("2.1.0.0")> 
+<Assembly: AssemblyVersion("2.1.1.0")> 
+<Assembly: AssemblyFileVersion("2.1.1.0")> 
+<Assembly: AssemblyInformationalVersion("2.1.1.0")> 
