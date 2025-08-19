@@ -351,6 +351,33 @@
   <data name="&gt;&gt;txtName.ZOrder" xml:space="preserve">
     <value>5</value>
   </data>
+  <data name="btnChangeImage.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="btnChangeImage.Location" type="System.Drawing.Point, System.Drawing">
+    <value>311, 73</value>
+  </data>
+  <data name="btnChangeImage.Size" type="System.Drawing.Size, System.Drawing">
+    <value>88, 23</value>
+  </data>
+  <data name="btnChangeImage.TabIndex" type="System.Int32, mscorlib">
+    <value>11</value>
+  </data>
+  <data name="btnChangeImage.Text" xml:space="preserve">
+    <value>&amp;Change Image</value>
+  </data>
+  <data name="&gt;&gt;btnChangeImage.Name" xml:space="preserve">
+    <value>btnChangeImage</value>
+  </data>
+  <data name="&gt;&gt;btnChangeImage.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;btnChangeImage.Parent" xml:space="preserve">
+    <value>groupGeneral</value>
+  </data>
+  <data name="&gt;&gt;btnChangeImage.ZOrder" xml:space="preserve">
+    <value>6</value>
+  </data>
   <data name="groupGeneral.Location" type="System.Drawing.Point, System.Drawing">
     <value>12, 4</value>
   </data>

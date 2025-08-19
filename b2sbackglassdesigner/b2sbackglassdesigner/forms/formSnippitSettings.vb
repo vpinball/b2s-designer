@@ -115,4 +115,29 @@ Public Class formSnippitSettings
         cmbRotationStopBehaviour.Enabled = (cmbType.SelectedIndex = 1)
     End Sub
 
+    Private Sub btnChangeImage_Click(sender As Object, e As EventArgs) Handles btnChangeImage.Click
+        Dim bulb = Backglass.currentTabPage.Mouse.SelectedBulb
+        If bulb IsNot Nothing Then
+            Using fileDialog As OpenFileDialog = New OpenFileDialog
+                With fileDialog
+                    .Filter = ImageFileExtensionFilter
+                    .FileName = String.Empty
+                    .InitialDirectory = BackglassProjectsPath
+                    If .ShowDialog(Me) = DialogResult.OK Then
+                        Backglass.currentImages.RemoveByTypeAndName(Images.eImageInfoType.IlluminationSnippits, bulb.Name)
+
+                        bulb.Image = Bitmap.FromFile(.FileName).Copy(True)
+                        bulb.Name = IO.Path.GetFileNameWithoutExtension(.FileName)
+
+                        Dim imageInfo As Images.ImageInfo = New Images.ImageInfo(Images.eImageInfoType.IlluminationSnippits)
+                        imageInfo.Text = bulb.Name
+                        imageInfo.Image = bulb.Image
+                        Backglass.currentImages.Insert(Images.eImageInfoType.Title4IlluminationSnippits, imageInfo)
+
+                        B2SBackglassDesigner.formDesigner.RefreshImageInfoList()
+                    End If
+                End With
+            End Using
+        End If
+    End Sub
 End Class

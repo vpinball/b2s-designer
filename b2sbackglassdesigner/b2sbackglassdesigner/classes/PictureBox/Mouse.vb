@@ -165,6 +165,11 @@ Public Class Mouse
                 Select Case keycode
                     Case Keys.Delete
                         If TypeOf SelectedItem Is Illumination.BulbInfo Then
+                            Dim bulb As Illumination.BulbInfo = SelectedItem
+                            If bulb.IsImageSnippit Then
+                                Backglass.currentImages.RemoveByTypeAndName(Images.eImageInfoType.IlluminationSnippits, bulb.Name)
+                                B2SBackglassDesigner.formDesigner.RefreshImageInfoList()
+                            End If
                             Undo.AddEntry(New Undo.UndoEntry(Undo.Type.BulbRemoved, SelectedItem))
                             bulbs.Remove(SelectedItem)
                             SelectedBulb = Nothing
@@ -441,6 +446,11 @@ Public Class Mouse
         parent.Cursor = CalcMouseLocation(e.X, e.Y, , , , False)
         If IsMatchingX AndAlso (SelectedItem IsNot Nothing OrElse CopyDMDImageFromBackglass) Then
             If TypeOf SelectedItem Is Illumination.BulbInfo Then
+                Dim bulb As Illumination.BulbInfo = SelectedItem
+                If bulb.IsImageSnippit Then
+                    Backglass.currentImages.RemoveByTypeAndName(Images.eImageInfoType.IlluminationSnippits, bulb.Name)
+                    B2SBackglassDesigner.formDesigner.RefreshImageInfoList()
+                End If
                 Undo.AddEntry(New Undo.UndoEntry(Undo.Type.BulbRemoved, SelectedItem))
                 bulbs.Remove(SelectedItem)
                 SelectedBulb = Nothing

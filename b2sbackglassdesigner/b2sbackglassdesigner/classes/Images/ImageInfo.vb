@@ -25,6 +25,7 @@
         Public Type As eImageInfoType = eImageInfoType.Undefined
         Public Text As String = String.Empty
         Public Image As Image = Nothing
+        Public RefCount As Integer = 0
 
         Public BackgroundImageType As eBackgroundImageType = eBackgroundImageType.NotUsed
 

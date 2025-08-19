@@ -1640,6 +1640,16 @@ Public Class formDesigner
         NoToolEvents = False
     End Sub
 
+    Public Sub RefreshImageInfoList()
+        If formToolResources IsNot Nothing Then
+            If Backglass.currentData IsNot Nothing Then
+                formToolResources.ImageInfoList = Backglass.currentData.Images
+                Backglass.currentTabPage.Invalidate()
+                Backglass.currentData.IsDirty = True
+            End If
+        End If
+    End Sub
+
     Private Sub CopyDMDArea()
         If Backglass.currentData IsNot Nothing Then
             With Backglass.currentData
