@@ -9,14 +9,14 @@ defaults:
 jobs:
   build-designer:
     name: Build B2S.designer-${{ matrix.config }}-win-${{ matrix.platform }}
-    runs-on: windows-2019
+    runs-on: windows-2022
     strategy:
       fail-fast: false
       matrix:
         include:
-          - platform: x64
+          - platform: "Any CPU"
             config: Debug
-          - platform: x64
+          - platform: "Any CPU"
             config: Release
     steps:
       - uses: actions/checkout@v4
@@ -33,7 +33,7 @@ jobs:
           TAG="${VERSION}-${SHA7}-${{ github.run_number }}"
           perl -i -pe"s/AssemblyInformationalVersion\(\".*\"\)/AssemblyInformationalVersion\(\"${TAG}\"\)/g" "${ASSEMBLY_INFO}"
           echo "tag=${TAG}" >> $GITHUB_OUTPUT
-      - uses: microsoft/setup-msbuild@v2
+      - uses: microsoft/setup-msbuild@v2.0.0
       - name: Build
         run: |
           msbuild B2SVPinMAMEStarter/B2SVPinMAMEStarter.sln /t:Rebuild /p:Configuration=${{ matrix.config }} /p:Platform=${{ matrix.platform }}
@@ -46,13 +46,13 @@ jobs:
       - name: Bundle 
         run: |
           mkdir tmp  
-          cp B2SVPinMAMEStarter/bin/${{ matrix.platform }}/${{ matrix.config }}/B2SVPinMAMEStarter.exe tmp
-          cp b2sbackglassdesigner/b2sbackglassdesigner/bin/${{ matrix.platform }}/${{ matrix.config }}/B2SBackglassDesigner.exe tmp
+          cp B2SVPinMAMEStarter/bin/x64/${{ matrix.config }}/B2SVPinMAMEStarter.exe tmp
+          cp b2sbackglassdesigner/b2sbackglassdesigner/bin/x64/${{ matrix.config }}/B2SBackglassDesigner.exe tmp
           if [[ "${{ matrix.config }}" == "Debug" ]]; then
-             cp B2SVPinMAMEStarter/bin/${{ matrix.platform }}/${{ matrix.config }}/B2SVPinMAMEStarter.pdb tmp
-             cp b2sbackglassdesigner/b2sbackglassdesigner/bin/${{ matrix.platform }}/${{ matrix.config }}/B2SBackglassDesigner.pdb tmp
+             cp B2SVPinMAMEStarter/bin/x64/${{ matrix.config }}/B2SVPinMAMEStarter.pdb tmp
+             cp b2sbackglassdesigner/b2sbackglassdesigner/bin/x64/${{ matrix.config }}/B2SBackglassDesigner.pdb tmp
           fi
-          cp b2sbackglassdesigner/b2sbackglassdesigner/htmlhelp/B2SBackglassDesigner.chm tmp
+          cp b2sbackglassdesigner/b2sbackglassdesigner/htmlhelp/B2SBackglassDesigner.chm tmp || true
           cp license.txt tmp
           cp Changelog.txt tmp
       - uses: actions/upload-artifact@v4
