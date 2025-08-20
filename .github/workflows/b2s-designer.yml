@@ -36,8 +36,8 @@ jobs:
       - uses: microsoft/setup-msbuild@v2.0.0
       - name: Build
         run: |
-          msbuild B2SVPinMAMEStarter/B2SVPinMAMEStarter.sln /t:Rebuild /p:Configuration=${{ matrix.config }} /p:Platform=${{ matrix.platform }}
-          msbuild b2sbackglassdesigner/B2SBackglassDesigner.sln /t:Rebuild /p:Configuration=${{ matrix.config }} /p:Platform=${{ matrix.platform }}
+          msbuild B2SVPinMAMEStarter/B2SVPinMAMEStarter.sln /t:Rebuild /p:Configuration=${{ matrix.config }} "/p:Platform=${{ matrix.platform }}"
+          msbuild b2sbackglassdesigner/B2SBackglassDesigner.sln /t:Rebuild /p:Configuration=${{ matrix.config }} "/p:Platform=${{ matrix.platform }}"
         shell: cmd
       - name: Help
         run: |

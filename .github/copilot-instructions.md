@@ -28,21 +28,21 @@ This document provides essential information for coding agents working with the 
 
 1. **Main Designer Application** (Primary project):
    ```cmd
-   msbuild "b2sbackglassdesigner\B2SBackglassDesigner.sln" -p:Configuration=Release -p:Platform="Any CPU"
+   msbuild "b2sbackglassdesigner\B2SBackglassDesigner.sln" -p:Configuration=Release "/p:Platform=Any CPU"
    ```
    - ✅ **This builds successfully** 
    - Output: `b2sbackglassdesigner\b2sbackglassdesigner\bin\x64\Release\B2SBackglassDesigner.exe`
 
 2. **VPinMAME Starter** (Secondary tool - now builds successfully):
    ```cmd  
-   msbuild "B2SVPinMAMEStarter\B2SVPinMAMEStarter.sln" -p:Configuration=Release -p:Platform="Any CPU"
+   msbuild "B2SVPinMAMEStarter\B2SVPinMAMEStarter.sln" -p:Configuration=Release "/p:Platform=Any CPU"
    ```
    - ✅ **This builds successfully** after updating to .NET Framework 4.8
    - Output: `B2SVPinMAMEStarter\bin\x64\Release\B2SVPinMAMEStarter.exe`
 
 3. **Clean command** (when needed):
    ```cmd
-   msbuild "b2sbackglassdesigner\B2SBackglassDesigner.sln" -t:Clean -p:Configuration=Release -p:Platform="Any CPU"
+   msbuild "b2sbackglassdesigner\B2SBackglassDesigner.sln" -t:Clean -p:Configuration=Release "/p:Platform=Any CPU"
    ```
 
 4. **Help File Compilation** (optional):
@@ -111,8 +111,8 @@ B2STools/
 
 **Build Command Used in CI**:
 ```cmd
-msbuild B2SVPinMAMEStarter/B2SVPinMAMEStarter.sln /t:Rebuild /p:Configuration=Release /p:Platform="Any CPU"
-msbuild b2sbackglassdesigner/B2SBackglassDesigner.sln /t:Rebuild /p:Configuration=Release /p:Platform="Any CPU"
+msbuild B2SVPinMAMEStarter/B2SVPinMAMEStarter.sln /t:Rebuild /p:Configuration=Release "/p:Platform=Any CPU"
+msbuild b2sbackglassdesigner/B2SBackglassDesigner.sln /t:Rebuild /p:Configuration=Release "/p:Platform=Any CPU"
 ```
 
 ### Pre-commit Validation
@@ -125,7 +125,7 @@ msbuild b2sbackglassdesigner/B2SBackglassDesigner.sln /t:Rebuild /p:Configuratio
 ### Making Code Changes
 1. **Always test build after changes**:
    ```cmd
-   msbuild "b2sbackglassdesigner\B2SBackglassDesigner.sln" -t:Rebuild -p:Configuration=Release -p:Platform="Any CPU"
+   msbuild "b2sbackglassdesigner\B2SBackglassDesigner.sln" -t:Rebuild -p:Configuration=Release "/p:Platform=Any CPU"
    ```
 
 2. **Key files to understand**:
