@@ -361,6 +361,8 @@ Public Class formDesigner
 
     Private Sub formAddSnippit_SnippitAdded(sender As Object, e As formAddSnippit.AddSnippitEventArgs) Handles formAddSnippit.SnippitAdded
         Backglass.currentTabPage.Illumination_AddSnippit(e.Name, e.Image, e.Location)
+        Backglass.currentData.Images.Insert(Images.eImageInfoType.Title4IlluminationSnippits, New Images.ImageInfo(Images.eImageInfoType.IlluminationSnippits, e.Name, e.Image))
+        LoadToolResourcesForm()
     End Sub
 
     Private Sub formAnimations_ResetAnimationLights(sender As Object, e As System.EventArgs) Handles formAnimations.ResetAnimationLights
