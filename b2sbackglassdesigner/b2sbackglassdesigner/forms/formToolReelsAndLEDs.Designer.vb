@@ -133,6 +133,7 @@ Partial Class formToolReelsAndLEDs
         'numericSpacing
         '
         resources.ApplyResources(Me.numericSpacing, "numericSpacing")
+        Me.numericSpacing.Maximum = New Decimal(New Integer() {1000, 0, 0, 0})
         Me.numericSpacing.Name = "numericSpacing"
         '
         'B2SLine3
