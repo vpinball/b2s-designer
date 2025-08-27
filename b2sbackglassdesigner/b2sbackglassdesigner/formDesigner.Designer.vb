@@ -386,10 +386,10 @@ Partial Class formDesigner
         Me.ToolStripSeparator17.Name = "ToolStripSeparator17"
         resources.ApplyResources(Me.ToolStripSeparator17, "ToolStripSeparator17")
         '
-        'tsmiImportIlluminatedImages
+        'tsmiImportIlluminationImage
         '
-        Me.tsmiImportIlluminationImage.Name = "tsmiImportIlluminatedImages"
-        resources.ApplyResources(Me.tsmiImportIlluminationImage, "tsmiImportIlluminatedImages")
+        Me.tsmiImportIlluminationImage.Name = "tsmiImportIlluminationImage"
+        resources.ApplyResources(Me.tsmiImportIlluminationImage, "tsmiImportIlluminationImage")
         '
         'tsmiImportDMDImage
         '

@@ -374,10 +374,10 @@
   <data name="ToolStripSeparator17.Size" type="System.Drawing.Size, System.Drawing">
     <value>222, 6</value>
   </data>
-  <data name="tsmiImportIlluminatedImages.Size" type="System.Drawing.Size, System.Drawing">
+  <data name="tsmiImportIlluminationImage.Size" type="System.Drawing.Size, System.Drawing">
     <value>225, 22</value>
   </data>
-  <data name="tsmiImportIlluminatedImages.Text" xml:space="preserve">
+  <data name="tsmiImportIlluminationImage.Text" xml:space="preserve">
     <value>Import i&amp;llumination image ...</value>
   </data>
   <data name="tsmiImportDMDImage.Size" type="System.Drawing.Size, System.Drawing">
@@ -1903,10 +1903,10 @@
   <data name="&gt;&gt;ToolStripSeparator17.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripSeparator, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;tsmiImportIlluminatedImages.Name" xml:space="preserve">
-    <value>tsmiImportIlluminatedImages</value>
+  <data name="&gt;&gt;tsmiImportIlluminationImage.Name" xml:space="preserve">
+    <value>tsmiImportIlluminationImage</value>
   </data>
-  <data name="&gt;&gt;tsmiImportIlluminatedImages.Type" xml:space="preserve">
+  <data name="&gt;&gt;tsmiImportIlluminationImage.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;tsmiImportDMDImage.Name" xml:space="preserve">
