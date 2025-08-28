@@ -11,8 +11,32 @@
             Me.Add(New Images.ImageInfo(Images.eImageInfoType.Title4IlluminationSnippits, My.Resources.IMAGES_IlluminationSnippits))
         End Sub
 
-        Public Shadows Sub Insert(ByVal titletype As Images.eImageInfoType, ByVal item As Images.ImageInfo)
+        Public Shadows Sub Insert(ByVal titletype As eImageInfoType, ByVal item As ImageInfo)
+            If titletype = eImageInfoType.Title4IlluminationSnippits Then
+                Dim existing As Boolean = False
+                For Each imageInfo As ImageInfo In Me
+                    If imageInfo.Type = item.Type AndAlso imageInfo.Text = item.Text Then
+                        imageInfo.RefCount += 1
+                        Return
+                    End If
+                Next
+            End If
+
+            item.RefCount = 1
             MyBase.Insert(indexInImageList(titletype), item)
+        End Sub
+
+        Public Sub RemoveByTypeAndName(ByVal titletype As eImageInfoType, ByVal name As String)
+            For Each imageInfo As ImageInfo In Me
+                If imageInfo.Type = titletype AndAlso imageInfo.Text = name Then
+                    imageInfo.RefCount -= 1
+
+                    If imageInfo.RefCount = 0 Then
+                        MyBase.Remove(imageInfo)
+                        Return
+                    End If
+                End If
+            Next
         End Sub
 
         Public Sub Resize(ByVal _type As eImageInfoType, ByVal newimagesize As Size)

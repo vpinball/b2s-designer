@@ -44,6 +44,7 @@ Partial Class formSnippitSettings
         Me.Label2 = New System.Windows.Forms.Label()
         Me.numericRotatingInterval = New System.Windows.Forms.NumericUpDown()
         Me.lblRotatingInterval = New System.Windows.Forms.Label()
+        Me.btnChangeImage = New System.Windows.Forms.Button()
         Me.groupGeneral.SuspendLayout()
         CType(Me.numericZOrder, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.grpRotating.SuspendLayout()
@@ -68,6 +69,7 @@ Partial Class formSnippitSettings
         'groupGeneral
         '
         resources.ApplyResources(Me.groupGeneral, "groupGeneral")
+        Me.groupGeneral.Controls.Add(Me.btnChangeImage)
         Me.groupGeneral.Controls.Add(Me.numericZOrder)
         Me.groupGeneral.Controls.Add(Me.lblZOrder)
         Me.groupGeneral.Controls.Add(Me.cmbType)
@@ -198,6 +200,12 @@ Partial Class formSnippitSettings
         resources.ApplyResources(Me.lblRotatingInterval, "lblRotatingInterval")
         Me.lblRotatingInterval.Name = "lblRotatingInterval"
         '
+        'btnChangeImage
+        '
+        resources.ApplyResources(Me.btnChangeImage, "btnChangeImage")
+        Me.btnChangeImage.Name = "btnChangeImage"
+        Me.btnChangeImage.UseVisualStyleBackColor = True
+        '
         'formSnippitSettings
         '
         Me.AcceptButton = Me.btnOk
@@ -244,4 +252,5 @@ Partial Class formSnippitSettings
     Friend WithEvents lblMechID As System.Windows.Forms.Label
     Friend WithEvents cmbRotationStopBehaviour As System.Windows.Forms.ComboBox
     Friend WithEvents lblRotationStopping As System.Windows.Forms.Label
+    Friend WithEvents btnChangeImage As Button
 End Class
