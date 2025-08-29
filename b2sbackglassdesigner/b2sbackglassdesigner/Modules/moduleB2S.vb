@@ -306,6 +306,33 @@ Module moduleB2S
         Return ret
     End Function
 
+    Public Function CompareImages(ByRef image1 As Image, ByRef image2 As Image) As Boolean
+        Dim equal As Boolean = True
+        If image1.Height = image2.Height AndAlso image1.Width = image2.Width Then
+            Dim rect As Rectangle = New Rectangle(0, 0, image1.Width, image1.Height)
+            Dim image1Data As System.Drawing.Imaging.BitmapData = DirectCast(image1, System.Drawing.Bitmap).LockBits(rect, System.Drawing.Imaging.ImageLockMode.ReadWrite, image1.PixelFormat)
+            Dim image2Data As System.Drawing.Imaging.BitmapData = DirectCast(image2, System.Drawing.Bitmap).LockBits(rect, System.Drawing.Imaging.ImageLockMode.ReadWrite, image2.PixelFormat)
+            Dim image1ByteCount As Integer = Math.Abs(image1Data.Stride) * image1.Height
+            Dim image2ByteCount As Integer = Math.Abs(image2Data.Stride) * image2.Height
+            If image1ByteCount = image2ByteCount Then
+                Dim image1RGB(image1ByteCount) As Byte
+                Dim image2RGB(image2ByteCount) As Byte
+                System.Runtime.InteropServices.Marshal.Copy(image1Data.Scan0, image1RGB, 0, image1ByteCount)
+                System.Runtime.InteropServices.Marshal.Copy(image2Data.Scan0, image2RGB, 0, image2ByteCount)
+                For i As Integer = 0 To image1ByteCount
+                    If Not image1RGB(i) = image2RGB(i) Then
+                        equal = False
+                        Exit For
+                    End If
+                Next
+            End If
+            DirectCast(image1, System.Drawing.Bitmap).UnlockBits(image1Data)
+            DirectCast(image2, System.Drawing.Bitmap).UnlockBits(image2Data)
+        End If
+
+        Return equal
+    End Function
+
     Public Function ImageToBase64(image As Image) As String
         If image IsNot Nothing Then
             With New System.Drawing.ImageConverter

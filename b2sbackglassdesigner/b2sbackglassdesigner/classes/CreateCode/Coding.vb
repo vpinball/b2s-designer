@@ -221,10 +221,22 @@ Public Class Coding
                 ' collect all necessary reel images
                 Dim reelimages As Generic.Dictionary(Of String, Generic.Dictionary(Of String, Image)) = New Generic.Dictionary(Of String, Generic.Dictionary(Of String, Image))
                 For Each reeltype As String In Backglass.currentData.ReelType.Split(",")
-                    If Not String.IsNullOrEmpty(reeltype) AndAlso reeltype.Length >= 2 AndAlso Not IsReelImageRendered(reeltype) AndAlso Not IsReelImageDream7(reeltype) Then
+                    reeltype = reeltype.Trim()
+                    Dim exportReel As Boolean = False
+                    For Each score As ReelAndLED.ScoreInfo In .Scores
+                        If score.ReelType = reeltype Then
+                            exportReel = True
+                        End If
+                    Next
+
+                    If exportReel AndAlso Not String.IsNullOrEmpty(reeltype) AndAlso reeltype.Length >= 2 AndAlso Not IsReelImageRendered(reeltype) AndAlso Not IsReelImageDream7(reeltype) Then
+                        Dim isEMR_T As Boolean = (reeltype.StartsWith("EMR_T") OrElse reeltype.StartsWith(ImportedStartString & "EMR_T"))
+                        Dim isEMR_CT As Boolean = (reeltype.StartsWith("EMR_CT") OrElse reeltype.StartsWith(ImportedStartString & "EMR_CT"))
+                        Dim isLED As Boolean = (reeltype.StartsWith("LED") OrElse reeltype.StartsWith(ImportedStartString & "LED"))
+                        If Not isEMR_T AndAlso Not isEMR_CT AndAlso Not isLED Then Continue For
+
                         Dim length As Integer = 2
                         If reeltype.Substring(reeltype.Length - 3, 1) = "_" Then length = 3
-                        Dim isLED As Boolean = (reeltype.StartsWith("LED") OrElse reeltype.StartsWith(ImportedStartString & "LED"))
                         Dim reelname As String = reeltype.Substring(0, reeltype.Length - length)
                         If Not reelimages.ContainsKey(reelname) Then
                             reelimages.Add(reelname, New Generic.Dictionary(Of String, Image))
@@ -232,7 +244,7 @@ Public Class Coding
                         Dim index As Integer = 0
                         Do While True
                             Dim currentname As String
-                            If reeltype.StartsWith("EMR_CT") Or InStr(reeltype, "EMR_CT") > 0 Then
+                            If isEMR_CT Then
                                 currentname = reelname & "_" & index.ToString("D" & 2)
                             Else
                                 currentname = reelname & "_" & If(index < 10, index.ToString("D" & length - 1), "Empty")
@@ -242,13 +254,13 @@ Public Class Coding
                                 Try
                                     Select Case reeltype.Substring(8, 5)
                                         Case "EMR_T" : reelimage = GeneralData.currentData.ImportedReelImageSets(CInt(reeltype.Substring(13).Replace("_0", "")))(index)
-                                        Case "EMR_C" : reelimage = GeneralData.currentData.ImportedCreditReelImageSets(CInt(reeltype.Substring(14).Replace("_0", "")))(index)
+                                        Case "EMR_C" : reelimage = GeneralData.currentData.ImportedCreditReelImageSets(CInt(reeltype.Substring(14).Replace("_00", "")))(index)
                                         Case "LED_T" : reelimage = GeneralData.currentData.ImportedLEDImageSets(CInt(reeltype.Substring(13).Replace("_0", "")))(index)
                                     End Select
                                 Catch ex As IndexOutOfRangeException
                                     ' nothing to do for this error
                                 Catch ex As Exception
-                                    MessageBox.Show(String.Format(My.Resources.MSG_CreateDirectB2SError, ex.Message), AppTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
+                                    MessageBox.Show("Key: " & reeltype & vbCrLf & vbCrLf & String.Format(My.Resources.MSG_CreateDirectB2SError, ex.Message), AppTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
                                 End Try
                             Else
                                 reelimage = My.Resources.ResourceManager.GetObject(currentname)
@@ -259,7 +271,7 @@ Public Class Coding
                                     reelimages(reelname).Add(currentname, reelimage)
                                 End If
                                 ' maybe get out here
-                                If index < 0 Then
+                                If index < 0 Or index > 25 Then
                                     Exit Do
                                 End If
                             ElseIf index > 25 Then ' Safety belt, never try more than 25 rounds
@@ -710,6 +722,121 @@ Public Class Coding
                             Else
                                 score.ParentForm = eParentForm.Backglass
                                 myscores.Add(score.ID, score)
+                            End If
+                        Next
+                    End If
+
+                    ' get all reel images
+                    If topnode.SelectSingleNode("Reels") IsNot Nothing AndAlso topnode.SelectNodes("Reels/Images") IsNot Nothing AndAlso topnode.SelectNodes("Reels/Images/Image") IsNot Nothing Then
+                        B2SBackglassDesigner.formToolReelsAndLEDs.ReloadReels() ' this needs to be up to date in order to be able to see if we should import the stored reel images or not
+                        For Each score In myscores
+                            Dim length As Integer = 2
+                            If score.ReelType.Substring(score.ReelType.Length - 3, 1) = "_" Then length = 3
+                            Dim reelName = score.ReelType.Substring(0, score.ReelType.Length - length)
+                            Dim isImportedEMR_T As Boolean = reelName.StartsWith(ImportedStartString & "EMR_T")
+                            Dim isImportedEMR_CT As Boolean = reelName.StartsWith(ImportedStartString & "EMR_CT")
+                            Dim isImportedLED As Boolean = reelName.StartsWith(ImportedStartString & "LED")
+                            Dim existing = False
+
+                            If isImportedEMR_T Then
+                                Dim importedSets = GeneralData.currentData.ImportedReelImageSets
+                                For Each innerNode As Xml.XmlElement In topnode.SelectNodes("Reels/Images/Image")
+                                    Dim imageName = innerNode.Attributes("Name").InnerText
+                                    If imageName.StartsWith(reelName) Then
+                                        Dim image As Image = Base64ToImage(innerNode.Attributes("Image").InnerText)
+                                        For Each importedSet In importedSets
+                                            If CompareImages(image, importedSet.Value(0)) Then
+                                                existing = True
+                                                score.ReelType = score.ReelType.Replace(reelName, "ImportedEMR_T" & importedSet.Key)
+                                                .ReelType = .ReelType.Replace(reelName, "ImportedEMR_T" & importedSet.Key)
+                                            End If
+                                        Next
+                                        Exit For
+                                    End If
+                                Next
+
+                                If Not existing Then
+                                    Dim images As Image() = Nothing
+                                    For Each innerNode As Xml.XmlElement In topnode.SelectNodes("Reels/Images/Image")
+                                        Dim imageName = innerNode.Attributes("Name").InnerText
+                                        If imageName.StartsWith(reelname) Then
+                                            Dim image = Base64ToImage(innerNode.Attributes("Image").InnerText)
+                                            ReDim Preserve images(If(images Is Nothing, 0, images.Length))
+                                            images(images.Length - 1) = image
+                                        End If
+                                    Next
+                                    If images IsNot Nothing Then
+                                        GeneralData.currentData.AddImageSet(images, eImageSetType.ReelImages)
+                                        score.ReelType = score.ReelType.Replace(reelname, "ImportedEMR_T" & GeneralData.currentData.ImportedReelImageSets.Count)
+                                        .ReelType = .ReelType.Replace(reelname, "ImportedEMR_T" & GeneralData.currentData.ImportedReelImageSets.Count)
+                                    End If
+                                End If
+                            ElseIf isImportedEMR_CT Then
+                                Dim importedSets = GeneralData.currentData.ImportedCreditReelImageSets
+                                For Each innerNode As Xml.XmlElement In topnode.SelectNodes("Reels/Images/Image")
+                                    Dim imageName = innerNode.Attributes("Name").InnerText
+                                    If imageName.StartsWith(reelName) Then
+                                        Dim image As Image = Base64ToImage(innerNode.Attributes("Image").InnerText)
+                                        For Each importedSet In importedSets
+                                            If CompareImages(image, importedSet.Value(0)) Then
+                                                existing = True
+                                                score.ReelType = score.ReelType.Replace(reelName, "ImportedEMR_CT" & importedSet.Key)
+                                                .ReelType = .ReelType.Replace(reelName, "ImportedEMR_CT" & importedSet.Key)
+                                            End If
+                                        Next
+                                        Exit For
+                                    End If
+                                Next
+
+                                If Not existing Then
+                                    Dim images As Image() = Nothing
+                                    For Each innerNode As Xml.XmlElement In topnode.SelectNodes("Reels/Images/Image")
+                                        Dim imageName = innerNode.Attributes("Name").InnerText
+                                        If imageName.StartsWith(reelName) Then
+                                            Dim image = Base64ToImage(innerNode.Attributes("Image").InnerText)
+                                            ReDim Preserve images(If(images Is Nothing, 0, images.Length))
+                                            images(images.Length - 1) = image
+                                        End If
+                                    Next
+                                    If images IsNot Nothing Then
+                                        GeneralData.currentData.AddImageSet(images, eImageSetType.CreditReelImages)
+                                        score.ReelType = score.ReelType.Replace(reelName, "ImportedEMR_CT" & GeneralData.currentData.ImportedCreditReelImageSets.Count)
+                                        .ReelType = .ReelType.Replace(reelName, "ImportedEMR_CT" & GeneralData.currentData.ImportedCreditReelImageSets.Count)
+                                    End If
+                                End If
+                            ElseIf isImportedLED Then
+                                Dim importedSets = GeneralData.currentData.ImportedLEDImageSets
+                                For Each innerNode As Xml.XmlElement In topnode.SelectNodes("Reels/Images/Image")
+                                    Dim imageName = innerNode.Attributes("Name").InnerText
+                                    If imageName.StartsWith(reelName) Then
+                                        Dim image As Image = Base64ToImage(innerNode.Attributes("Image").InnerText)
+                                        For Each importedSet In importedSets
+                                            If CompareImages(image, importedSet.Value(0)) Then
+                                                existing = True
+                                                score.ReelType = score.ReelType.Replace(reelName, "ImportedLED_T" & importedSet.Key)
+                                                .ReelType = .ReelType.Replace(reelName, "ImportedLED_T" & importedSet.Key)
+                                            End If
+                                        Next
+                                        Exit For
+                                    End If
+                                Next
+
+                                If Not existing Then
+                                    Dim images As Image() = Nothing
+                                    For Each innerNode As Xml.XmlElement In topnode.SelectNodes("Reels/Images/Image")
+                                        Dim imageName = innerNode.Attributes("Name").InnerText
+                                        If imageName.StartsWith(reelName) Then
+                                            Dim image = Base64ToImage(innerNode.Attributes("Image").InnerText)
+                                            ReDim Preserve images(If(images Is Nothing, 0, images.Length))
+                                            images(images.Length - 1) = image
+                                        End If
+                                    Next
+                                    If images IsNot Nothing Then
+                                        GeneralData.currentData.AddImageSet(images, eImageSetType.LEDImages)
+                                        score.ReelType = score.ReelType.Replace(reelName, "ImportedLED_T" & GeneralData.currentData.ImportedLEDImageSets.Count)
+                                        .ReelType = .ReelType.Replace(reelName, "ImportedLED_T" & GeneralData.currentData.ImportedLEDImageSets.Count)
+                                    End If
+                                End If
                             End If
                         Next
                     End If
