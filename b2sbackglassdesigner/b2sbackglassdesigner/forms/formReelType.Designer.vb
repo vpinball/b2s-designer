@@ -28,7 +28,6 @@ Partial Class formReelType
         Me.btnOk = New System.Windows.Forms.Button()
         Me.GroupBoxImages = New System.Windows.Forms.GroupBox()
         Me.lblMS = New System.Windows.Forms.Label()
-        Me.btnImportLEDs = New System.Windows.Forms.Button()
         Me.cmbRollingDirection = New System.Windows.Forms.ComboBox()
         Me.lblRollingDirection = New System.Windows.Forms.Label()
         Me.numIntermediateCount = New System.Windows.Forms.NumericUpDown()
@@ -37,8 +36,12 @@ Partial Class formReelType
         Me.lblRollingInterval = New System.Windows.Forms.Label()
         Me.lvEMCreditReels = New System.Windows.Forms.ListView()
         Me.lvLEDs = New System.Windows.Forms.ListView()
-        Me.btnImportCreditReels = New System.Windows.Forms.Button()
         Me.btnImportReels = New System.Windows.Forms.Button()
+        Me.btnImportCreditReels = New System.Windows.Forms.Button()
+        Me.btnImportLEDs = New System.Windows.Forms.Button()
+        Me.btnExportReels = New System.Windows.Forms.Button()
+        Me.btnExportCreditReels = New System.Windows.Forms.Button()
+        Me.btnExportLEDs = New System.Windows.Forms.Button()
         Me.lblInfo = New System.Windows.Forms.Label()
         Me.lvEMReels = New System.Windows.Forms.ListView()
         Me.ilReels = New System.Windows.Forms.ImageList(Me.components)
@@ -96,7 +99,6 @@ Partial Class formReelType
         '
         resources.ApplyResources(Me.GroupBoxImages, "GroupBoxImages")
         Me.GroupBoxImages.Controls.Add(Me.lblMS)
-        Me.GroupBoxImages.Controls.Add(Me.btnImportLEDs)
         Me.GroupBoxImages.Controls.Add(Me.cmbRollingDirection)
         Me.GroupBoxImages.Controls.Add(Me.lblRollingDirection)
         Me.GroupBoxImages.Controls.Add(Me.numIntermediateCount)
@@ -105,8 +107,12 @@ Partial Class formReelType
         Me.GroupBoxImages.Controls.Add(Me.lblRollingInterval)
         Me.GroupBoxImages.Controls.Add(Me.lvEMCreditReels)
         Me.GroupBoxImages.Controls.Add(Me.lvLEDs)
-        Me.GroupBoxImages.Controls.Add(Me.btnImportCreditReels)
         Me.GroupBoxImages.Controls.Add(Me.btnImportReels)
+        Me.GroupBoxImages.Controls.Add(Me.btnImportCreditReels)
+        Me.GroupBoxImages.Controls.Add(Me.btnImportLEDs)
+        Me.GroupBoxImages.Controls.Add(Me.btnExportReels)
+        Me.GroupBoxImages.Controls.Add(Me.btnExportCreditReels)
+        Me.GroupBoxImages.Controls.Add(Me.btnExportLEDs)
         Me.GroupBoxImages.Controls.Add(Me.lblInfo)
         Me.GroupBoxImages.Controls.Add(Me.lvEMReels)
         Me.GroupBoxImages.Name = "GroupBoxImages"
@@ -116,12 +122,6 @@ Partial Class formReelType
         '
         resources.ApplyResources(Me.lblMS, "lblMS")
         Me.lblMS.Name = "lblMS"
-        '
-        'btnImportLEDs
-        '
-        resources.ApplyResources(Me.btnImportLEDs, "btnImportLEDs")
-        Me.btnImportLEDs.Name = "btnImportLEDs"
-        Me.btnImportLEDs.UseVisualStyleBackColor = True
         '
         'cmbRollingDirection
         '
@@ -175,17 +175,41 @@ Partial Class formReelType
         Me.lvLEDs.UseCompatibleStateImageBehavior = False
         Me.lvLEDs.View = System.Windows.Forms.View.List
         '
+        'btnImportReels
+        '
+        resources.ApplyResources(Me.btnImportReels, "btnImportReels")
+        Me.btnImportReels.Name = "btnImportReels"
+        Me.btnImportReels.UseVisualStyleBackColor = True
+        '
         'btnImportCreditReels
         '
         resources.ApplyResources(Me.btnImportCreditReels, "btnImportCreditReels")
         Me.btnImportCreditReels.Name = "btnImportCreditReels"
         Me.btnImportCreditReels.UseVisualStyleBackColor = True
         '
-        'btnImportReels
+        'btnImportLEDs
         '
-        resources.ApplyResources(Me.btnImportReels, "btnImportReels")
-        Me.btnImportReels.Name = "btnImportReels"
-        Me.btnImportReels.UseVisualStyleBackColor = True
+        resources.ApplyResources(Me.btnImportLEDs, "btnImportLEDs")
+        Me.btnImportLEDs.Name = "btnImportLEDs"
+        Me.btnImportLEDs.UseVisualStyleBackColor = True
+        '
+        'btnExportReels
+        '
+        resources.ApplyResources(Me.btnExportReels, "btnExportReels")
+        Me.btnExportReels.Name = "btnExportReels"
+        Me.btnExportReels.UseVisualStyleBackColor = True
+        '
+        'btnExportCreditReels
+        '
+        resources.ApplyResources(Me.btnExportCreditReels, "btnExportCreditReels")
+        Me.btnExportCreditReels.Name = "btnExportCreditReels"
+        Me.btnExportCreditReels.UseVisualStyleBackColor = True
+        '
+        'btnExportLEDs
+        '
+        resources.ApplyResources(Me.btnExportLEDs, "btnExportLEDs")
+        Me.btnExportLEDs.Name = "btnExportLEDs"
+        Me.btnExportLEDs.UseVisualStyleBackColor = True
         '
         'lblInfo
         '
@@ -469,4 +493,7 @@ Partial Class formReelType
     Friend WithEvents lblRollingDirection As System.Windows.Forms.Label
     Friend WithEvents btnImportLEDs As System.Windows.Forms.Button
     Friend WithEvents lblMS As System.Windows.Forms.Label
+    Friend WithEvents btnExportReels As System.Windows.Forms.Button
+    Friend WithEvents btnExportCreditReels As System.Windows.Forms.Button
+    Friend WithEvents btnExportLEDs As System.Windows.Forms.Button
 End Class

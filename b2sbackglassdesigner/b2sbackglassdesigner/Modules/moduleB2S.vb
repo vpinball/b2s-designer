@@ -1,4 +1,6 @@
-﻿Imports System.Text
+﻿Imports System.IO
+Imports System.Text
+Imports System.Xml
 
 Module moduleB2S
 
@@ -462,6 +464,108 @@ Module moduleB2S
             End If
         Next
         Return ret
+    End Function
+
+    Public Function ExportSetImages(_selectedName As String, _selectedIndex As Integer, _xmlPath As String, _defaults As String(), _nodeName As String) As Boolean
+        Try
+            ' Check if the selected is part of defaults
+            If _selectedIndex < _defaults.Length Then
+                ' Export hardcoded images
+                Dim baseName As String = _defaults(_selectedIndex)
+                Dim outputDirectory As String = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Exports", _selectedName)
+
+                If Not Directory.Exists(outputDirectory) Then
+                    Directory.CreateDirectory(outputDirectory)
+                End If
+
+                Dim success As Boolean = False
+                Dim index As Integer = 0
+                For index = 0 To 9999 ' Loop through images 0 to 9999
+                    Dim resourceName As String
+                    If baseName.Contains("_00") Then ' EMR_CT1_00
+                        resourceName = $"{baseName.Replace("_00", "")}_{index:D2}"
+                    Else ' EMR_T1_0 or LED_T1_0
+                        resourceName = $"{baseName.Replace("_0", "")}_{index}"
+                    End If
+
+                    Dim image As Object = My.Resources.ResourceManager.GetObject(resourceName)
+
+                    If image IsNot Nothing AndAlso TypeOf image Is Image Then
+                        Dim outputFileName As String = Path.Combine(outputDirectory, $"{_selectedName.Replace(" ", "_")}_{index:D2}.png")
+                        outputFileName.Replace(" ", "_")
+                        CType(image, Image).Save(outputFileName, Imaging.ImageFormat.Png)
+                        success = True
+                    Else
+                        Exit For
+                    End If
+                Next
+
+                If success Then
+                    MessageBox.Show($"Successfully exported {index} images! Files saved to: {outputDirectory}", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information)
+                    Return True
+                Else
+                    MessageBox.Show($"No images found for: {_selectedName}.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                    Return False
+                End If
+            Else
+                ' Handle imported reels (XML-based)
+                Dim doc As New XmlDocument()
+                doc.Load(_xmlPath)
+
+                ' Locate the node
+                Dim node As XmlNode = doc.SelectSingleNode(_nodeName)
+                If node Is Nothing Then
+                    MessageBox.Show("{_nodeName} node Not found in the XML file.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                    Return False
+                End If
+
+                ' Collect imported sets and adjust the index
+                Dim setNodes As XmlNodeList = node.ChildNodes
+                Dim adjustedIndex As Integer = _selectedIndex - _defaults.Length
+
+                If adjustedIndex < 0 OrElse adjustedIndex >= setNodes.Count Then
+                    MessageBox.Show($"No data found for: {_selectedName}. Adjusted Index: {adjustedIndex}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                    Return False
+                End If
+
+                ' Export images from XML
+                Dim matchingNode As XmlNode = setNodes(adjustedIndex)
+                Dim outputDirectory As String = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Exports", _selectedName)
+
+                If Not Directory.Exists(outputDirectory) Then
+                    Directory.CreateDirectory(outputDirectory)
+                End If
+
+                Dim index As Integer = 1
+                For Each imageNode As XmlNode In matchingNode.ChildNodes
+                    Dim base64Value As String = imageNode.Attributes("Value")?.Value
+                    If Not String.IsNullOrEmpty(base64Value) Then
+                        Dim imageBytes As Byte() = Convert.FromBase64String(base64Value)
+                        Dim outputFileName As String = Path.Combine(outputDirectory, $"{_selectedName.Replace(" ", "_")}_{index:D2}.png")
+                        File.WriteAllBytes(outputFileName, imageBytes)
+                        index += 1
+                    End If
+                Next
+
+                MessageBox.Show($"Successfully exported {index} images! Files saved to: {outputDirectory}", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information)
+                Return True
+            End If
+        Catch ex As Exception
+            MessageBox.Show($"Error exporting images: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            Return False
+        End Try
+    End Function
+
+    Public Function ExportReelImages(_selectedName As String, _selectedIndex As Integer, _xmlPath As String) As Boolean
+        Return ExportSetImages(_selectedName, _selectedIndex, _xmlPath, DefaultEMReels, "//ReelSets")
+    End Function
+
+    Public Function ExportCreditReelImages(_selectedName As String, _selectedIndex As Integer, _xmlPath As String) As Boolean
+        Return ExportSetImages(_selectedName, _selectedIndex, _xmlPath, DefaultEMCreditReels, "//CreditReelSets")
+    End Function
+
+    Public Function ExportLEDImages(_selectedName As String, _selectedIndex As Integer, _xmlPath As String) As Boolean
+        Return ExportSetImages(_selectedName, _selectedIndex, _xmlPath, DefaultLEDs, "//LEDSets")
     End Function
 
 End Module
