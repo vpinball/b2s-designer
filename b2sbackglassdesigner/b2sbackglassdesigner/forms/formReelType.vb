@@ -358,4 +358,76 @@ Public Class formReelType
         End If
     End Sub
 
+    Private Sub btnExportReels_Click(sender As Object, e As EventArgs) Handles btnExportReels.Click
+        Try
+            ' Ensure a reel is selected
+            If lvEMReels.SelectedItems.Count = 0 Then
+                MessageBox.Show("Please select a reel to export.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                Return
+            End If
+
+            ' Get the selected reel name and index
+            Dim selectedReelName As String = lvEMReels.SelectedItems(0).Text
+            Dim selectedReelIndex As Integer = lvEMReels.SelectedIndices(0)
+
+            ' Path to the XML file
+            Dim xmlPath As String = "Projects\B2SBackglassDesigner.Import.xml"
+
+            ' Call the export function
+            If Not ExportReelImages(selectedReelName, selectedReelIndex, xmlPath) Then
+                MessageBox.Show("Failed to export the selected reel.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            End If
+        Catch ex As Exception
+            MessageBox.Show($"An error occurred: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+        End Try
+    End Sub
+
+    Private Sub btnExportCreditReels_Click(sender As Object, e As EventArgs) Handles btnExportCreditReels.Click
+        Try
+            ' Ensure a credit reel is selected
+            If lvEMCreditReels.SelectedItems.Count = 0 Then
+                MessageBox.Show("Please select a credit reel to export.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                Return
+            End If
+
+            ' Get the selected credit reel name and index
+            Dim selectedCreditReelName As String = lvEMCreditReels.SelectedItems(0).Text
+            Dim selectedCreditReelIndex As Integer = lvEMCreditReels.SelectedIndices(0)
+
+            ' Path to the XML file
+            Dim xmlPath As String = "Projects\B2SBackglassDesigner.Import.xml"
+
+            ' Call the export function
+            If Not ExportCreditReelImages(selectedCreditReelName, selectedCreditReelIndex, xmlPath) Then
+                MessageBox.Show("Failed to export the selected credit reel.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            End If
+        Catch ex As Exception
+            MessageBox.Show($"An error occurred: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+        End Try
+    End Sub
+
+    Private Sub btnExportLEDs_Click(sender As Object, e As EventArgs) Handles btnExportLEDs.Click
+        Try
+            ' Ensure an LED set is selected
+            If lvLEDs.SelectedItems.Count = 0 Then
+                MessageBox.Show("Please select a LED to export.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                Return
+            End If
+
+            ' Get the selected LED name and index
+            Dim selectedLEDName As String = lvLEDs.SelectedItems(0).Text
+            Dim selectedLEDIndex As Integer = lvLEDs.SelectedIndices(0)
+
+            ' Path to the XML file
+            Dim xmlPath As String = "Projects\B2SBackglassDesigner.Import.xml"
+
+            ' Call the export function
+            If Not ExportLEDImages(selectedLEDName, selectedLEDIndex, xmlPath) Then
+                MessageBox.Show("Failed to export the selected LED.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            End If
+        Catch ex As Exception
+            MessageBox.Show($"An error occurred: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+        End Try
+    End Sub
+
 End Class
