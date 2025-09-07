@@ -317,7 +317,7 @@ Public Class formAnimations
         If currentAnimationHeader IsNot Nothing Then
             For Each item As Animation.AnimationStep In currentAnimationHeader.AnimationSteps
                 With item
-                    lvwAddItem(New String() {.Step.ToString(), .On, .WaitLoopsAfterOn.ToString(), .Off, .WaitLoopsAfterOff.ToString(), If((.PulseSwitch > 0), .PulseSwitch.ToString(), String.Empty)})
+                    lvwAddItem(New String() { .Step.ToString(), .On, .WaitLoopsAfterOn.ToString(), .Off, .WaitLoopsAfterOff.ToString(), If((.PulseSwitch > 0), .PulseSwitch.ToString(), String.Empty)})
                 End With
             Next
         End If
@@ -470,4 +470,51 @@ Public Class formAnimations
         Return ret
     End Function
 
+    Private Sub btnImportAnimations_Click(sender As Object, e As EventArgs) Handles btnImportAnimations.Click
+        Using openDialog As New OpenFileDialog()
+            openDialog.Filter = "XML Files (*.xml)|*.xml"
+            openDialog.Title = "Import Animation"
+
+            If openDialog.ShowDialog() = DialogResult.OK Then
+                Try
+                    ' Check and import the animation
+                    Dim animations As List(Of Animation.AnimationHeader) = ImportAnimations(openDialog.FileName)
+                    If animations IsNot Nothing AndAlso animations.Any() Then
+                        For Each animation As Animation.AnimationHeader In animations
+                            Backglass.currentAnimations.Add(animation)
+                        Next
+                        PopulateAnimations() ' Refresh the UI with the imported animations
+                        MessageBox.Show("Animation imported successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information)
+                    Else
+                        MessageBox.Show("No valid animations were found in the selected file.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+                    End If
+                Catch ex As Exception
+                    MessageBox.Show($"No valid animations were found in the selected file. Failed to import: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                End Try
+            End If
+        End Using
+    End Sub
+
+    Private Sub btnExportAnimation_Click(sender As Object, e As EventArgs) Handles btnExportAnimation.Click
+        ' Ensure an animation is selected
+        If currentAnimationHeader IsNot Nothing Then
+            Using saveDialog As New SaveFileDialog()
+                saveDialog.Filter = "XML Files (*.xml)|*.xml"
+                saveDialog.Title = "Export Animation"
+                saveDialog.FileName = currentAnimationHeader.Name & ".xml"
+
+                If saveDialog.ShowDialog() = DialogResult.OK Then
+                    Try
+                        ' Export only the selected animation to XML
+                        ExportAnimation(currentAnimationHeader, saveDialog.FileName)
+                        MessageBox.Show("Animation exported successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information)
+                    Catch ex As Exception
+                        MessageBox.Show($"Failed to export animation: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                    End Try
+                End If
+            End Using
+        Else
+            MessageBox.Show("Please select an animation to export.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+        End If
+    End Sub
 End Class

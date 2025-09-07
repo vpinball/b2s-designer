@@ -142,7 +142,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;cmbAnimations.ZOrder" xml:space="preserve">
-    <value>41</value>
+    <value>43</value>
   </data>
   <data name="lblAnimations.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
@@ -157,7 +157,7 @@
     <value>35</value>
   </data>
   <data name="lblAnimations.Text" xml:space="preserve">
-    <value>Select animation:</value>
+    <value>Select Animation:</value>
   </data>
   <data name="lblAnimations.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
     <value>MiddleRight</value>
@@ -172,22 +172,22 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;lblAnimations.ZOrder" xml:space="preserve">
-    <value>42</value>
+    <value>44</value>
   </data>
-  <data name="btnNewAnimation.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Top, Left, Right</value>
+  <data name="btnNewAnimation.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
   </data>
   <data name="btnNewAnimation.Location" type="System.Drawing.Point, System.Drawing">
     <value>10, 39</value>
   </data>
   <data name="btnNewAnimation.Size" type="System.Drawing.Size, System.Drawing">
-    <value>273, 25</value>
+    <value>111, 23</value>
   </data>
   <data name="btnNewAnimation.TabIndex" type="System.Int32, mscorlib">
     <value>1</value>
   </data>
   <data name="btnNewAnimation.Text" xml:space="preserve">
-    <value>... or add a new animation</value>
+    <value>&amp;Add New Animation</value>
   </data>
   <data name="&gt;&gt;btnNewAnimation.Name" xml:space="preserve">
     <value>btnNewAnimation</value>
@@ -199,7 +199,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;btnNewAnimation.ZOrder" xml:space="preserve">
-    <value>40</value>
+    <value>42</value>
   </data>
   <data name="txtName.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Left, Right</value>
@@ -229,7 +229,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;txtName.ZOrder" xml:space="preserve">
-    <value>37</value>
+    <value>39</value>
   </data>
   <data name="lblName.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
@@ -259,7 +259,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;lblName.ZOrder" xml:space="preserve">
-    <value>38</value>
+    <value>40</value>
   </data>
   <data name="txtInterval.Enabled" type="System.Boolean, mscorlib">
     <value>False</value>
@@ -286,7 +286,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;txtInterval.ZOrder" xml:space="preserve">
-    <value>35</value>
+    <value>37</value>
   </data>
   <data name="lblInterval.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
@@ -316,7 +316,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;lblInterval.ZOrder" xml:space="preserve">
-    <value>36</value>
+    <value>38</value>
   </data>
   <data name="txtLoops.Enabled" type="System.Boolean, mscorlib">
     <value>False</value>
@@ -343,7 +343,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;txtLoops.ZOrder" xml:space="preserve">
-    <value>33</value>
+    <value>35</value>
   </data>
   <data name="lblLoops.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
@@ -373,7 +373,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;lblLoops.ZOrder" xml:space="preserve">
-    <value>34</value>
+    <value>36</value>
   </data>
   <data name="chkAutostart.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Left, Right</value>
@@ -383,6 +383,9 @@
   </data>
   <data name="chkAutostart.Enabled" type="System.Boolean, mscorlib">
     <value>False</value>
+  </data>
+  <data name="chkAutostart.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
   </data>
   <data name="chkAutostart.Location" type="System.Drawing.Point, System.Drawing">
     <value>121, 172</value>
@@ -406,7 +409,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;chkAutostart.ZOrder" xml:space="preserve">
-    <value>32</value>
+    <value>34</value>
   </data>
   <data name="lvwSteps.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Bottom, Left, Right</value>
@@ -466,7 +469,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;lvwSteps.ZOrder" xml:space="preserve">
-    <value>30</value>
+    <value>32</value>
   </data>
   <data name="txtLampsOn.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Bottom, Left, Right</value>
@@ -493,7 +496,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;txtLampsOn.ZOrder" xml:space="preserve">
-    <value>28</value>
+    <value>30</value>
   </data>
   <data name="lblLampsOn.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Bottom, Left</value>
@@ -526,7 +529,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;lblLampsOn.ZOrder" xml:space="preserve">
-    <value>29</value>
+    <value>31</value>
   </data>
   <data name="txtWaitLoopsAfterOn.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Bottom, Left</value>
@@ -553,7 +556,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;txtWaitLoopsAfterOn.ZOrder" xml:space="preserve">
-    <value>26</value>
+    <value>28</value>
   </data>
   <data name="lblWaitAfterOn.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Bottom, Left</value>
@@ -586,7 +589,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;lblWaitAfterOn.ZOrder" xml:space="preserve">
-    <value>27</value>
+    <value>29</value>
   </data>
   <data name="txtWaitLoopsAfterOff.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Bottom, Left</value>
@@ -613,7 +616,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;txtWaitLoopsAfterOff.ZOrder" xml:space="preserve">
-    <value>22</value>
+    <value>24</value>
   </data>
   <data name="lblWaitLoopsAfterOff.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Bottom, Left</value>
@@ -646,7 +649,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;lblWaitLoopsAfterOff.ZOrder" xml:space="preserve">
-    <value>23</value>
+    <value>25</value>
   </data>
   <data name="txtLampsOff.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Bottom, Left, Right</value>
@@ -673,7 +676,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;txtLampsOff.ZOrder" xml:space="preserve">
-    <value>24</value>
+    <value>26</value>
   </data>
   <data name="lblLampsOff.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Bottom, Left</value>
@@ -706,7 +709,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;lblLampsOff.ZOrder" xml:space="preserve">
-    <value>25</value>
+    <value>27</value>
   </data>
   <data name="btnStepUp.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Bottom, Right</value>
@@ -716,6 +719,9 @@
   </data>
   <data name="btnStepUp.Enabled" type="System.Boolean, mscorlib">
     <value>False</value>
+  </data>
+  <data name="btnStepUp.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
   </data>
   <data name="btnStepUp.Location" type="System.Drawing.Point, System.Drawing">
     <value>456, 477</value>
@@ -736,7 +742,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;btnStepUp.ZOrder" xml:space="preserve">
-    <value>21</value>
+    <value>23</value>
   </data>
   <data name="btnStepDown.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Bottom, Right</value>
@@ -746,6 +752,9 @@
   </data>
   <data name="btnStepDown.Enabled" type="System.Boolean, mscorlib">
     <value>False</value>
+  </data>
+  <data name="btnStepDown.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
   </data>
   <data name="btnStepDown.Location" type="System.Drawing.Point, System.Drawing">
     <value>456, 511</value>
@@ -766,7 +775,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;btnStepDown.ZOrder" xml:space="preserve">
-    <value>20</value>
+    <value>22</value>
   </data>
   <data name="txtIDJoin.Enabled" type="System.Boolean, mscorlib">
     <value>False</value>
@@ -793,7 +802,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;txtIDJoin.ZOrder" xml:space="preserve">
-    <value>18</value>
+    <value>20</value>
   </data>
   <data name="lblIDJoin.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
@@ -823,7 +832,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;lblIDJoin.ZOrder" xml:space="preserve">
-    <value>19</value>
+    <value>21</value>
   </data>
   <data name="btnNewStep.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Right</value>
@@ -833,6 +842,9 @@
   </data>
   <data name="btnNewStep.Enabled" type="System.Boolean, mscorlib">
     <value>False</value>
+  </data>
+  <data name="btnNewStep.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
   </data>
   <data name="btnNewStep.Location" type="System.Drawing.Point, System.Drawing">
     <value>456, 389</value>
@@ -853,7 +865,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;btnNewStep.ZOrder" xml:space="preserve">
-    <value>17</value>
+    <value>19</value>
   </data>
   <data name="btnShowAnimation.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Right</value>
@@ -863,6 +875,9 @@
   </data>
   <data name="btnShowAnimation.Enabled" type="System.Boolean, mscorlib">
     <value>False</value>
+  </data>
+  <data name="btnShowAnimation.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
   </data>
   <data name="btnShowAnimation.Location" type="System.Drawing.Point, System.Drawing">
     <value>456, 88</value>
@@ -883,7 +898,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;btnShowAnimation.ZOrder" xml:space="preserve">
-    <value>16</value>
+    <value>18</value>
   </data>
   <data name="btnRemoveStep.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Right</value>
@@ -893,6 +908,9 @@
   </data>
   <data name="btnRemoveStep.Enabled" type="System.Boolean, mscorlib">
     <value>False</value>
+  </data>
+  <data name="btnRemoveStep.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
   </data>
   <data name="btnRemoveStep.Location" type="System.Drawing.Point, System.Drawing">
     <value>456, 423</value>
@@ -913,22 +931,22 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;btnRemoveStep.ZOrder" xml:space="preserve">
-    <value>15</value>
+    <value>17</value>
   </data>
-  <data name="btnRemoveAnimation.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Top, Right</value>
+  <data name="btnRemoveAnimation.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
   </data>
   <data name="btnRemoveAnimation.Location" type="System.Drawing.Point, System.Drawing">
-    <value>289, 39</value>
+    <value>130, 39</value>
   </data>
   <data name="btnRemoveAnimation.Size" type="System.Drawing.Size, System.Drawing">
-    <value>197, 25</value>
+    <value>111, 23</value>
   </data>
   <data name="btnRemoveAnimation.TabIndex" type="System.Int32, mscorlib">
     <value>2</value>
   </data>
   <data name="btnRemoveAnimation.Text" xml:space="preserve">
-    <value>... or remove an animation</value>
+    <value>&amp;Remove Animation</value>
   </data>
   <data name="&gt;&gt;btnRemoveAnimation.Name" xml:space="preserve">
     <value>btnRemoveAnimation</value>
@@ -940,7 +958,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;btnRemoveAnimation.ZOrder" xml:space="preserve">
-    <value>14</value>
+    <value>16</value>
   </data>
   <data name="cmbLightsStateAtEnd.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Left, Right</value>
@@ -979,7 +997,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;cmbLightsStateAtEnd.ZOrder" xml:space="preserve">
-    <value>13</value>
+    <value>15</value>
   </data>
   <data name="B2SLine2.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Left, Right</value>
@@ -1003,13 +1021,13 @@
     <value>B2SLine2</value>
   </data>
   <data name="&gt;&gt;B2SLine2.Type" xml:space="preserve">
-    <value>B2SBackglassDesigner.B2SLine, B2SBackglassDesigner, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</value>
+    <value>B2SBackglassDesigner.B2SLine, B2SBackglassDesigner, Version=2.1.0.0, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;B2SLine2.Parent" xml:space="preserve">
     <value>$this</value>
   </data>
   <data name="&gt;&gt;B2SLine2.ZOrder" xml:space="preserve">
-    <value>31</value>
+    <value>33</value>
   </data>
   <data name="B2SLine1.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Left, Right</value>
@@ -1033,13 +1051,13 @@
     <value>B2SLine1</value>
   </data>
   <data name="&gt;&gt;B2SLine1.Type" xml:space="preserve">
-    <value>B2SBackglassDesigner.B2SLine, B2SBackglassDesigner, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</value>
+    <value>B2SBackglassDesigner.B2SLine, B2SBackglassDesigner, Version=2.1.0.0, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;B2SLine1.Parent" xml:space="preserve">
     <value>$this</value>
   </data>
   <data name="&gt;&gt;B2SLine1.ZOrder" xml:space="preserve">
-    <value>39</value>
+    <value>41</value>
   </data>
   <data name="chkLockInvolvedLamps.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Left, Right</value>
@@ -1049,6 +1067,9 @@
   </data>
   <data name="chkLockInvolvedLamps.Enabled" type="System.Boolean, mscorlib">
     <value>False</value>
+  </data>
+  <data name="chkLockInvolvedLamps.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
   </data>
   <data name="chkLockInvolvedLamps.Location" type="System.Drawing.Point, System.Drawing">
     <value>121, 276</value>
@@ -1072,7 +1093,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;chkLockInvolvedLamps.ZOrder" xml:space="preserve">
-    <value>12</value>
+    <value>14</value>
   </data>
   <data name="btnAllNames4LampsOn.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Bottom, Right</value>
@@ -1105,7 +1126,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;btnAllNames4LampsOn.ZOrder" xml:space="preserve">
-    <value>11</value>
+    <value>13</value>
   </data>
   <data name="btnAllLamps4LampsOff.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Bottom, Right</value>
@@ -1138,7 +1159,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;btnAllLamps4LampsOff.ZOrder" xml:space="preserve">
-    <value>10</value>
+    <value>12</value>
   </data>
   <data name="chkBringToFront.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Left, Right</value>
@@ -1148,6 +1169,9 @@
   </data>
   <data name="chkBringToFront.Enabled" type="System.Boolean, mscorlib">
     <value>False</value>
+  </data>
+  <data name="chkBringToFront.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
   </data>
   <data name="chkBringToFront.Location" type="System.Drawing.Point, System.Drawing">
     <value>121, 322</value>
@@ -1171,7 +1195,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;chkBringToFront.ZOrder" xml:space="preserve">
-    <value>9</value>
+    <value>11</value>
   </data>
   <data name="chkHideScoreDisplays.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Left, Right</value>
@@ -1181,6 +1205,9 @@
   </data>
   <data name="chkHideScoreDisplays.Enabled" type="System.Boolean, mscorlib">
     <value>False</value>
+  </data>
+  <data name="chkHideScoreDisplays.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
   </data>
   <data name="chkHideScoreDisplays.Location" type="System.Drawing.Point, System.Drawing">
     <value>121, 299</value>
@@ -1204,10 +1231,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;chkHideScoreDisplays.ZOrder" xml:space="preserve">
-    <value>8</value>
-  </data>
-  <data name="cmbDualMode.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Top, Left, Right</value>
+    <value>10</value>
   </data>
   <data name="cmbDualMode.Enabled" type="System.Boolean, mscorlib">
     <value>False</value>
@@ -1240,7 +1264,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;cmbDualMode.ZOrder" xml:space="preserve">
-    <value>6</value>
+    <value>8</value>
   </data>
   <data name="lblDualMode.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
@@ -1270,7 +1294,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;lblDualMode.ZOrder" xml:space="preserve">
-    <value>7</value>
+    <value>9</value>
   </data>
   <data name="cmbAnimationStopBehaviour.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Left, Right</value>
@@ -1303,7 +1327,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;cmbAnimationStopBehaviour.ZOrder" xml:space="preserve">
-    <value>5</value>
+    <value>7</value>
   </data>
   <data name="cmbLightsStateAtStart.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Left, Right</value>
@@ -1342,7 +1366,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;cmbLightsStateAtStart.ZOrder" xml:space="preserve">
-    <value>4</value>
+    <value>6</value>
   </data>
   <data name="chkRandomStart.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Left, Right</value>
@@ -1378,7 +1402,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;chkRandomStart.ZOrder" xml:space="preserve">
-    <value>3</value>
+    <value>5</value>
   </data>
   <data name="numRandomQuality.Enabled" type="System.Boolean, mscorlib">
     <value>False</value>
@@ -1402,7 +1426,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;numRandomQuality.ZOrder" xml:space="preserve">
-    <value>2</value>
+    <value>4</value>
   </data>
   <data name="txtPulseSwitch.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Bottom, Left</value>
@@ -1429,7 +1453,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;txtPulseSwitch.ZOrder" xml:space="preserve">
-    <value>0</value>
+    <value>2</value>
   </data>
   <data name="lblPulseSwitch.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Bottom, Left</value>
@@ -1462,7 +1486,61 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;lblPulseSwitch.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="btnImportAnimations.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="btnImportAnimations.Location" type="System.Drawing.Point, System.Drawing">
+    <value>250, 39</value>
+  </data>
+  <data name="btnImportAnimations.Size" type="System.Drawing.Size, System.Drawing">
+    <value>111, 23</value>
+  </data>
+  <data name="btnImportAnimations.TabIndex" type="System.Int32, mscorlib">
+    <value>67</value>
+  </data>
+  <data name="btnImportAnimations.Text" xml:space="preserve">
+    <value>&amp;Import Animation</value>
+  </data>
+  <data name="&gt;&gt;btnImportAnimations.Name" xml:space="preserve">
+    <value>btnImportAnimations</value>
+  </data>
+  <data name="&gt;&gt;btnImportAnimations.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;btnImportAnimations.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;btnImportAnimations.ZOrder" xml:space="preserve">
     <value>1</value>
+  </data>
+  <data name="btnExportAnimation.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="btnExportAnimation.Location" type="System.Drawing.Point, System.Drawing">
+    <value>370, 39</value>
+  </data>
+  <data name="btnExportAnimation.Size" type="System.Drawing.Size, System.Drawing">
+    <value>111, 23</value>
+  </data>
+  <data name="btnExportAnimation.TabIndex" type="System.Int32, mscorlib">
+    <value>68</value>
+  </data>
+  <data name="btnExportAnimation.Text" xml:space="preserve">
+    <value>&amp;Export Animation</value>
+  </data>
+  <data name="&gt;&gt;btnExportAnimation.Name" xml:space="preserve">
+    <value>btnExportAnimation</value>
+  </data>
+  <data name="&gt;&gt;btnExportAnimation.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;btnExportAnimation.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;btnExportAnimation.ZOrder" xml:space="preserve">
+    <value>0</value>
   </data>
   <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
@@ -2018,7 +2096,7 @@
     <value>CenterParent</value>
   </data>
   <data name="$this.Text" xml:space="preserve">
-    <value>Manage animations</value>
+    <value>Manage Animations</value>
   </data>
   <data name="&gt;&gt;hdStep.Name" xml:space="preserve">
     <value>hdStep</value>

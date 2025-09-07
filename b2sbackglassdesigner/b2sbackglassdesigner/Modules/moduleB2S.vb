@@ -387,6 +387,21 @@ Module moduleB2S
         Return Drawing.Color.FromArgb(CInt(colorvalues(0)), CInt(colorvalues(1)), CInt(colorvalues(2)))
     End Function
 
+    Public Function SafeParseInt(_value As String, _defaultValue As Integer) As Integer
+        Dim result As Integer
+        If Integer.TryParse(_value, result) Then
+            Return result
+        End If
+        Return _defaultValue
+    End Function
+    Public Function SafeParseBool(_value As String, _defaultValue As Boolean) As Boolean
+        Dim result As Integer
+        If Integer.TryParse(_value, result) Then
+            Return result = 1
+        End If
+        Return _defaultValue
+    End Function
+
     Public Function TranslateIndex2DodgeColor(ByVal index As Integer) As Color
         Select Case index
             Case 1 : Return Color.Red
@@ -568,4 +583,98 @@ Module moduleB2S
         Return ExportSetImages(_selectedName, _selectedIndex, _xmlPath, DefaultLEDs, "//LEDSets")
     End Function
 
+    Public Function ImportAnimations(_filePath As String) As List(Of Animation.AnimationHeader)
+        Dim importedAnimations As New List(Of Animation.AnimationHeader)
+
+        ' Load and validate the XML file
+        Dim xmlDoc As New Xml.XmlDocument()
+        xmlDoc.Load(_filePath)
+
+        ' Validate the root element
+        If xmlDoc.DocumentElement Is Nothing OrElse xmlDoc.DocumentElement.Name <> "Animations" Then
+            Throw New Exception("The file does not have a valid <Animations> root element.")
+        End If
+
+        ' Iterate through each <Animation> node
+        For Each animationNode As Xml.XmlNode In xmlDoc.DocumentElement.SelectNodes("Animation")
+            Try
+                Dim animation As New Animation.AnimationHeader()
+
+                ' Safely read attributes
+                animation.Name = If(animationNode.Attributes("Name")?.Value, String.Empty)
+                animation.DualMode = SafeParseInt(animationNode.Attributes("DualMode")?.Value, 0)
+                animation.Interval = SafeParseInt(animationNode.Attributes("Interval")?.Value, 0)
+                animation.Loops = SafeParseInt(animationNode.Attributes("Loops")?.Value, 0)
+                animation.IDJoin = If(animationNode.Attributes("IDJoin")?.Value, String.Empty)
+                animation.StartAnimationAtBackglassStartup = SafeParseBool(animationNode.Attributes("StartAnimationAtBackglassStartup")?.Value, False)
+                animation.LightsStateAtAnimationStart = SafeParseInt(animationNode.Attributes("LightsStateAtAnimationStart")?.Value, 0)
+                animation.LightsStateAtAnimationEnd = SafeParseInt(animationNode.Attributes("LightsStateAtAnimationEnd")?.Value, 0)
+                animation.AnimationStopBehaviour = SafeParseInt(animationNode.Attributes("AnimationStopBehaviour")?.Value, 0)
+                animation.LockInvolvedLamps = SafeParseBool(animationNode.Attributes("LockInvolvedLamps")?.Value, False)
+                animation.HideScoreDisplays = SafeParseBool(animationNode.Attributes("HideScoreDisplays")?.Value, False)
+                animation.BringToFront = SafeParseBool(animationNode.Attributes("BringToFront")?.Value, False)
+                animation.RandomStart = SafeParseBool(animationNode.Attributes("RandomStart")?.Value, False)
+                animation.RandomQuality = SafeParseInt(animationNode.Attributes("RandomQuality")?.Value, 1)
+
+                ' Read animation steps
+                For Each stepNode As Xml.XmlNode In animationNode.SelectNodes("AnimationStep")
+                    Dim stepItem As New Animation.AnimationStep()
+                    stepItem.Step = SafeParseInt(stepNode.Attributes("Step")?.Value, 0)
+                    stepItem.On = If(stepNode.Attributes("On")?.Value, String.Empty)
+                    stepItem.WaitLoopsAfterOn = SafeParseInt(stepNode.Attributes("WaitLoopsAfterOn")?.Value, 0)
+                    stepItem.Off = If(stepNode.Attributes("Off")?.Value, String.Empty)
+                    stepItem.WaitLoopsAfterOff = SafeParseInt(stepNode.Attributes("WaitLoopsAfterOff")?.Value, 0)
+                    animation.AnimationSteps.Add(stepItem)
+                Next
+
+                ' Add the animation to the list
+                importedAnimations.Add(animation)
+            Catch ex As Exception
+                ' Log the issue for debugging
+                MessageBox.Show($"Error parsing animation: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            End Try
+        Next
+
+        Return importedAnimations
+    End Function
+
+    Public Sub ExportAnimation(_animationHeader As Animation.AnimationHeader, _filePath As String)
+        Dim xmlDoc As New Xml.XmlDocument()
+        Dim animationsNode As Xml.XmlElement = xmlDoc.CreateElement("Animations")
+        xmlDoc.AppendChild(animationsNode)
+
+        ' Create the Animation node with attributes
+        Dim animationNode As Xml.XmlElement = xmlDoc.CreateElement("Animation")
+        animationNode.SetAttribute("Name", _animationHeader.Name)
+        animationNode.SetAttribute("DualMode", CType(_animationHeader.DualMode, Integer).ToString()) ' Ensure numeric value is saved
+        animationNode.SetAttribute("Interval", _animationHeader.Interval.ToString())
+        animationNode.SetAttribute("Loops", _animationHeader.Loops.ToString())
+        animationNode.SetAttribute("IDJoin", If(String.IsNullOrEmpty(_animationHeader.IDJoin), "", _animationHeader.IDJoin))
+        animationNode.SetAttribute("StartAnimationAtBackglassStartup", If(_animationHeader.StartAnimationAtBackglassStartup, "1", "0"))
+        animationNode.SetAttribute("LightsStateAtAnimationStart", CType(_animationHeader.LightsStateAtAnimationStart, Integer).ToString())
+        animationNode.SetAttribute("LightsStateAtAnimationEnd", CType(_animationHeader.LightsStateAtAnimationEnd, Integer).ToString())
+        animationNode.SetAttribute("AnimationStopBehaviour", CType(_animationHeader.AnimationStopBehaviour, Integer).ToString())
+        animationNode.SetAttribute("LockInvolvedLamps", If(_animationHeader.LockInvolvedLamps, "1", "0"))
+        animationNode.SetAttribute("HideScoreDisplays", If(_animationHeader.HideScoreDisplays, "1", "0"))
+        animationNode.SetAttribute("BringToFront", If(_animationHeader.BringToFront, "1", "0"))
+        animationNode.SetAttribute("RandomStart", If(_animationHeader.RandomStart, "1", "0"))
+        animationNode.SetAttribute("RandomQuality", CType(_animationHeader.RandomQuality, Integer).ToString())
+
+        ' Add Animation Steps as child nodes
+        For Each stepItem As Animation.AnimationStep In _animationHeader.AnimationSteps
+            Dim stepNode As Xml.XmlElement = xmlDoc.CreateElement("AnimationStep")
+            stepNode.SetAttribute("Step", stepItem.Step.ToString())
+            stepNode.SetAttribute("On", stepItem.On)
+            stepNode.SetAttribute("WaitLoopsAfterOn", stepItem.WaitLoopsAfterOn.ToString())
+            stepNode.SetAttribute("Off", stepItem.Off)
+            stepNode.SetAttribute("WaitLoopsAfterOff", stepItem.WaitLoopsAfterOff.ToString())
+            animationNode.AppendChild(stepNode)
+        Next
+
+        ' Append the animation node to the XML structure
+        animationsNode.AppendChild(animationNode)
+
+        ' Save the XML to the specified file path
+        xmlDoc.Save(_filePath)
+    End Sub
 End Module

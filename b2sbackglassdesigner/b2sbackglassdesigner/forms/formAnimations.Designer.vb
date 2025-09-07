@@ -57,8 +57,6 @@ Partial Class formAnimations
         Me.btnRemoveStep = New System.Windows.Forms.Button()
         Me.btnRemoveAnimation = New System.Windows.Forms.Button()
         Me.cmbLightsStateAtEnd = New System.Windows.Forms.ComboBox()
-        Me.B2SLine2 = New B2SBackglassDesigner.B2SLine()
-        Me.B2SLine1 = New B2SBackglassDesigner.B2SLine()
         Me.chkLockInvolvedLamps = New System.Windows.Forms.CheckBox()
         Me.btnAllNames4LampsOn = New System.Windows.Forms.Button()
         Me.btnAllLamps4LampsOff = New System.Windows.Forms.Button()
@@ -72,6 +70,10 @@ Partial Class formAnimations
         Me.numRandomQuality = New System.Windows.Forms.NumericUpDown()
         Me.txtPulseSwitch = New System.Windows.Forms.TextBox()
         Me.lblPulseSwitch = New System.Windows.Forms.Label()
+        Me.btnImportAnimations = New System.Windows.Forms.Button()
+        Me.btnExportAnimation = New System.Windows.Forms.Button()
+        Me.B2SLine2 = New B2SBackglassDesigner.B2SLine()
+        Me.B2SLine1 = New B2SBackglassDesigner.B2SLine()
         CType(Me.numRandomQuality, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
@@ -265,16 +267,6 @@ Partial Class formAnimations
         Me.cmbLightsStateAtEnd.Items.AddRange(New Object() {resources.GetString("cmbLightsStateAtEnd.Items"), resources.GetString("cmbLightsStateAtEnd.Items1"), resources.GetString("cmbLightsStateAtEnd.Items2"), resources.GetString("cmbLightsStateAtEnd.Items3")})
         Me.cmbLightsStateAtEnd.Name = "cmbLightsStateAtEnd"
         '
-        'B2SLine2
-        '
-        resources.ApplyResources(Me.B2SLine2, "B2SLine2")
-        Me.B2SLine2.Name = "B2SLine2"
-        '
-        'B2SLine1
-        '
-        resources.ApplyResources(Me.B2SLine1, "B2SLine1")
-        Me.B2SLine1.Name = "B2SLine1"
-        '
         'chkLockInvolvedLamps
         '
         resources.ApplyResources(Me.chkLockInvolvedLamps, "chkLockInvolvedLamps")
@@ -307,8 +299,8 @@ Partial Class formAnimations
         '
         'cmbDualMode
         '
-        resources.ApplyResources(Me.cmbDualMode, "cmbDualMode")
         Me.cmbDualMode.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        resources.ApplyResources(Me.cmbDualMode, "cmbDualMode")
         Me.cmbDualMode.FormattingEnabled = True
         Me.cmbDualMode.Items.AddRange(New Object() {resources.GetString("cmbDualMode.Items"), resources.GetString("cmbDualMode.Items1"), resources.GetString("cmbDualMode.Items2")})
         Me.cmbDualMode.Name = "cmbDualMode"
@@ -355,11 +347,35 @@ Partial Class formAnimations
         resources.ApplyResources(Me.lblPulseSwitch, "lblPulseSwitch")
         Me.lblPulseSwitch.Name = "lblPulseSwitch"
         '
+        'btnImportAnimations
+        '
+        resources.ApplyResources(Me.btnImportAnimations, "btnImportAnimations")
+        Me.btnImportAnimations.Name = "btnImportAnimations"
+        Me.btnImportAnimations.UseVisualStyleBackColor = True
+        '
+        'btnExportAnimation
+        '
+        resources.ApplyResources(Me.btnExportAnimation, "btnExportAnimation")
+        Me.btnExportAnimation.Name = "btnExportAnimation"
+        Me.btnExportAnimation.UseVisualStyleBackColor = True
+        '
+        'B2SLine2
+        '
+        resources.ApplyResources(Me.B2SLine2, "B2SLine2")
+        Me.B2SLine2.Name = "B2SLine2"
+        '
+        'B2SLine1
+        '
+        resources.ApplyResources(Me.B2SLine1, "B2SLine1")
+        Me.B2SLine1.Name = "B2SLine1"
+        '
         'formAnimations
         '
         resources.ApplyResources(Me, "$this")
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.FromArgb(CType(CType(191, Byte), Integer), CType(CType(205, Byte), Integer), CType(CType(219, Byte), Integer))
+        Me.Controls.Add(Me.btnExportAnimation)
+        Me.Controls.Add(Me.btnImportAnimations)
         Me.Controls.Add(Me.txtPulseSwitch)
         Me.Controls.Add(Me.lblPulseSwitch)
         Me.Controls.Add(Me.numRandomQuality)
@@ -458,4 +474,6 @@ Partial Class formAnimations
     Friend WithEvents numRandomQuality As System.Windows.Forms.NumericUpDown
     Friend WithEvents txtPulseSwitch As System.Windows.Forms.TextBox
     Friend WithEvents lblPulseSwitch As System.Windows.Forms.Label
+    Friend WithEvents btnImportAnimations As Button
+    Friend WithEvents btnExportAnimation As Button
 End Class
