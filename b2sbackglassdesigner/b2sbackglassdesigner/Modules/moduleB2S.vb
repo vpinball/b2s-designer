@@ -395,9 +395,9 @@ Module moduleB2S
         Return _defaultValue
     End Function
     Public Function SafeParseBool(_value As String, _defaultValue As Boolean) As Boolean
-        Dim result As Boolean
-        If Boolean.TryParse(_value, result) Then
-            Return result
+        Dim result As Integer
+        If Integer.TryParse(_value, result) Then
+            Return result = 1
         End If
         Return _defaultValue
     End Function
@@ -613,6 +613,8 @@ Module moduleB2S
                 animation.LockInvolvedLamps = SafeParseBool(animationNode.Attributes("LockInvolvedLamps")?.Value, False)
                 animation.HideScoreDisplays = SafeParseBool(animationNode.Attributes("HideScoreDisplays")?.Value, False)
                 animation.BringToFront = SafeParseBool(animationNode.Attributes("BringToFront")?.Value, False)
+                animation.RandomStart = SafeParseBool(animationNode.Attributes("RandomStart")?.Value, False)
+                animation.RandomQuality = SafeParseInt(animationNode.Attributes("RandomQuality")?.Value, 1)
 
                 ' Read animation steps
                 For Each stepNode As Xml.XmlNode In animationNode.SelectNodes("AnimationStep")
@@ -655,6 +657,8 @@ Module moduleB2S
         animationNode.SetAttribute("LockInvolvedLamps", If(_animationHeader.LockInvolvedLamps, "1", "0"))
         animationNode.SetAttribute("HideScoreDisplays", If(_animationHeader.HideScoreDisplays, "1", "0"))
         animationNode.SetAttribute("BringToFront", If(_animationHeader.BringToFront, "1", "0"))
+        animationNode.SetAttribute("RandomStart", If(_animationHeader.RandomStart, "1", "0"))
+        animationNode.SetAttribute("RandomQuality", CType(_animationHeader.RandomQuality, Integer).ToString())
 
         ' Add Animation Steps as child nodes
         For Each stepItem As Animation.AnimationStep In _animationHeader.AnimationSteps
