@@ -611,14 +611,149 @@ Public Class formDesigner
         UpdateStatusBar(Me, Backglass.currentTabPage)
     End Sub
 
-    Private Sub Cut_Click(sender As System.Object, e As System.EventArgs) Handles tsmiCut.Click
-        MessageBox.Show("Will be implemented in one of the next versions.", AppTitle, MessageBoxButtons.OK, MessageBoxIcon.Information)
+    Private copiedBulb As Illumination.BulbInfo = Nothing
+
+    Private Sub Cut_Click(sender As Object, e As EventArgs) Handles tsmiCut.Click
+        If Backglass.currentTabPage.Mouse.SelectedBulb IsNot Nothing Then
+            Dim selectedBulb = Backglass.currentTabPage.Mouse.SelectedBulb
+
+            ' Copy all the properties of the selected bulb (must happen BEFORE removal)
+            copiedBulb = New Illumination.BulbInfo
+            copiedBulb.B2SID = selectedBulb.B2SID
+            copiedBulb.B2SIDType = selectedBulb.B2SIDType
+            copiedBulb.B2SValue = selectedBulb.B2SValue
+            copiedBulb.RomID = selectedBulb.RomID
+            copiedBulb.RomIDType = selectedBulb.RomIDType
+            copiedBulb.RomInverted = selectedBulb.RomInverted
+            copiedBulb.Name = selectedBulb.Name
+            copiedBulb.Text = selectedBulb.Text
+            copiedBulb.TextAlignment = selectedBulb.TextAlignment
+            copiedBulb.FontName = selectedBulb.FontName
+            copiedBulb.FontSize = selectedBulb.FontSize
+            copiedBulb.FontStyle = selectedBulb.FontStyle
+            copiedBulb.Visible = selectedBulb.Visible
+            copiedBulb.Location = selectedBulb.Location
+            copiedBulb.Size = selectedBulb.Size
+            copiedBulb.InitialState = selectedBulb.InitialState
+            copiedBulb.DualMode = selectedBulb.DualMode
+            copiedBulb.Intensity = selectedBulb.Intensity
+            copiedBulb.LightColor = selectedBulb.LightColor
+            copiedBulb.DodgeColor = selectedBulb.DodgeColor
+            copiedBulb.IlluMode = selectedBulb.IlluMode
+            copiedBulb.ZOrder = selectedBulb.ZOrder
+            copiedBulb.IsImageSnippit = selectedBulb.IsImageSnippit
+            copiedBulb.Image = selectedBulb.Image
+
+            ' Copy all SnippitInfo properties
+            copiedBulb.SnippitInfo = New Illumination.SnippitInfo
+            copiedBulb.SnippitInfo.SnippitType = selectedBulb.SnippitInfo.SnippitType
+            copiedBulb.SnippitInfo.SnippitMechID = selectedBulb.SnippitInfo.SnippitMechID
+            copiedBulb.SnippitInfo.SnippitRotatingSteps = selectedBulb.SnippitInfo.SnippitRotatingSteps
+            copiedBulb.SnippitInfo.SnippitRotatingInterval = selectedBulb.SnippitInfo.SnippitRotatingInterval
+            copiedBulb.SnippitInfo.SnippitRotatingDirection = selectedBulb.SnippitInfo.SnippitRotatingDirection
+            copiedBulb.SnippitInfo.SnippitRotatingStopBehaviour = selectedBulb.SnippitInfo.SnippitRotatingStopBehaviour
+
+            ' Remove the selected bulb from the collection (delete operation)
+            Backglass.currentBulbs.Remove(selectedBulb)
+
+            ' Refresh screen
+            Backglass.currentTabPage.Invalidate()
+            Backglass.currentTabPage.RefreshIllumination()
+        End If
     End Sub
-    Private Sub Copy_Click(sender As System.Object, e As System.EventArgs) Handles tsmiCopy.Click
-        MessageBox.Show("Will be implemented in one of the next versions.", AppTitle, MessageBoxButtons.OK, MessageBoxIcon.Information)
+
+    Private Sub Copy_Click(sender As Object, e As EventArgs) Handles tsmiCopy.Click
+        If Backglass.currentTabPage.Mouse.SelectedBulb IsNot Nothing Then
+            Dim selectedBulb = Backglass.currentTabPage.Mouse.SelectedBulb
+
+            ' Copy all the properties of the selected bulb
+            copiedBulb = New Illumination.BulbInfo
+            copiedBulb.B2SID = selectedBulb.B2SID
+            copiedBulb.B2SIDType = selectedBulb.B2SIDType
+            copiedBulb.B2SValue = selectedBulb.B2SValue
+            copiedBulb.RomID = selectedBulb.RomID
+            copiedBulb.RomIDType = selectedBulb.RomIDType
+            copiedBulb.RomInverted = selectedBulb.RomInverted
+            copiedBulb.Name = selectedBulb.Name
+            copiedBulb.Text = selectedBulb.Text
+            copiedBulb.TextAlignment = selectedBulb.TextAlignment
+            copiedBulb.FontName = selectedBulb.FontName
+            copiedBulb.FontSize = selectedBulb.FontSize
+            copiedBulb.FontStyle = selectedBulb.FontStyle
+            copiedBulb.Visible = selectedBulb.Visible
+            copiedBulb.Location = selectedBulb.Location
+            copiedBulb.Size = selectedBulb.Size
+            copiedBulb.InitialState = selectedBulb.InitialState
+            copiedBulb.DualMode = selectedBulb.DualMode
+            copiedBulb.Intensity = selectedBulb.Intensity
+            copiedBulb.LightColor = selectedBulb.LightColor
+            copiedBulb.DodgeColor = selectedBulb.DodgeColor
+            copiedBulb.IlluMode = selectedBulb.IlluMode
+            copiedBulb.ZOrder = selectedBulb.ZOrder
+            copiedBulb.IsImageSnippit = selectedBulb.IsImageSnippit
+            copiedBulb.Image = selectedBulb.Image
+
+            ' Copy all SnippitInfo properties
+            copiedBulb.SnippitInfo = New Illumination.SnippitInfo
+            copiedBulb.SnippitInfo.SnippitType = selectedBulb.SnippitInfo.SnippitType
+            copiedBulb.SnippitInfo.SnippitMechID = selectedBulb.SnippitInfo.SnippitMechID
+            copiedBulb.SnippitInfo.SnippitRotatingSteps = selectedBulb.SnippitInfo.SnippitRotatingSteps
+            copiedBulb.SnippitInfo.SnippitRotatingInterval = selectedBulb.SnippitInfo.SnippitRotatingInterval
+            copiedBulb.SnippitInfo.SnippitRotatingDirection = selectedBulb.SnippitInfo.SnippitRotatingDirection
+            copiedBulb.SnippitInfo.SnippitRotatingStopBehaviour = selectedBulb.SnippitInfo.SnippitRotatingStopBehaviour
+        End If
     End Sub
-    Private Sub Paste_Click(sender As System.Object, e As System.EventArgs) Handles tsmiPaste.Click
-        MessageBox.Show("Will be implemented in one of the next versions.", AppTitle, MessageBoxButtons.OK, MessageBoxIcon.Information)
+
+    Private Sub Paste_Click(sender As Object, e As EventArgs) Handles tsmiPaste.Click
+        If copiedBulb IsNot Nothing Then
+            ' Offset location slightly
+            copiedBulb.Location.X += 10
+            copiedBulb.Location.Y += 10
+
+            ' Create a new illumination bulb with all properties copied
+            Dim newBulb As New Illumination.BulbInfo
+            newBulb.ID = Backglass.currentBulbs.Max(Function(b) b.ID) + 1 ' Generate a new unique ID
+            newBulb.B2SID = copiedBulb.B2SID
+            newBulb.B2SIDType = copiedBulb.B2SIDType
+            newBulb.B2SValue = copiedBulb.B2SValue
+            newBulb.RomID = copiedBulb.RomID
+            newBulb.RomIDType = copiedBulb.RomIDType
+            newBulb.RomInverted = copiedBulb.RomInverted
+            newBulb.Name = copiedBulb.Name
+            newBulb.Text = copiedBulb.Text
+            newBulb.TextAlignment = copiedBulb.TextAlignment
+            newBulb.FontName = copiedBulb.FontName
+            newBulb.FontSize = copiedBulb.FontSize
+            newBulb.FontStyle = copiedBulb.FontStyle
+            newBulb.Visible = copiedBulb.Visible
+            newBulb.Location = copiedBulb.Location
+            newBulb.Size = copiedBulb.Size
+            newBulb.InitialState = copiedBulb.InitialState
+            newBulb.DualMode = copiedBulb.DualMode
+            newBulb.Intensity = copiedBulb.Intensity
+            newBulb.LightColor = copiedBulb.LightColor
+            newBulb.DodgeColor = copiedBulb.DodgeColor
+            newBulb.IlluMode = copiedBulb.IlluMode
+            newBulb.ZOrder = copiedBulb.ZOrder
+            newBulb.IsImageSnippit = copiedBulb.IsImageSnippit
+            newBulb.Image = copiedBulb.Image
+
+            ' Paste all SnippitInfo properties
+            newBulb.SnippitInfo = New Illumination.SnippitInfo
+            newBulb.SnippitInfo.SnippitType = copiedBulb.SnippitInfo.SnippitType
+            newBulb.SnippitInfo.SnippitMechID = copiedBulb.SnippitInfo.SnippitMechID
+            newBulb.SnippitInfo.SnippitRotatingSteps = copiedBulb.SnippitInfo.SnippitRotatingSteps
+            newBulb.SnippitInfo.SnippitRotatingInterval = copiedBulb.SnippitInfo.SnippitRotatingInterval
+            newBulb.SnippitInfo.SnippitRotatingDirection = copiedBulb.SnippitInfo.SnippitRotatingDirection
+            newBulb.SnippitInfo.SnippitRotatingStopBehaviour = copiedBulb.SnippitInfo.SnippitRotatingStopBehaviour
+
+            ' Add the new bulb to the collection
+            Backglass.currentBulbs.Add(newBulb)
+
+            ' Refresh screen
+            Backglass.currentTabPage.Invalidate()
+            Backglass.currentTabPage.RefreshIllumination()
+        End If
     End Sub
 
     Private Sub tsmiDelete_Click(sender As System.Object, e As System.EventArgs) Handles tsmiDelete.Click
