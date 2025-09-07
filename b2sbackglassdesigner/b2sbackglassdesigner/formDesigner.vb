@@ -655,6 +655,10 @@ Public Class formDesigner
 
             ' Remove the selected bulb from the collection (delete operation)
             Backglass.currentBulbs.Remove(selectedBulb)
+
+            ' Refresh screen
+            Backglass.currentTabPage.Invalidate()
+            Backglass.currentTabPage.RefreshIllumination()
         End If
     End Sub
 
@@ -702,6 +706,10 @@ Public Class formDesigner
 
     Private Sub Paste_Click(sender As Object, e As EventArgs) Handles tsmiPaste.Click
         If copiedBulb IsNot Nothing Then
+            ' Offset location slightly
+            copiedBulb.Location.X += 10
+            copiedBulb.Location.Y += 10
+
             ' Create a new illumination bulb with all properties copied
             Dim newBulb As New Illumination.BulbInfo
             newBulb.ID = Backglass.currentBulbs.Max(Function(b) b.ID) + 1 ' Generate a new unique ID
@@ -718,7 +726,7 @@ Public Class formDesigner
             newBulb.FontSize = copiedBulb.FontSize
             newBulb.FontStyle = copiedBulb.FontStyle
             newBulb.Visible = copiedBulb.Visible
-            newBulb.Location = New Point(copiedBulb.Location.X + 10, copiedBulb.Location.Y + 10) ' Offset location slightly
+            newBulb.Location = copiedBulb.Location
             newBulb.Size = copiedBulb.Size
             newBulb.InitialState = copiedBulb.InitialState
             newBulb.DualMode = copiedBulb.DualMode
@@ -741,6 +749,10 @@ Public Class formDesigner
 
             ' Add the new bulb to the collection
             Backglass.currentBulbs.Add(newBulb)
+
+            ' Refresh screen
+            Backglass.currentTabPage.Invalidate()
+            Backglass.currentTabPage.RefreshIllumination()
         End If
     End Sub
 
