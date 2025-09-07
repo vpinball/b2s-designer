@@ -174,17 +174,14 @@
   <data name="&gt;&gt;lblAnimations.ZOrder" xml:space="preserve">
     <value>44</value>
   </data>
-  <data name="btnNewAnimation.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Top, Left, Right</value>
-  </data>
   <data name="btnNewAnimation.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
   </data>
   <data name="btnNewAnimation.Location" type="System.Drawing.Point, System.Drawing">
-    <value>21, 39</value>
+    <value>10, 39</value>
   </data>
   <data name="btnNewAnimation.Size" type="System.Drawing.Size, System.Drawing">
-    <value>121, 23</value>
+    <value>111, 23</value>
   </data>
   <data name="btnNewAnimation.TabIndex" type="System.Int32, mscorlib">
     <value>1</value>
@@ -936,14 +933,11 @@
   <data name="&gt;&gt;btnRemoveStep.ZOrder" xml:space="preserve">
     <value>17</value>
   </data>
-  <data name="btnRemoveAnimation.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Top, Right</value>
-  </data>
   <data name="btnRemoveAnimation.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
   </data>
   <data name="btnRemoveAnimation.Location" type="System.Drawing.Point, System.Drawing">
-    <value>150, 39</value>
+    <value>130, 39</value>
   </data>
   <data name="btnRemoveAnimation.Size" type="System.Drawing.Size, System.Drawing">
     <value>111, 23</value>
@@ -1239,9 +1233,6 @@
   <data name="&gt;&gt;chkHideScoreDisplays.ZOrder" xml:space="preserve">
     <value>10</value>
   </data>
-  <data name="cmbDualMode.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Top, Left, Right</value>
-  </data>
   <data name="cmbDualMode.Enabled" type="System.Boolean, mscorlib">
     <value>False</value>
   </data>
@@ -1501,10 +1492,10 @@
     <value>NoControl</value>
   </data>
   <data name="btnImportAnimations.Location" type="System.Drawing.Point, System.Drawing">
-    <value>269, 40</value>
+    <value>250, 39</value>
   </data>
   <data name="btnImportAnimations.Size" type="System.Drawing.Size, System.Drawing">
-    <value>101, 23</value>
+    <value>111, 23</value>
   </data>
   <data name="btnImportAnimations.TabIndex" type="System.Int32, mscorlib">
     <value>67</value>
@@ -1528,10 +1519,10 @@
     <value>NoControl</value>
   </data>
   <data name="btnExportAnimation.Location" type="System.Drawing.Point, System.Drawing">
-    <value>378, 40</value>
+    <value>370, 39</value>
   </data>
   <data name="btnExportAnimation.Size" type="System.Drawing.Size, System.Drawing">
-    <value>99, 23</value>
+    <value>111, 23</value>
   </data>
   <data name="btnExportAnimation.TabIndex" type="System.Int32, mscorlib">
     <value>68</value>
@@ -2100,9 +2091,6 @@
         AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
         AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==
 </value>
-  </data>
-  <data name="$this.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
   </data>
   <data name="$this.StartPosition" type="System.Windows.Forms.FormStartPosition, System.Windows.Forms">
     <value>CenterParent</value>
