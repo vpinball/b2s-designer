@@ -8,6 +8,13 @@ Public Class formAbout
         Dim sb As StringBuilder = New StringBuilder()
         sb.AppendLine("Thanks a lot to:")
         sb.AppendLine()
+        sb.AppendLine("Tomas 'Tomaz' Jakobsson for his great support and working with our ")
+        sb.AppendLine("backglass experts Hauntfreaks & Wildman to fix a lot of issues and implement new features.")
+        sb.AppendLine()
+        sb.AppendLine("'abhcoide', 'Jupiter' and Steve 'jonesyUK' for their bug fixes.")
+        sb.AppendLine("Nicolas 'Nicals' Appriou for wine usage documentation.")
+        sb.AppendLine()
+        sb.AppendLine("'jsm174' and 'Toxie' For their support.")
         sb.AppendLine("'Dream7' for a first illumination code and wonderful LEDs.")
         sb.AppendLine("'Rosve' for all his great B2S' ideas.")
         sb.AppendLine("'Flying Dutchman' for images, infos and a lot UVP knowhow.")
@@ -19,7 +26,6 @@ Public Class formAbout
 
         Dim cr As StringBuilder = New StringBuilder()
         cr.AppendLine("B2S Backglass Designer " & Application.ProductVersion)
-        'cr.AppendLine("(" & My.Application.Info.WorkingSet & ")")  My.Application.Info.Version.ToString &
         cr.AppendLine(My.Application.Info.Copyright.ToString & " by Herweh && B2S Team, All rights reserved.")
         lblCopyright.Text = cr.ToString()
 
