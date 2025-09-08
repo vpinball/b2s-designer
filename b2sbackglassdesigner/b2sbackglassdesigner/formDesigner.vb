@@ -712,7 +712,6 @@ Public Class formDesigner
 
             ' Create a new illumination bulb with all properties copied
             Dim newBulb As New Illumination.BulbInfo
-            newBulb.ID = Backglass.currentBulbs.Max(Function(b) b.ID) + 1 ' Generate a new unique ID
             newBulb.B2SID = copiedBulb.B2SID
             newBulb.B2SIDType = copiedBulb.B2SIDType
             newBulb.B2SValue = copiedBulb.B2SValue
@@ -748,9 +747,19 @@ Public Class formDesigner
             newBulb.SnippitInfo.SnippitRotatingStopBehaviour = copiedBulb.SnippitInfo.SnippitRotatingStopBehaviour
 
             ' Add the new bulb to the collection
-            Backglass.currentBulbs.Add(newBulb)
+            If Backglass.currentTabPage.BackglassData.IsDMDImageShown Then
+                newBulb.ParentForm = eParentForm.DMD
+                Backglass.currentTabPage.BackglassData.DMDBulbs.Add(newBulb)
+            Else
+                newBulb.ParentForm = eParentForm.Backglass
+                Backglass.currentTabPage.BackglassData.Bulbs.Add(newBulb)
+            End If
+
+            ' Select new bulb
+            Backglass.currentTabPage.Mouse.SelectedBulb = newBulb
 
             ' Refresh screen
+            Backglass.currentTabPage.BackglassData.IsDirty = True
             Backglass.currentTabPage.Invalidate()
             Backglass.currentTabPage.RefreshIllumination()
         End If
