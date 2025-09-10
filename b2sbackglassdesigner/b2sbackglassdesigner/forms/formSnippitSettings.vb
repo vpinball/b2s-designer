@@ -128,6 +128,8 @@ Public Class formSnippitSettings
 
                         bulb.Image = Bitmap.FromFile(.FileName).Copy(True)
                         bulb.Name = IO.Path.GetFileNameWithoutExtension(.FileName)
+                        bulb.Size.Width = bulb.Image.Width
+                        bulb.Size.Height = bulb.Image.Height
 
                         Dim imageInfo As Images.ImageInfo = New Images.ImageInfo(Images.eImageInfoType.IlluminationSnippits)
                         imageInfo.Text = bulb.Name
