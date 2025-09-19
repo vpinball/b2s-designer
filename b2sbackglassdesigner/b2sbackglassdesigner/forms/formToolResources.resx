@@ -126,7 +126,7 @@
     <value>0, 0</value>
   </data>
   <data name="lbImages.Size" type="System.Drawing.Size, System.Drawing">
-    <value>179, 206</value>
+    <value>234, 206</value>
   </data>
   <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="lbImages.TabIndex" type="System.Int32, mscorlib">
@@ -154,7 +154,7 @@
     <value>50</value>
   </data>
   <data name="txtRomID.Size" type="System.Drawing.Size, System.Drawing">
-    <value>80, 21</value>
+    <value>135, 21</value>
   </data>
   <data name="txtRomID.TabIndex" type="System.Int32, mscorlib">
     <value>2</value>
@@ -217,7 +217,7 @@
     <value>87, 60</value>
   </data>
   <data name="cmbROMIDType.Size" type="System.Drawing.Size, System.Drawing">
-    <value>80, 21</value>
+    <value>135, 21</value>
   </data>
   <data name="cmbROMIDType.TabIndex" type="System.Int32, mscorlib">
     <value>3</value>
@@ -277,7 +277,7 @@
     <value>87, 6</value>
   </data>
   <data name="cmbImageType.Size" type="System.Drawing.Size, System.Drawing">
-    <value>80, 21</value>
+    <value>135, 21</value>
   </data>
   <data name="cmbImageType.TabIndex" type="System.Int32, mscorlib">
     <value>1</value>
@@ -331,7 +331,7 @@
     <value>0, 206</value>
   </data>
   <data name="PanelImages.Size" type="System.Drawing.Size, System.Drawing">
-    <value>179, 90</value>
+    <value>234, 90</value>
   </data>
   <data name="PanelImages.TabIndex" type="System.Int32, mscorlib">
     <value>1</value>
@@ -358,13 +358,13 @@
     <value>6, 13</value>
   </data>
   <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
-    <value>179, 296</value>
+    <value>234, 296</value>
   </data>
   <data name="$this.Font" type="System.Drawing.Font, System.Drawing">
     <value>Tahoma, 8.25pt</value>
   </data>
   <data name="$this.MinimumSize" type="System.Drawing.Size, System.Drawing">
-    <value>150, 250</value>
+    <value>250, 250</value>
   </data>
   <data name="$this.StartPosition" type="System.Windows.Forms.FormStartPosition, System.Windows.Forms">
     <value>Manual</value>

@@ -85,23 +85,18 @@ Public Class formToolResources
             e.DrawFocusRectangle()
             'e.Graphics.FillRectangle(If(e.Index = lbImages.SelectedIndex, New SolidBrush(Color.FromKnownColor(KnownColor.Highlight)), Brushes.White), e.Bounds)
             If IsTitleItem(item) Then
-                TextRenderer.DrawText(e.Graphics, item.Text, New Font(Me.Font.Name, Me.Font.Size + 1, FontStyle.Bold Or FontStyle.Underline), e.Bounds, Color.Black, TextFormatFlags.WordBreak Or TextFormatFlags.HorizontalCenter Or TextFormatFlags.VerticalCenter)
+                TextRenderer.DrawText(e.Graphics, item.Text, New Font(Me.Font.Name, Me.Font.Size + 1, FontStyle.Bold Or FontStyle.Underline), New Rectangle(e.Bounds.X + 138, e.Bounds.Y, e.Bounds.Width - 143, e.Bounds.Height), Color.Black, TextFormatFlags.WordBreak Or TextFormatFlags.HorizontalCenter Or TextFormatFlags.VerticalCenter)
             Else
-                Dim imagewidth As Integer = 0
                 ' maybe draw preview image
-                Dim isSmallImage As Boolean = False
                 If item.Image IsNot Nothing Then
                     ' maybe shrink image
-                    isSmallImage = (item.Type = Images.eImageInfoType.IlluminationSnippits)
-                    Dim factor As Single = item.Image.Height / If(isSmallImage, 32, 48) 'If(item.Image.Width > item.Image.Height, item.Image.Width / 48, item.Image.Height / 48)
-                    Dim helper As HelperBase = New HelperBase()
-                    Dim shrinkedimage As Image = item.Image.Resized(New Size(Math.Min(item.Image.Width / factor, e.Bounds.Width / 2), item.Image.Height / factor))
-                    imagewidth = shrinkedimage.Width
+                    Dim factor As Single = Math.Max(item.Image.Width / 128, item.Image.Height / 48)
+                    Dim shrinkedimage As Image = item.Image.Resized(New Size(item.Image.Width / factor, item.Image.Height / factor))
                     ' draw image
-                    e.Graphics.DrawImage(shrinkedimage, New Point(5, e.Bounds.Y + 3 + If(isSmallImage, 8, 0)))
+                    e.Graphics.DrawImage(shrinkedimage, New Point(5, e.Bounds.Y + 3))
                 End If
                 ' text 
-                TextRenderer.DrawText(e.Graphics, item.Text.Replace("\", "\ "), Me.Font, New Rectangle(imagewidth + 10, e.Bounds.Y, e.Bounds.Width - imagewidth - 15, e.Bounds.Height - 2), Color.Black, TextFormatFlags.VerticalCenter Or TextFormatFlags.HorizontalCenter Or TextFormatFlags.WordBreak)
+                TextRenderer.DrawText(e.Graphics, item.Text.Replace("\", "\ "), Me.Font, New Rectangle(e.Bounds.X + 138, e.Bounds.Y, e.Bounds.Width - 143, e.Bounds.Height), Color.Black, TextFormatFlags.VerticalCenter Or TextFormatFlags.HorizontalCenter Or TextFormatFlags.WordBreak)
             End If
         End If
 
