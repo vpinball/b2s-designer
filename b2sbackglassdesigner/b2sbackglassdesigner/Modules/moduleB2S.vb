@@ -339,7 +339,7 @@ Module moduleB2S
         If image IsNot Nothing Then
             With New System.Drawing.ImageConverter
                 Dim bytes() As Byte = CType(.ConvertTo(image, GetType(Byte())), Byte())
-                Return Convert.ToBase64String(bytes, Base64FormattingOptions.InsertLineBreaks)
+                Return Convert.ToBase64String(bytes, Base64FormattingOptions.None)
             End With
         Else
             Return String.Empty
@@ -365,7 +365,7 @@ Module moduleB2S
             Using reader As IO.BinaryReader = New IO.BinaryReader(stream)
                 Dim length As Integer = reader.Read(bytes, 0, stream.Length)
             End Using
-            Return Convert.ToBase64String(bytes, Base64FormattingOptions.InsertLineBreaks)
+            Return Convert.ToBase64String(bytes, Base64FormattingOptions.None)
         Else
             Return String.Empty
         End If
