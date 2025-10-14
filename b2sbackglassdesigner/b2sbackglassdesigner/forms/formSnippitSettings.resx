@@ -183,6 +183,60 @@
   <data name="groupGeneral.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Left, Right</value>
   </data>
+  <data name="btnTrimImage.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="btnTrimImage.Location" type="System.Drawing.Point, System.Drawing">
+    <value>314, 71</value>
+  </data>
+  <data name="btnTrimImage.Size" type="System.Drawing.Size, System.Drawing">
+    <value>85, 23</value>
+  </data>
+  <data name="btnTrimImage.TabIndex" type="System.Int32, mscorlib">
+    <value>12</value>
+  </data>
+  <data name="btnTrimImage.Text" xml:space="preserve">
+    <value>Trim Image</value>
+  </data>
+  <data name="&gt;&gt;btnTrimImage.Name" xml:space="preserve">
+    <value>btnTrimImage</value>
+  </data>
+  <data name="&gt;&gt;btnTrimImage.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;btnTrimImage.Parent" xml:space="preserve">
+    <value>groupGeneral</value>
+  </data>
+  <data name="&gt;&gt;btnTrimImage.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="btnChangeImage.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="btnChangeImage.Location" type="System.Drawing.Point, System.Drawing">
+    <value>314, 44</value>
+  </data>
+  <data name="btnChangeImage.Size" type="System.Drawing.Size, System.Drawing">
+    <value>85, 23</value>
+  </data>
+  <data name="btnChangeImage.TabIndex" type="System.Int32, mscorlib">
+    <value>11</value>
+  </data>
+  <data name="btnChangeImage.Text" xml:space="preserve">
+    <value>Change Image</value>
+  </data>
+  <data name="&gt;&gt;btnChangeImage.Name" xml:space="preserve">
+    <value>btnChangeImage</value>
+  </data>
+  <data name="&gt;&gt;btnChangeImage.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;btnChangeImage.Parent" xml:space="preserve">
+    <value>groupGeneral</value>
+  </data>
+  <data name="&gt;&gt;btnChangeImage.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
   <data name="numericZOrder.Location" type="System.Drawing.Point, System.Drawing">
     <value>129, 73</value>
   </data>
@@ -202,7 +256,7 @@
     <value>groupGeneral</value>
   </data>
   <data name="&gt;&gt;numericZOrder.ZOrder" xml:space="preserve">
-    <value>0</value>
+    <value>2</value>
   </data>
   <data name="lblZOrder.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
@@ -232,7 +286,7 @@
     <value>groupGeneral</value>
   </data>
   <data name="&gt;&gt;lblZOrder.ZOrder" xml:space="preserve">
-    <value>1</value>
+    <value>3</value>
   </data>
   <data name="cmbType.Items" xml:space="preserve">
     <value>Standard image</value>
@@ -262,7 +316,7 @@
     <value>groupGeneral</value>
   </data>
   <data name="&gt;&gt;cmbType.ZOrder" xml:space="preserve">
-    <value>2</value>
+    <value>4</value>
   </data>
   <data name="lblType.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
@@ -292,7 +346,7 @@
     <value>groupGeneral</value>
   </data>
   <data name="&gt;&gt;lblType.ZOrder" xml:space="preserve">
-    <value>3</value>
+    <value>5</value>
   </data>
   <data name="lblName.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
@@ -322,7 +376,7 @@
     <value>groupGeneral</value>
   </data>
   <data name="&gt;&gt;lblName.ZOrder" xml:space="preserve">
-    <value>4</value>
+    <value>6</value>
   </data>
   <data name="txtName.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Left, Right</value>
@@ -349,34 +403,7 @@
     <value>groupGeneral</value>
   </data>
   <data name="&gt;&gt;txtName.ZOrder" xml:space="preserve">
-    <value>5</value>
-  </data>
-  <data name="btnChangeImage.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="btnChangeImage.Location" type="System.Drawing.Point, System.Drawing">
-    <value>311, 73</value>
-  </data>
-  <data name="btnChangeImage.Size" type="System.Drawing.Size, System.Drawing">
-    <value>88, 23</value>
-  </data>
-  <data name="btnChangeImage.TabIndex" type="System.Int32, mscorlib">
-    <value>11</value>
-  </data>
-  <data name="btnChangeImage.Text" xml:space="preserve">
-    <value>&amp;Change Image</value>
-  </data>
-  <data name="&gt;&gt;btnChangeImage.Name" xml:space="preserve">
-    <value>btnChangeImage</value>
-  </data>
-  <data name="&gt;&gt;btnChangeImage.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;btnChangeImage.Parent" xml:space="preserve">
-    <value>groupGeneral</value>
-  </data>
-  <data name="&gt;&gt;btnChangeImage.ZOrder" xml:space="preserve">
-    <value>6</value>
+    <value>7</value>
   </data>
   <data name="groupGeneral.Location" type="System.Drawing.Point, System.Drawing">
     <value>12, 4</value>
@@ -434,6 +461,150 @@
   </data>
   <data name="grpRotating.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Left, Right</value>
+  </data>
+  <data name="&gt;&gt;lblRotationStopping.Name" xml:space="preserve">
+    <value>lblRotationStopping</value>
+  </data>
+  <data name="&gt;&gt;lblRotationStopping.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;lblRotationStopping.Parent" xml:space="preserve">
+    <value>grpRotating</value>
+  </data>
+  <data name="&gt;&gt;lblRotationStopping.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;cmbRotationStopBehaviour.Name" xml:space="preserve">
+    <value>cmbRotationStopBehaviour</value>
+  </data>
+  <data name="&gt;&gt;cmbRotationStopBehaviour.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;cmbRotationStopBehaviour.Parent" xml:space="preserve">
+    <value>grpRotating</value>
+  </data>
+  <data name="&gt;&gt;cmbRotationStopBehaviour.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="&gt;&gt;numericMechID.Name" xml:space="preserve">
+    <value>numericMechID</value>
+  </data>
+  <data name="&gt;&gt;numericMechID.Type" xml:space="preserve">
+    <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;numericMechID.Parent" xml:space="preserve">
+    <value>grpRotating</value>
+  </data>
+  <data name="&gt;&gt;numericMechID.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="&gt;&gt;lblMechID.Name" xml:space="preserve">
+    <value>lblMechID</value>
+  </data>
+  <data name="&gt;&gt;lblMechID.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;lblMechID.Parent" xml:space="preserve">
+    <value>grpRotating</value>
+  </data>
+  <data name="&gt;&gt;lblMechID.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="&gt;&gt;cmbRotatingDirection.Name" xml:space="preserve">
+    <value>cmbRotatingDirection</value>
+  </data>
+  <data name="&gt;&gt;cmbRotatingDirection.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;cmbRotatingDirection.Parent" xml:space="preserve">
+    <value>grpRotating</value>
+  </data>
+  <data name="&gt;&gt;cmbRotatingDirection.ZOrder" xml:space="preserve">
+    <value>4</value>
+  </data>
+  <data name="&gt;&gt;lblRotationDirection.Name" xml:space="preserve">
+    <value>lblRotationDirection</value>
+  </data>
+  <data name="&gt;&gt;lblRotationDirection.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;lblRotationDirection.Parent" xml:space="preserve">
+    <value>grpRotating</value>
+  </data>
+  <data name="&gt;&gt;lblRotationDirection.ZOrder" xml:space="preserve">
+    <value>5</value>
+  </data>
+  <data name="&gt;&gt;numericRotatingSteps.Name" xml:space="preserve">
+    <value>numericRotatingSteps</value>
+  </data>
+  <data name="&gt;&gt;numericRotatingSteps.Type" xml:space="preserve">
+    <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;numericRotatingSteps.Parent" xml:space="preserve">
+    <value>grpRotating</value>
+  </data>
+  <data name="&gt;&gt;numericRotatingSteps.ZOrder" xml:space="preserve">
+    <value>6</value>
+  </data>
+  <data name="&gt;&gt;Label2.Name" xml:space="preserve">
+    <value>Label2</value>
+  </data>
+  <data name="&gt;&gt;Label2.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;Label2.Parent" xml:space="preserve">
+    <value>grpRotating</value>
+  </data>
+  <data name="&gt;&gt;Label2.ZOrder" xml:space="preserve">
+    <value>7</value>
+  </data>
+  <data name="&gt;&gt;numericRotatingInterval.Name" xml:space="preserve">
+    <value>numericRotatingInterval</value>
+  </data>
+  <data name="&gt;&gt;numericRotatingInterval.Type" xml:space="preserve">
+    <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;numericRotatingInterval.Parent" xml:space="preserve">
+    <value>grpRotating</value>
+  </data>
+  <data name="&gt;&gt;numericRotatingInterval.ZOrder" xml:space="preserve">
+    <value>8</value>
+  </data>
+  <data name="&gt;&gt;lblRotatingInterval.Name" xml:space="preserve">
+    <value>lblRotatingInterval</value>
+  </data>
+  <data name="&gt;&gt;lblRotatingInterval.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;lblRotatingInterval.Parent" xml:space="preserve">
+    <value>grpRotating</value>
+  </data>
+  <data name="&gt;&gt;lblRotatingInterval.ZOrder" xml:space="preserve">
+    <value>9</value>
+  </data>
+  <data name="grpRotating.Location" type="System.Drawing.Point, System.Drawing">
+    <value>12, 115</value>
+  </data>
+  <data name="grpRotating.Size" type="System.Drawing.Size, System.Drawing">
+    <value>407, 158</value>
+  </data>
+  <data name="grpRotating.TabIndex" type="System.Int32, mscorlib">
+    <value>1</value>
+  </data>
+  <data name="grpRotating.Text" xml:space="preserve">
+    <value>Image rotation settings</value>
+  </data>
+  <data name="&gt;&gt;grpRotating.Name" xml:space="preserve">
+    <value>grpRotating</value>
+  </data>
+  <data name="&gt;&gt;grpRotating.Type" xml:space="preserve">
+    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;grpRotating.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;grpRotating.ZOrder" xml:space="preserve">
+    <value>0</value>
   </data>
   <data name="lblRotationStopping.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
@@ -713,30 +884,6 @@
   </data>
   <data name="&gt;&gt;lblRotatingInterval.ZOrder" xml:space="preserve">
     <value>9</value>
-  </data>
-  <data name="grpRotating.Location" type="System.Drawing.Point, System.Drawing">
-    <value>12, 115</value>
-  </data>
-  <data name="grpRotating.Size" type="System.Drawing.Size, System.Drawing">
-    <value>407, 158</value>
-  </data>
-  <data name="grpRotating.TabIndex" type="System.Int32, mscorlib">
-    <value>1</value>
-  </data>
-  <data name="grpRotating.Text" xml:space="preserve">
-    <value>Image rotation settings</value>
-  </data>
-  <data name="&gt;&gt;grpRotating.Name" xml:space="preserve">
-    <value>grpRotating</value>
-  </data>
-  <data name="&gt;&gt;grpRotating.Type" xml:space="preserve">
-    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;grpRotating.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;grpRotating.ZOrder" xml:space="preserve">
-    <value>0</value>
   </data>
   <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
