@@ -653,6 +653,11 @@ Public Class formDesigner
             copiedBulb.SnippitInfo.SnippitRotatingDirection = selectedBulb.SnippitInfo.SnippitRotatingDirection
             copiedBulb.SnippitInfo.SnippitRotatingStopBehaviour = selectedBulb.SnippitInfo.SnippitRotatingStopBehaviour
 
+            ' Remove selected bulb image from image collection
+            If copiedBulb.IsImageSnippit Then
+                Backglass.currentImages.RemoveByTypeAndName(Images.eImageInfoType.IlluminationSnippits, copiedBulb.Name)
+            End If
+
             ' Remove the selected bulb from the collection (delete operation)
             Backglass.currentBulbs.Remove(selectedBulb)
 
@@ -745,6 +750,14 @@ Public Class formDesigner
             newBulb.SnippitInfo.SnippitRotatingInterval = copiedBulb.SnippitInfo.SnippitRotatingInterval
             newBulb.SnippitInfo.SnippitRotatingDirection = copiedBulb.SnippitInfo.SnippitRotatingDirection
             newBulb.SnippitInfo.SnippitRotatingStopBehaviour = copiedBulb.SnippitInfo.SnippitRotatingStopBehaviour
+
+            ' Add the new bulb image to the image collection
+            If newBulb.IsImageSnippit Then
+                Dim imageInfo As Images.ImageInfo = New Images.ImageInfo(Images.eImageInfoType.IlluminationSnippits)
+                imageInfo.Text = newBulb.Name
+                imageInfo.Image = newBulb.Image
+                Backglass.currentImages.Insert(Images.eImageInfoType.Title4IlluminationSnippits, imageInfo)
+            End If
 
             ' Add the new bulb to the collection
             If Backglass.currentTabPage.BackglassData.IsDMDImageShown Then
