@@ -312,8 +312,8 @@ Module moduleB2S
         Dim equal As Boolean = True
         If image1.Height = image2.Height AndAlso image1.Width = image2.Width Then
             Dim rect As Rectangle = New Rectangle(0, 0, image1.Width, image1.Height)
-            Dim image1Data As System.Drawing.Imaging.BitmapData = DirectCast(image1, System.Drawing.Bitmap).LockBits(rect, System.Drawing.Imaging.ImageLockMode.ReadWrite, image1.PixelFormat)
-            Dim image2Data As System.Drawing.Imaging.BitmapData = DirectCast(image2, System.Drawing.Bitmap).LockBits(rect, System.Drawing.Imaging.ImageLockMode.ReadWrite, image2.PixelFormat)
+            Dim image1Data As System.Drawing.Imaging.BitmapData = DirectCast(image1, System.Drawing.Bitmap).LockBits(rect, System.Drawing.Imaging.ImageLockMode.ReadOnly, image1.PixelFormat)
+            Dim image2Data As System.Drawing.Imaging.BitmapData = DirectCast(image2, System.Drawing.Bitmap).LockBits(rect, System.Drawing.Imaging.ImageLockMode.ReadOnly, image2.PixelFormat)
             Dim image1ByteCount As Integer = Math.Abs(image1Data.Stride) * image1.Height
             Dim image2ByteCount As Integer = Math.Abs(image2Data.Stride) * image2.Height
             If image1ByteCount = image2ByteCount Then
@@ -321,7 +321,7 @@ Module moduleB2S
                 Dim image2RGB(image2ByteCount) As Byte
                 System.Runtime.InteropServices.Marshal.Copy(image1Data.Scan0, image1RGB, 0, image1ByteCount)
                 System.Runtime.InteropServices.Marshal.Copy(image2Data.Scan0, image2RGB, 0, image2ByteCount)
-                For i As Integer = 0 To image1ByteCount
+                For i As Integer = 0 To (image1ByteCount - 1)
                     If Not image1RGB(i) = image2RGB(i) Then
                         equal = False
                         Exit For
@@ -333,6 +333,40 @@ Module moduleB2S
         End If
 
         Return equal
+    End Function
+
+    Public Function TrimImage(ByRef _image As Image) As Rectangle
+        Dim rect As Rectangle = New Rectangle(0, 0, _image.Width, _image.Height)
+        Dim imageData As System.Drawing.Imaging.BitmapData = DirectCast(_image, System.Drawing.Bitmap).LockBits(rect, System.Drawing.Imaging.ImageLockMode.ReadOnly, Imaging.PixelFormat.Format32bppArgb)
+        Dim imageByteCount As Integer = Math.Abs(imageData.Stride) * imageData.Height
+        Dim imageARGB(imageByteCount) As Byte
+        System.Runtime.InteropServices.Marshal.Copy(imageData.Scan0, imageARGB, 0, imageByteCount)
+        DirectCast(_image, System.Drawing.Bitmap).UnlockBits(imageData)
+
+        Dim left As Integer = imageData.Width
+        Dim right As Integer = 0
+        Dim top As Integer = imageData.Height
+        Dim bottom As Integer = 0
+        For y As Integer = 0 To (imageData.Height - 1)
+            For x As Integer = 0 To (imageData.Width - 1)
+                Dim isNotTransparent As Boolean = imageARGB((((y * imageData.Width) + x) * 4) + 0) > 0
+                If isNotTransparent Then
+                    If left > x Then
+                        left = x
+                    End If
+                    If right < x Then
+                        right = x
+                    End If
+                    If top > y Then
+                        top = y
+                    End If
+                    If bottom < y Then
+                        bottom = y
+                    End If
+                End If
+            Next
+        Next
+        Return New Rectangle(left, top, right - left + 1, bottom - top + 1)
     End Function
 
     Public Function ImageToBase64(image As Image) As String
