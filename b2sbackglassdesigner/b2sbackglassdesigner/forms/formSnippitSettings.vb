@@ -144,27 +144,24 @@ Public Class formSnippitSettings
     End Sub
 
     Private Sub btnTrimImage_Click(sender As Object, e As EventArgs) Handles btnTrimImage.Click
-        Dim bulb = Backglass.currentTabPage.Mouse.SelectedBulb
-        If bulb IsNot Nothing AndAlso bulb.Image IsNot Nothing Then
-            Dim trim_rect As Rectangle = TrimImage(bulb.Image)
+        Dim selected_bulb = Backglass.currentTabPage.Mouse.SelectedBulb
+        If selected_bulb IsNot Nothing AndAlso selected_bulb.Image IsNot Nothing Then
+            Dim trim_rect As Rectangle = TrimImage(selected_bulb.Image)
 
-            If trim_rect.X > 0 Or trim_rect.Y > 0 Or trim_rect.Width < bulb.Image.Width Or trim_rect.Height < bulb.Image.Height Then
-                Dim trimmed As New Bitmap(trim_rect.Width, trim_rect.Height, bulb.Image.PixelFormat)
-                Graphics.FromImage(trimmed).DrawImage(bulb.Image, New Rectangle(0, 0, trimmed.Width, trimmed.Height), trim_rect, System.Drawing.GraphicsUnit.Pixel)
+            If trim_rect.X > 0 Or trim_rect.Y > 0 Or trim_rect.Width < selected_bulb.Image.Width Or trim_rect.Height < selected_bulb.Image.Height Then
+                Dim trimmed As New Bitmap(trim_rect.Width, trim_rect.Height, selected_bulb.Image.PixelFormat)
+                Graphics.FromImage(trimmed).DrawImage(selected_bulb.Image, New Rectangle(0, 0, trimmed.Width, trimmed.Height), trim_rect, System.Drawing.GraphicsUnit.Pixel)
 
-                Backglass.currentImages.RemoveByTypeAndName(Images.eImageInfoType.IlluminationSnippits, bulb.Name)
+                For Each bulb As Illumination.BulbInfo In Backglass.currentBulbs
+                    If bulb.Name = selected_bulb.Name Then
+                        bulb.Image = DirectCast(trimmed, Image)
+                        bulb.Size.Width = bulb.Image.Width
+                        bulb.Size.Height = bulb.Image.Height
+                        bulb.Location += trim_rect.Location
+                    End If
+                Next
 
-                bulb.Image = DirectCast(trimmed, Image)
-                bulb.Name = bulb.Name + "_trimmed"
-                bulb.Size.Width = bulb.Image.Width
-                bulb.Size.Height = bulb.Image.Height
-                bulb.Location += trim_rect.Location
-
-                Dim imageInfo As Images.ImageInfo = New Images.ImageInfo(Images.eImageInfoType.IlluminationSnippits)
-                imageInfo.Text = bulb.Name
-                imageInfo.Image = bulb.Image
-                Backglass.currentImages.Insert(Images.eImageInfoType.Title4IlluminationSnippits, imageInfo)
-
+                Backglass.currentImages.SetNewImage(Images.eImageInfoType.IlluminationSnippits, selected_bulb.Name, selected_bulb.Image)
                 B2SBackglassDesigner.formDesigner.RefreshImageInfoList()
             End If
         End If

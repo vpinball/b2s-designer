@@ -4,6 +4,29 @@ Public Class B2STabPage
 
     Inherits Panel
 
+    Protected Overrides Sub OnMouseWheel(ByVal e As MouseEventArgs)
+        Dim scroll As New Point(HorizontalScroll.Value, VerticalScroll.Value)
+        Dim ctrl As Boolean = My.Computer.Keyboard.CtrlKeyDown
+        Dim alt As Boolean = My.Computer.Keyboard.AltKeyDown
+
+        If alt Then
+            Dim change As Single = ((e.Delta / 120.0) * (BackglassData.Zoom / 10.0))
+            Dim zoom As Integer = Math.Min(Math.Max(CInt(Math.Ceiling(BackglassData.Zoom + change)), 5), 500)
+            Backglass.currentTabPage.Zoom(zoom)
+        ElseIf ctrl Then
+            scroll.X = Math.Min(Math.Max(scroll.X - e.Delta, HorizontalScroll.Minimum), HorizontalScroll.Maximum)
+        Else
+            scroll.Y = Math.Min(Math.Max(scroll.Y - e.Delta, VerticalScroll.Minimum), VerticalScroll.Maximum)
+        End If
+
+        VerticalScroll.Value = scroll.Y
+        HorizontalScroll.Value = scroll.X
+        AutoScrollPosition = scroll
+
+        Dim mouseEvent As HandledMouseEventArgs = DirectCast(e, HandledMouseEventArgs)
+        mouseEvent.Handled = True
+    End Sub
+
     Public Event MyMouseDown(ByVal sender As Object, ByVal e As System.Windows.Forms.MouseEventArgs)
     Public Event MyMouseMove(ByVal sender As Object, ByVal e As Mouse.MouseMoveEventArgs)
     Public Event CopyDMDCopyArea(ByVal sender As Object, ByVal e As System.EventArgs)

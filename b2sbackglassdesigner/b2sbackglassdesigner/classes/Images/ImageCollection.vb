@@ -47,6 +47,14 @@
             Next
         End Sub
 
+        Public Sub SetNewImage(ByVal titletype As eImageInfoType, ByVal name As String, ByVal image As Image)
+            For Each imageInfo As ImageInfo In Me
+                If imageInfo.Type = titletype AndAlso imageInfo.Text = name Then
+                    imageInfo.Image = image
+                End If
+            Next
+        End Sub
+
         Public Function CurrentDMDImageInfo() As Images.ImageInfo
             Dim ret As Images.ImageInfo = Nothing
             For Each info As Images.ImageInfo In Me
