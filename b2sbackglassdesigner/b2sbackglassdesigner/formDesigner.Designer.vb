@@ -157,6 +157,8 @@ Partial Class formDesigner
         Me.B2STab = New B2SBackglassDesigner.B2STab()
         Me.ilReelsAndLEDs = New System.Windows.Forms.ImageList(Me.components)
         Me.timerProgressReset = New System.Windows.Forms.Timer(Me.components)
+        Me.ToolStripSeparator14 = New System.Windows.Forms.ToolStripSeparator()
+        Me.tsmiTrimAllSnippits = New System.Windows.Forms.ToolStripMenuItem()
         Me.msB2SDesigner.SuspendLayout()
         Me.tsB2SDesigner.SuspendLayout()
         Me.ssB2SDesigner.SuspendLayout()
@@ -511,7 +513,7 @@ Partial Class formDesigner
         '
         'tsmiIllumination
         '
-        Me.tsmiIllumination.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.tsmiShowIlluFrames, Me.tsmiSelectAllIlluFrames, Me.ToolStripSeparator6, Me.tsmiAddNewBulbFrame, Me.tsmiAddANewIlluminationSnippit, Me.ToolStripSeparator7, Me.tsmiShowIllumination, Me.tsmiShowIlluminationWithAccurateIntensity, Me.ToolStripSeparator23, Me.tsmiManageAnimations})
+        Me.tsmiIllumination.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.tsmiShowIlluFrames, Me.tsmiSelectAllIlluFrames, Me.ToolStripSeparator6, Me.tsmiAddNewBulbFrame, Me.tsmiAddANewIlluminationSnippit, Me.ToolStripSeparator7, Me.tsmiShowIllumination, Me.tsmiShowIlluminationWithAccurateIntensity, Me.ToolStripSeparator23, Me.tsmiManageAnimations, Me.ToolStripSeparator14, Me.tsmiTrimAllSnippits})
         Me.tsmiIllumination.Name = "tsmiIllumination"
         resources.ApplyResources(Me.tsmiIllumination, "tsmiIllumination")
         '
@@ -917,6 +919,16 @@ Partial Class formDesigner
         '
         Me.timerProgressReset.Interval = 1000
         '
+        'ToolStripSeparator14
+        '
+        Me.ToolStripSeparator14.Name = "ToolStripSeparator14"
+        resources.ApplyResources(Me.ToolStripSeparator14, "ToolStripSeparator14")
+        '
+        'tsmiTrimAllSnippits
+        '
+        Me.tsmiTrimAllSnippits.Name = "tsmiTrimAllSnippits"
+        resources.ApplyResources(Me.tsmiTrimAllSnippits, "tsmiTrimAllSnippits")
+        '
         'formDesigner
         '
         resources.ApplyResources(Me, "$this")
@@ -1071,5 +1083,6 @@ Partial Class formDesigner
     Friend WithEvents tsmiCreateDarkBackglassImage As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents tsmiCreateIlluminatedBackglassImage As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents ToolStripSeparator28 As System.Windows.Forms.ToolStripSeparator
-
+    Friend WithEvents ToolStripSeparator14 As ToolStripSeparator
+    Friend WithEvents tsmiTrimAllSnippits As ToolStripMenuItem
 End Class

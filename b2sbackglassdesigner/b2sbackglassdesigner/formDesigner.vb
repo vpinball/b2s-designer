@@ -1137,6 +1137,7 @@ Public Class formDesigner
         tsmiShowIllumination.Enabled = isValid
         tsmiShowIlluminationWithAccurateIntensity.Enabled = isValid
         tsmiManageAnimations.Enabled = isValid
+        tsmiTrimAllSnippits.Enabled = isValid
     End Sub
 
     Private Sub ShowIlluFrames_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles tsmiShowIlluFrames.Click, tsbShowIlluFrames.Click
@@ -1199,7 +1200,6 @@ Public Class formDesigner
     End Sub
 
     Private Sub ManageAnimations_Click(sender As System.Object, e As System.EventArgs) Handles tsmiManageAnimations.Click
-
         If Backglass.currentData IsNot Nothing AndAlso Backglass.currentTabPage IsNot Nothing Then
             ' maybe show and filter frames
             If Not Backglass.currentTabPage.ShowIlluFrames Then
@@ -1207,10 +1207,39 @@ Public Class formDesigner
             End If
             tscmbIDFilter.SelectedIndex = tscmbIDFilter.Items.Count - 1
             ' open animation dialog
-            If formAnimations Is Nothing Then formAnimations = New formAnimations()
+            If formAnimations Is Nothing Then
+                formAnimations = New formAnimations()
+            End If
             formAnimations.Show(Me)
         End If
+    End Sub
 
+    Private Sub TrimAllSnippits_Click(sender As System.Object, e As System.EventArgs) Handles tsmiTrimAllSnippits.Click
+        If Backglass.currentData IsNot Nothing AndAlso Backglass.currentTabPage IsNot Nothing Then
+            For Each selected_bulb As Illumination.BulbInfo In Backglass.currentBulbs
+                If selected_bulb IsNot Nothing AndAlso selected_bulb.Image IsNot Nothing Then
+                    Dim trim_rect As Rectangle = TrimImage(selected_bulb.Image)
+
+                    If trim_rect.X > 0 Or trim_rect.Y > 0 Or trim_rect.Width < selected_bulb.Image.Width Or trim_rect.Height < selected_bulb.Image.Height Then
+                        Dim trimmed As New Bitmap(trim_rect.Width, trim_rect.Height, selected_bulb.Image.PixelFormat)
+                        Graphics.FromImage(trimmed).DrawImage(selected_bulb.Image, New Rectangle(0, 0, trimmed.Width, trimmed.Height), trim_rect, System.Drawing.GraphicsUnit.Pixel)
+
+                        For Each bulb As Illumination.BulbInfo In Backglass.currentBulbs
+                            If bulb.Name = selected_bulb.Name Then
+                                bulb.Image = DirectCast(trimmed, Image)
+                                bulb.Size.Width = bulb.Image.Width
+                                bulb.Size.Height = bulb.Image.Height
+                                bulb.Location += trim_rect.Location
+                            End If
+                        Next
+
+                        Backglass.currentImages.SetNewImage(Images.eImageInfoType.IlluminationSnippits, selected_bulb.Name, selected_bulb.Image)
+                    End If
+                End If
+            Next
+
+            RefreshImageInfoList()
+        End If
     End Sub
 
     Private Sub IDFilter_SelectedIndexChanged(sender As Object, e As System.EventArgs) Handles tscmbIDFilter.SelectedIndexChanged
