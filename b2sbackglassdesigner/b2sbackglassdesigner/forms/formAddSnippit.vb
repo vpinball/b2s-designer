@@ -111,8 +111,8 @@ Public Class formAddSnippit
             PictureBoxImage.BackgroundImage = Nothing
             txtImageFileName.Text = String.Empty
             txtName.Text = String.Empty
-            txtX.Text = String.Empty
-            txtY.Text = String.Empty
+            txtX.Text = "0"
+            txtY.Text = "0"
             txtImageFileName.Enabled = True
             txtName.Enabled = True
             btnChooseImageFile.Focus()
