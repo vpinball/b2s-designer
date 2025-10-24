@@ -69,6 +69,9 @@
             If node.SelectSingleNode("VPTablesFolder") IsNot Nothing Then
                 DefaultVPTablesFolder = node.SelectSingleNode("VPTablesFolder").Attributes("Value").InnerText
             End If
+            If node.SelectSingleNode("LatestAuthor") IsNot Nothing Then
+                LatestAuthor = node.SelectSingleNode("LatestAuthor").Attributes("Value").InnerText
+            End If
             Me.Location = New Point(x, y)
             Me.Size = New Size(width, height)
             Me.WindowState = If(maximized, FormWindowState.Maximized, FormWindowState.Normal)
@@ -147,6 +150,7 @@
             If SaveName.Equals("formDesigner", StringComparison.CurrentCultureIgnoreCase) Then
                 helper.AddXMLAttribute(XmlSettings, nodeForm, "Opacity", "Value", CInt(DefaultOpacity * 100).ToString())
                 helper.AddXMLAttribute(XmlSettings, nodeForm, "VPTablesFolder", "Value", DefaultVPTablesFolder)
+                helper.AddXMLAttribute(XmlSettings, nodeForm, "LatestAuthor", "Value", LatestAuthor)
             End If
             ' save
             Try
