@@ -26,8 +26,13 @@ Public Class formSettings
         txtName.Text = name
         txtFileName.Text = filename
         chkDualBackglass.Checked = dualbackglass
-        txtAuthor.Text = author
-        txtArtwork.Text = artwork
+        If newtable Then
+            txtAuthor.Text = LatestAuthor
+            txtArtwork.Text = LatestAuthor
+        Else
+            txtAuthor.Text = author
+            txtArtwork.Text = artwork
+        End If
         If tabletype = eTableType.NotDefined Then
             cmbTableType.Text = String.Empty
         Else

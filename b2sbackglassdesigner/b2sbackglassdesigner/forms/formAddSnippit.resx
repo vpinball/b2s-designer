@@ -312,6 +312,9 @@
   <data name="txtX.TabIndex" type="System.Int32, mscorlib">
     <value>3</value>
   </data>
+  <data name="txtX.Text" xml:space="preserve">
+    <value>0</value>
+  </data>
   <data name="&gt;&gt;txtX.Name" xml:space="preserve">
     <value>txtX</value>
   </data>
@@ -371,6 +374,9 @@
   </data>
   <data name="txtY.TabIndex" type="System.Int32, mscorlib">
     <value>4</value>
+  </data>
+  <data name="txtY.Text" xml:space="preserve">
+    <value>0</value>
   </data>
   <data name="&gt;&gt;txtY.Name" xml:space="preserve">
     <value>txtY</value>

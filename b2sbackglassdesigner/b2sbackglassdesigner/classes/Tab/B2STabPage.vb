@@ -1079,6 +1079,26 @@ Public Class B2STabPage
                 .Location = loc
                 .Image = image
                 .IsImageSnippit = True
+                If Char.IsDigit(name.Last()) Then
+                    Dim copy As String = name
+                    Dim numbers As String = ""
+                    While Char.IsDigit(copy.Last())
+                        numbers = copy.Last() + numbers
+                        copy = copy.Substring(0, copy.Length - 1)
+                    End While
+                    If numbers.Length AndAlso copy.Length Then
+                        If copy.Substring(copy.Length - 1, 1) = "L" Then
+                            .RomID = CInt(numbers)
+                            .RomIDType = eRomIDType.Lamp
+                        ElseIf copy.Substring(copy.Length - 1, 1) = "S" Then
+                            .RomID = CInt(numbers)
+                            .RomIDType = eRomIDType.Solenoid
+                        ElseIf copy.Length > 1 AndAlso copy.Substring(copy.Length - 2, 2) = "Gi" Then
+                            .RomID = CInt(numbers)
+                            .RomIDType = eRomIDType.GIString
+                        End If
+                    End If
+                End If
             End With
             If BackglassData.IsDMDImageShown Then
                 newBulb.ParentForm = eParentForm.DMD

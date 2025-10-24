@@ -127,6 +127,10 @@ Public Class Backglass
                 If Not _author.Equals(value) Then
                     _author = value
                     IsDirty = True
+                    If value IsNot Nothing Then
+                        LatestAuthor = value
+                        B2SBackglassDesigner.formDesigner.SaveSettings()
+                    End If
                 End If
             End Set
         End Property
