@@ -53,6 +53,7 @@ Module moduleB2S
     Public Property DefaultOpacity() As Single = 1
     Public Property DefaultVPTablesFolder() As String = String.Empty
     Public Property LatestAuthor() As String = String.Empty
+    Public Property LatestImportDirectory() As String = String.Empty
 
     Public Property NoToolEvents() As Boolean = False
 
