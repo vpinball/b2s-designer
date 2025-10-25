@@ -522,10 +522,12 @@ Public Class formDesigner
             With filedialog
                 .Filter = "'directB2S' backglass file (*.directb2s)|*.directb2s|ALL (*.*)|*.*"
                 .FileName = String.Empty
-                .InitialDirectory = BackglassProjectsPath
+                .InitialDirectory = If(LatestImportDirectory.Length, LatestImportDirectory, BackglassProjectsPath)
                 If .ShowDialog(Me) = DialogResult.OK Then
                     Dim backglassdata As Backglass.Data = Nothing
                     Cursor.Current = Cursors.WaitCursor
+                    LatestImportDirectory = IO.Path.GetDirectoryName(.FileName)
+                    SaveSettings()
                     Try
                         coding.ImportDirectB2SFile(backglassdata, .FileName)
                         If backglassdata IsNot Nothing Then
