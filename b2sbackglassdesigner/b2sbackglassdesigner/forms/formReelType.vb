@@ -190,8 +190,10 @@ Public Class formReelType
     End Sub
 
     Private Sub Reels_MouseDoubleClick(sender As Object, e As System.Windows.Forms.MouseEventArgs) Handles lvEMReels.MouseDoubleClick
-        MyBase.DialogResult = Windows.Forms.DialogResult.OK
-        Me.Close()
+        If e.Button = Windows.Forms.MouseButtons.Left Then
+            MyBase.DialogResult = Windows.Forms.DialogResult.OK
+            Me.Close()
+        End If
     End Sub
 
     Private Sub GetColor_Click(sender As System.Object, e As System.EventArgs) Handles btnGetColor.Click
@@ -220,10 +222,93 @@ Public Class formReelType
         Return Color.FromArgb(colorRef And &HFF, (colorRef And &HFF00) >> 8, (colorRef And &HFF0000) >> 16)
     End Function
 
-    Private Sub LEDs_Click(sender As Object, e As System.EventArgs) Handles lvLEDs.Click
+    Private Sub Reels_Click(sender As Object, e As System.Windows.Forms.MouseEventArgs) Handles lvEMReels.MouseClick
+        If lvEMReels.SelectedItems.Count > 0 Then
+            If e.Button = Windows.Forms.MouseButtons.Right Then
+                Dim cms = New ContextMenuStrip
+                Dim itemExport = cms.Items.Add("Export")
+                itemExport.Tag = 1
+                AddHandler itemExport.Click, AddressOf btnExportReels_Click
+
+                Dim selectedReelName As String = lvEMReels.SelectedItems(0).Text
+                If selectedReelName.StartsWith("Imported") Then
+                    Dim itemDelete = cms.Items.Add("Delete")
+                    itemDelete.Tag = 2
+                    AddHandler itemDelete.Click, AddressOf DeleteReel_Click
+                End If
+
+                cms.Show(lvEMReels, e.Location)
+            End If
+        End If
+    End Sub
+
+    Private Sub CreditReels_Click(sender As Object, e As System.Windows.Forms.MouseEventArgs) Handles lvEMCreditReels.MouseClick
+        If lvEMCreditReels.SelectedItems.Count > 0 Then
+            If e.Button = Windows.Forms.MouseButtons.Right Then
+                Dim cms = New ContextMenuStrip
+                Dim itemExport = cms.Items.Add("Export")
+                itemExport.Tag = 1
+                AddHandler itemExport.Click, AddressOf btnExportCreditReels_Click
+
+                Dim selectedReelName As String = lvEMCreditReels.SelectedItems(0).Text
+                If selectedReelName.StartsWith("Imported") Then
+                    Dim itemDelete = cms.Items.Add("Delete")
+                    itemDelete.Tag = 2
+                    AddHandler itemDelete.Click, AddressOf DeleteCreditReel_Click
+                End If
+
+                cms.Show(lvEMCreditReels, e.Location)
+            End If
+        End If
+    End Sub
+
+    Private Sub LEDs_Click(sender As Object, e As System.Windows.Forms.MouseEventArgs) Handles lvLEDs.MouseClick
         If lvLEDs.SelectedItems.Count > 0 Then
-            If MessageBox.Show(My.Resources.MSG_ReelTypeLEDsSelected, AppTitle, MessageBoxButtons.YesNo, MessageBoxIcon.Question) = Windows.Forms.DialogResult.No Then
-                lvLEDs.SelectedItems.Clear()
+            If e.Button = Windows.Forms.MouseButtons.Right Then
+                Dim cms = New ContextMenuStrip
+                Dim itemExport = cms.Items.Add("Export")
+                itemExport.Tag = 1
+                AddHandler itemExport.Click, AddressOf btnExportLEDs_Click
+
+                Dim selectedReelName As String = lvLEDs.SelectedItems(0).Text
+                If selectedReelName.StartsWith("Imported") Then
+                    Dim itemDelete = cms.Items.Add("Delete")
+                    itemDelete.Tag = 2
+                    AddHandler itemDelete.Click, AddressOf DeleteLED_Click
+                End If
+
+                cms.Show(lvLEDs, e.Location)
+            End If
+        End If
+    End Sub
+
+    Private Sub DeleteReel_Click(sender As Object, e As EventArgs)
+
+        If MessageBox.Show(String.Format("Do you really want to delete {0}?", lvEMReels.SelectedItems(0).Text), AppTitle, MessageBoxButtons.YesNo, MessageBoxIcon.Question) = Windows.Forms.DialogResult.Yes Then
+            If GeneralData.currentData.ImportedReelImageSets IsNot Nothing Then
+                Dim index As Integer = lvEMReels.SelectedIndices(0) - DefaultEMReels.Length
+                GeneralData.currentData.RemoveImageSet(index, eImageSetType.ReelImages)
+                lvEMReels.Items.RemoveAt(lvEMReels.SelectedIndices(0))
+            End If
+        End If
+    End Sub
+
+    Private Sub DeleteCreditReel_Click(sender As Object, e As EventArgs)
+        If MessageBox.Show(String.Format("Do you really want to delete {0}?", lvEMCreditReels.SelectedItems(0).Text), AppTitle, MessageBoxButtons.YesNo, MessageBoxIcon.Question) = Windows.Forms.DialogResult.Yes Then
+            If GeneralData.currentData.ImportedCreditReelImageSets IsNot Nothing Then
+                Dim index As Integer = lvEMCreditReels.SelectedIndices(0) - DefaultEMCreditReels.Length
+                GeneralData.currentData.RemoveImageSet(index, eImageSetType.CreditReelImages)
+                lvEMCreditReels.Items.RemoveAt(lvEMCreditReels.SelectedIndices(0))
+            End If
+        End If
+    End Sub
+
+    Private Sub DeleteLED_Click(sender As Object, e As EventArgs)
+        If MessageBox.Show(String.Format("Do you really want to delete {0}?", lvLEDs.SelectedItems(0).Text), AppTitle, MessageBoxButtons.YesNo, MessageBoxIcon.Question) = Windows.Forms.DialogResult.Yes Then
+            If GeneralData.currentData.ImportedLEDImageSets IsNot Nothing Then
+                Dim index As Integer = lvLEDs.SelectedIndices(0) - DefaultLEDs.Length
+                GeneralData.currentData.RemoveImageSet(index, eImageSetType.LEDImages)
+                lvLEDs.Items.RemoveAt(lvLEDs.SelectedIndices(0))
             End If
         End If
     End Sub

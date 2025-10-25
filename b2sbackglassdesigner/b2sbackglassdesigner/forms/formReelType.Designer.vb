@@ -27,6 +27,10 @@ Partial Class formReelType
         Me.btnCancel = New System.Windows.Forms.Button()
         Me.btnOk = New System.Windows.Forms.Button()
         Me.GroupBoxImages = New System.Windows.Forms.GroupBox()
+        Me.TableLayoutPanel1 = New System.Windows.Forms.TableLayoutPanel()
+        Me.lvEMReels = New System.Windows.Forms.ListView()
+        Me.lvEMCreditReels = New System.Windows.Forms.ListView()
+        Me.lvLEDs = New System.Windows.Forms.ListView()
         Me.lblMS = New System.Windows.Forms.Label()
         Me.cmbRollingDirection = New System.Windows.Forms.ComboBox()
         Me.lblRollingDirection = New System.Windows.Forms.Label()
@@ -34,8 +38,6 @@ Partial Class formReelType
         Me.lblIntermediateCount = New System.Windows.Forms.Label()
         Me.numRollingInterval = New System.Windows.Forms.NumericUpDown()
         Me.lblRollingInterval = New System.Windows.Forms.Label()
-        Me.lvEMCreditReels = New System.Windows.Forms.ListView()
-        Me.lvLEDs = New System.Windows.Forms.ListView()
         Me.btnImportReels = New System.Windows.Forms.Button()
         Me.btnImportCreditReels = New System.Windows.Forms.Button()
         Me.btnImportLEDs = New System.Windows.Forms.Button()
@@ -43,7 +45,6 @@ Partial Class formReelType
         Me.btnExportCreditReels = New System.Windows.Forms.Button()
         Me.btnExportLEDs = New System.Windows.Forms.Button()
         Me.lblInfo = New System.Windows.Forms.Label()
-        Me.lvEMReels = New System.Windows.Forms.ListView()
         Me.ilReels = New System.Windows.Forms.ImageList(Me.components)
         Me.GroupBoxRendered = New System.Windows.Forms.GroupBox()
         Me.btnGetColor = New System.Windows.Forms.Button()
@@ -72,6 +73,7 @@ Partial Class formReelType
         Me.ilEMCeditReels = New System.Windows.Forms.ImageList(Me.components)
         Me.TimerGetColor = New System.Windows.Forms.Timer(Me.components)
         Me.GroupBoxImages.SuspendLayout()
+        Me.TableLayoutPanel1.SuspendLayout()
         CType(Me.numIntermediateCount, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.numRollingInterval, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupBoxRendered.SuspendLayout()
@@ -98,6 +100,7 @@ Partial Class formReelType
         'GroupBoxImages
         '
         resources.ApplyResources(Me.GroupBoxImages, "GroupBoxImages")
+        Me.GroupBoxImages.Controls.Add(Me.TableLayoutPanel1)
         Me.GroupBoxImages.Controls.Add(Me.lblMS)
         Me.GroupBoxImages.Controls.Add(Me.cmbRollingDirection)
         Me.GroupBoxImages.Controls.Add(Me.lblRollingDirection)
@@ -105,8 +108,6 @@ Partial Class formReelType
         Me.GroupBoxImages.Controls.Add(Me.lblIntermediateCount)
         Me.GroupBoxImages.Controls.Add(Me.numRollingInterval)
         Me.GroupBoxImages.Controls.Add(Me.lblRollingInterval)
-        Me.GroupBoxImages.Controls.Add(Me.lvEMCreditReels)
-        Me.GroupBoxImages.Controls.Add(Me.lvLEDs)
         Me.GroupBoxImages.Controls.Add(Me.btnImportReels)
         Me.GroupBoxImages.Controls.Add(Me.btnImportCreditReels)
         Me.GroupBoxImages.Controls.Add(Me.btnImportLEDs)
@@ -114,9 +115,40 @@ Partial Class formReelType
         Me.GroupBoxImages.Controls.Add(Me.btnExportCreditReels)
         Me.GroupBoxImages.Controls.Add(Me.btnExportLEDs)
         Me.GroupBoxImages.Controls.Add(Me.lblInfo)
-        Me.GroupBoxImages.Controls.Add(Me.lvEMReels)
         Me.GroupBoxImages.Name = "GroupBoxImages"
         Me.GroupBoxImages.TabStop = False
+        '
+        'TableLayoutPanel1
+        '
+        resources.ApplyResources(Me.TableLayoutPanel1, "TableLayoutPanel1")
+        Me.TableLayoutPanel1.Controls.Add(Me.lvEMReels, 0, 0)
+        Me.TableLayoutPanel1.Controls.Add(Me.lvEMCreditReels, 1, 0)
+        Me.TableLayoutPanel1.Controls.Add(Me.lvLEDs, 2, 0)
+        Me.TableLayoutPanel1.Name = "TableLayoutPanel1"
+        '
+        'lvEMReels
+        '
+        resources.ApplyResources(Me.lvEMReels, "lvEMReels")
+        Me.lvEMReels.HideSelection = False
+        Me.lvEMReels.Name = "lvEMReels"
+        Me.lvEMReels.UseCompatibleStateImageBehavior = False
+        Me.lvEMReels.View = System.Windows.Forms.View.List
+        '
+        'lvEMCreditReels
+        '
+        resources.ApplyResources(Me.lvEMCreditReels, "lvEMCreditReels")
+        Me.lvEMCreditReels.HideSelection = False
+        Me.lvEMCreditReels.Name = "lvEMCreditReels"
+        Me.lvEMCreditReels.UseCompatibleStateImageBehavior = False
+        Me.lvEMCreditReels.View = System.Windows.Forms.View.List
+        '
+        'lvLEDs
+        '
+        resources.ApplyResources(Me.lvLEDs, "lvLEDs")
+        Me.lvLEDs.HideSelection = False
+        Me.lvLEDs.Name = "lvLEDs"
+        Me.lvLEDs.UseCompatibleStateImageBehavior = False
+        Me.lvLEDs.View = System.Windows.Forms.View.List
         '
         'lblMS
         '
@@ -159,22 +191,6 @@ Partial Class formReelType
         resources.ApplyResources(Me.lblRollingInterval, "lblRollingInterval")
         Me.lblRollingInterval.Name = "lblRollingInterval"
         '
-        'lvEMCreditReels
-        '
-        resources.ApplyResources(Me.lvEMCreditReels, "lvEMCreditReels")
-        Me.lvEMCreditReels.HideSelection = False
-        Me.lvEMCreditReels.Name = "lvEMCreditReels"
-        Me.lvEMCreditReels.UseCompatibleStateImageBehavior = False
-        Me.lvEMCreditReels.View = System.Windows.Forms.View.List
-        '
-        'lvLEDs
-        '
-        resources.ApplyResources(Me.lvLEDs, "lvLEDs")
-        Me.lvLEDs.HideSelection = False
-        Me.lvLEDs.Name = "lvLEDs"
-        Me.lvLEDs.UseCompatibleStateImageBehavior = False
-        Me.lvLEDs.View = System.Windows.Forms.View.List
-        '
         'btnImportReels
         '
         resources.ApplyResources(Me.btnImportReels, "btnImportReels")
@@ -215,14 +231,6 @@ Partial Class formReelType
         '
         resources.ApplyResources(Me.lblInfo, "lblInfo")
         Me.lblInfo.Name = "lblInfo"
-        '
-        'lvEMReels
-        '
-        resources.ApplyResources(Me.lvEMReels, "lvEMReels")
-        Me.lvEMReels.HideSelection = False
-        Me.lvEMReels.Name = "lvEMReels"
-        Me.lvEMReels.UseCompatibleStateImageBehavior = False
-        Me.lvEMReels.View = System.Windows.Forms.View.List
         '
         'ilReels
         '
@@ -436,6 +444,7 @@ Partial Class formReelType
         Me.Name = "formReelType"
         Me.GroupBoxImages.ResumeLayout(False)
         Me.GroupBoxImages.PerformLayout()
+        Me.TableLayoutPanel1.ResumeLayout(False)
         CType(Me.numIntermediateCount, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.numRollingInterval, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupBoxRendered.ResumeLayout(False)
@@ -496,4 +505,5 @@ Partial Class formReelType
     Friend WithEvents btnExportReels As System.Windows.Forms.Button
     Friend WithEvents btnExportCreditReels As System.Windows.Forms.Button
     Friend WithEvents btnExportLEDs As System.Windows.Forms.Button
+    Friend WithEvents TableLayoutPanel1 As TableLayoutPanel
 End Class

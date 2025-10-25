@@ -42,8 +42,15 @@
             IsDirty = True
             Save()
         End Sub
-        Public Sub RemoveImageSet(ByVal index As Integer)
-
+        Public Sub RemoveImageSet(ByVal index As Integer, ByVal type As eImageSetType)
+            Select Case type
+                Case eImageSetType.ReelImages
+                    ImportedReelImageSets.RemoveAt(index)
+                Case eImageSetType.CreditReelImages
+                    ImportedCreditReelImageSets.RemoveAt(index)
+                Case eImageSetType.LEDImages
+                    ImportedLEDImageSets.RemoveAt(index)
+            End Select
             IsDirty = True
             Save()
         End Sub
