@@ -120,6 +120,25 @@ Public Class formDesigner
                     LoadB2S(file_path)
                 ElseIf (My.Computer.FileSystem.GetFileInfo(file_path).Extension = ".b2b") Then
                     LoadB2B(file_path)
+                ElseIf (My.Computer.FileSystem.GetFileInfo(file_path).Extension = ".png") Then
+                    If Backglass.currentTabPage IsNot Nothing Then
+                        Dim image As Image = Bitmap.FromFile(file_path).Copy(True)
+
+                        If image IsNot Nothing Then
+                            If Not Backglass.currentTabPage.ShowIlluFrames Then
+                                tsmiShowIlluFrames.PerformClick()
+                            End If
+                            Dim name As String = IO.Path.GetFileNameWithoutExtension(file_path)
+                            Dim box As B2SPictureBox = Backglass.currentTabPage.CurrentPictureBox
+                            Dim location As Point = box.PointToClient(New Point(e.X, e.Y))
+                            If location.X < 0 Or location.X > box.Width Or location.Y < 0 Or location.Y > box.Height Then
+                                location = New Point(0, 0)
+                            End If
+                            Backglass.currentTabPage.Illumination_AddSnippit(name, image, New Point(location.X / box.Mouse.factor, location.Y / box.Mouse.factor))
+                            Backglass.currentData.Images.Insert(Images.eImageInfoType.Title4IlluminationSnippits, New Images.ImageInfo(Images.eImageInfoType.IlluminationSnippits, name, image))
+                            LoadToolResourcesForm()
+                        End If
+                    End If
                 End If
             Next file_path
         End If
@@ -1136,7 +1155,6 @@ Public Class formDesigner
             If Not Backglass.currentTabPage.ShowIlluFrames Then
                 tsmiShowIlluFrames.PerformClick()
             End If
-            Backglass.currentTabPage.ShowIlluFrames = True
             ' add bulb
             Backglass.currentTabPage.Illumination_AddBulb()
         End If
@@ -1147,7 +1165,6 @@ Public Class formDesigner
             If Not Backglass.currentTabPage.ShowIlluFrames Then
                 tsmiShowIlluFrames.PerformClick()
             End If
-            Backglass.currentTabPage.ShowIlluFrames = True
             ' add bulb
             If formAddSnippit Is Nothing Then formAddSnippit = New formAddSnippit()
             formAddSnippit.ShowDialog(Me)
