@@ -43,7 +43,7 @@ Public Class B2STabPage
 
     Private PictureBox As B2SPictureBox = Nothing
     Private DMDPictureBox As B2SPictureBox = Nothing
-    Private ReadOnly Property CurrentPictureBox() As B2SPictureBox
+    Public ReadOnly Property CurrentPictureBox() As B2SPictureBox
         Get
             Return If(BackglassData IsNot Nothing, If(BackglassData.IsDMDImageShown, DMDPictureBox, PictureBox), Nothing)
         End Get
