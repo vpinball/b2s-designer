@@ -1787,6 +1787,14 @@ Public Class formDesigner
                         formToolIllumination.rbAlignCenter.Checked = True
                     End If
                     formToolIllumination.MyFont = If(String.IsNullOrEmpty(.FontName), Nothing, New Font(.FontName, .FontSize, .FontStyle))
+
+                    formToolIllumination.ignoreChange = True
+                    formToolIllumination.txtLocationX.Text = .Location.X.ToString()
+                    formToolIllumination.txtLocationY.Text = .Location.Y.ToString()
+                    formToolIllumination.txtSizeWidth.Text = .Size.Width.ToString()
+                    formToolIllumination.txtSizeHeight.Text = .Size.Height.ToString()
+                    formToolIllumination.ignoreChange = False
+
                     formToolIllumination.ZOrder = .ZOrder
                     formToolIllumination.IsSnippit = .IsImageSnippit
                     formToolIllumination.SnippitType = .SnippitInfo.SnippitType
@@ -1816,6 +1824,13 @@ Public Class formDesigner
                 formToolIllumination.MyFont = Nothing
                 formToolIllumination.ZOrder = 0
                 formToolIllumination.IsSnippit = False
+
+                formToolIllumination.ignoreChange = True
+                formToolIllumination.txtLocationX.Text = ""
+                formToolIllumination.txtLocationY.Text = ""
+                formToolIllumination.txtSizeWidth.Text = ""
+                formToolIllumination.txtSizeHeight.Text = ""
+                formToolIllumination.ignoreChange = False
             End If
             ' set headlines and lock/unlock some fields
             If Backglass.currentData IsNot Nothing Then
