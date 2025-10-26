@@ -40,7 +40,8 @@ Public Class formDesigner
 #Region "events"
 
     Private Sub formDesigner_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
-
+        ' allow drag and drop
+        Me.AllowDrop = True
         ' start app title and status bar
         Me.Text = Headline
         'Me.KeyPreview = True
@@ -55,10 +56,9 @@ Public Class formDesigner
 
         ' listbox to undo
         Undo.ListBox = formToolUndo.lbHistory
-
     End Sub
-    Private Sub formDesigner_Shown(sender As Object, e As System.EventArgs) Handles Me.Shown
 
+    Private Sub formDesigner_Shown(sender As Object, e As System.EventArgs) Handles Me.Shown
         ' open up the tool windows
         For Each formName As String In MyBase.StartToolForms
             Select Case formName
@@ -89,8 +89,8 @@ Public Class formDesigner
         Catch ex As Exception
             MessageBox.Show(String.Format(My.Resources.MSG_StartupSaveError, ex.Message), AppTitle, MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
         End Try
-
     End Sub
+
     Private Sub formDesigner_FormClosing(ByVal sender As Object, ByVal e As System.Windows.Forms.FormClosingEventArgs) Handles Me.FormClosing
         Do While B2STab.TabPages.Count > 0
             B2STab.SelectedIndex = B2STab.TabPages.Count - 1
@@ -100,6 +100,29 @@ Public Class formDesigner
                 Exit Do
             End If
         Loop
+    End Sub
+
+    Private Sub formDesigner_DragEnter(sender As System.Object, e As System.Windows.Forms.DragEventArgs) Handles Me.DragEnter
+        If e.Data.GetDataPresent(DataFormats.FileDrop) Then
+            e.Effect = DragDropEffects.Copy
+        Else
+            e.Effect = DragDropEffects.None
+        End If
+    End Sub
+
+    Private Sub formDesigner_DragDrop(sender As System.Object, e As System.Windows.Forms.DragEventArgs) Handles Me.DragDrop
+        If e.Data.GetDataPresent(DataFormats.FileDrop) Then
+            Dim file_paths As String() = CType(e.Data.GetData(DataFormats.FileDrop), String())
+            For Each file_path As String In file_paths
+                If (My.Computer.FileSystem.GetFileInfo(file_path).Extension = ".directb2s") Then
+                    LoadDirectB2S(file_path)
+                ElseIf (My.Computer.FileSystem.GetFileInfo(file_path).Extension = ".b2s") Then
+                    LoadB2S(file_path)
+                ElseIf (My.Computer.FileSystem.GetFileInfo(file_path).Extension = ".b2b") Then
+                    LoadB2B(file_path)
+                End If
+            Next file_path
+        End If
     End Sub
 
     Private Sub B2STab_LightsReportProgress(sender As Object, e As Illumination.Lights.LightsProgressEventArgs) Handles B2STab.LightsReportProgress
@@ -391,23 +414,10 @@ Public Class formDesigner
                 .FileName = String.Empty
                 .InitialDirectory = BackglassProjectsPath
                 If .ShowDialog(Me) = DialogResult.OK Then
-                    Dim backglassdata As Backglass.Data = Nothing
-                    Cursor.Current = Cursors.WaitCursor
-                    save.LoadData(backglassdata, .FileName)
-                    Cursor.Current = Cursors.Default
-                    If backglassdata IsNot Nothing Then
-                        If backglassdata.IsBackup Then
-                            If MessageBox.Show(My.Resources.MSG_BackupFile, AppTitle, MessageBoxButtons.YesNo, MessageBoxIcon.Question) = Windows.Forms.DialogResult.No Then
-                                Exit Sub
-                            End If
-                        End If
-                        LoadData(backglassdata)
-                    End If
+                    LoadB2S(.FileName)
                 End If
             End With
-            ShowStatus()
         End Using
-        LockUnlockMenus()
     End Sub
     Private Sub OpenBackup_Click(sender As System.Object, e As System.EventArgs) Handles tsmiOpenBackup.Click
         Using filedialog As OpenFileDialog = New OpenFileDialog
@@ -416,22 +426,10 @@ Public Class formDesigner
                 .FileName = String.Empty
                 .InitialDirectory = BackglassProjectsPath
                 If .ShowDialog(Me) = DialogResult.OK Then
-                    Dim backglassdata As Backglass.Data = Nothing
-                    Cursor.Current = Cursors.WaitCursor
-                    save.LoadData(backglassdata, .FileName)
-                    Cursor.Current = Cursors.Default
-                    If backglassdata IsNot Nothing Then
-                        If backglassdata.IsBackup Then
-                            LoadData(backglassdata)
-                        Else
-                            MessageBox.Show(My.Resources.MSG_NoBackupFile, AppTitle, MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
-                        End If
-                    End If
+                    LoadB2B(.FileName)
                 End If
             End With
-            ShowStatus()
         End Using
-        LockUnlockMenus()
     End Sub
 
     Private Sub Close_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles tsmiClose.Click
@@ -524,19 +522,7 @@ Public Class formDesigner
                 .FileName = String.Empty
                 .InitialDirectory = If(LatestImportDirectory.Length, LatestImportDirectory, BackglassProjectsPath)
                 If .ShowDialog(Me) = DialogResult.OK Then
-                    Dim backglassdata As Backglass.Data = Nothing
-                    Cursor.Current = Cursors.WaitCursor
-                    LatestImportDirectory = IO.Path.GetDirectoryName(.FileName)
-                    SaveSettings()
-                    Try
-                        coding.ImportDirectB2SFile(backglassdata, .FileName)
-                        If backglassdata IsNot Nothing Then
-                            LoadData(backglassdata)
-                        End If
-                    Catch ex As Exception
-                        MessageBox.Show(My.Resources.MSG_ImportError2, AppTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
-                    End Try
-                    Cursor.Current = Cursors.Default
+                    LoadDirectB2S(.FileName)
                 End If
             End With
             ShowStatus()
@@ -582,18 +568,8 @@ Public Class formDesigner
     End Sub
     Private Sub OpenRecent_ChildClick(ByVal sender As Object, ByVal e As EventArgs)
         If TypeOf sender.Tag Is KeyValuePair(Of Integer, Recent.recentEntry) Then
-            Dim path As String = BackglassProjectsPath
-            Dim backglassdata As Backglass.Data = Nothing
-            Cursor.Current = Cursors.WaitCursor
-            If save.LoadData(backglassdata, IO.Path.Combine(path, sender.Tag.Value.Name) & ".b2s") Then
-                LoadData(backglassdata)
-            Else
-                MessageBox.Show(My.Resources.MSG_NoProjectFileFound, AppTitle, MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
-                recent.RemoveFromRecentList(sender.Tag.Key)
-            End If
-            Cursor.Current = Cursors.Default
+            LoadB2S(IO.Path.Combine(BackglassProjectsPath, sender.Tag.Value.Name) & ".b2s")
         End If
-        ShowStatus()
     End Sub
 
     Private Sub ClearThisList_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles tsmiClearThisList.Click
@@ -1434,6 +1410,66 @@ Public Class formDesigner
 
 
 #Region "private methods"
+
+    Private Sub LoadDirectB2S(ByVal filename As String)
+        Dim backglassdata As Backglass.Data = Nothing
+        Cursor.Current = Cursors.WaitCursor
+        LatestImportDirectory = IO.Path.GetDirectoryName(filename)
+        SaveSettings()
+        Try
+            coding.ImportDirectB2SFile(backglassdata, filename)
+            If backglassdata IsNot Nothing Then
+                LoadData(backglassdata)
+            End If
+        Catch ex As Exception
+            MessageBox.Show(My.Resources.MSG_ImportError2, AppTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
+        End Try
+        Cursor.Current = Cursors.Default
+        ShowStatus()
+        LockUnlockMenus()
+    End Sub
+
+    Private Sub LoadB2S(ByVal filename As String)
+        Dim backglassdata As Backglass.Data = Nothing
+        Cursor.Current = Cursors.WaitCursor
+        Try
+            save.LoadData(backglassdata, filename)
+            If backglassdata IsNot Nothing Then
+                If backglassdata.IsBackup Then
+                    If MessageBox.Show(My.Resources.MSG_BackupFile, AppTitle, MessageBoxButtons.YesNo, MessageBoxIcon.Question) = Windows.Forms.DialogResult.Yes Then
+                        LoadData(backglassdata)
+                    End If
+                Else
+                    LoadData(backglassdata)
+                End If
+            End If
+        Catch ex As Exception
+            MessageBox.Show(My.Resources.MSG_ImportError2, AppTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
+        End Try
+        Cursor.Current = Cursors.Default
+        ShowStatus()
+        LockUnlockMenus()
+    End Sub
+
+    Private Sub LoadB2B(ByVal filename As String)
+        Dim backglassdata As Backglass.Data = Nothing
+        Cursor.Current = Cursors.WaitCursor
+        Try
+            save.LoadData(backglassdata, filename)
+            If backglassdata IsNot Nothing Then
+                If backglassdata.IsBackup Then
+                    LoadData(backglassdata)
+                Else
+                    MessageBox.Show(My.Resources.MSG_NoBackupFile, AppTitle, MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
+                End If
+            End If
+        Catch ex As Exception
+            MessageBox.Show(My.Resources.MSG_ImportError2, AppTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
+        End Try
+        Cursor.Current = Cursors.Default
+        ShowStatus()
+        LockUnlockMenus()
+    End Sub
 
     Private Function OpenSettings(ByVal newtable As Boolean, Optional ByVal savetableas As Boolean = False) As Boolean
         Dim ret As Boolean = False
