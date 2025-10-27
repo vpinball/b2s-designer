@@ -13,10 +13,12 @@
 - Remember latest Author and default to it when creating a new table.
 - Detect rom id, rom type and inverted state from the filename when importing snippit images. (S12 iL14 Gi2)
 - Remember latest import directory.
-- Added the option to right click a reel, credit reel or led set in the "Reels and LEDs" window and export or delete it.
-- Added Drag n Drop support for loading .directb2s, .b2s and .b2b projects.
-- Added Drag n Drop support for creating snippits from .png files.
-- Fixed the Location and Size not updating in the Illumination window when right clicking and selecting a bulb.
+- Add "Export" and "Delete" options when right clicking a reel, credit reel or led set in the "Reels and LEDs" window.
+- Add Drag n Drop support for loading .directb2s, .b2s and .b2b projects.
+- Add Drag n Drop support for creating snippits from .png files.
+- Fix the Location and Size not updating in the Illumination window when right clicking and selecting a bulb.
+- Change default zoom to "window"
+- Fix zoom combo box to change it values when zoom is changed with mouse wheel.
 
 2.1.0
 - Increased Max ZOrder to 19 from 9 by jonesyUK

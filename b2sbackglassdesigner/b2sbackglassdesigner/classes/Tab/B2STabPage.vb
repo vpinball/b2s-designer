@@ -541,15 +541,7 @@ Public Class B2STabPage
                 Dim factor2 As Double = currentimage.Height / Me.Height
                 If factor < factor2 Then factor = factor2
                 Dim width As Integer = (BackglassData.Image.Width - 4) / factor
-                Dim height As Integer = (BackglassData.Image.Height - 4) / factor
-                PictureBox.Size = New Size(width, height)
-                If BackglassData.DMDImage IsNot Nothing Then
-                    width = (BackglassData.DMDImage.Width - 4) / factor
-                    height = (BackglassData.DMDImage.Height - 4) / factor
-                    DMDPictureBox.Size = New Size(width, height)
-                End If
-                BackglassData.Zoom = CInt(PictureBox.Size.Width / BackglassData.Image.Width * 100)
-                Me.Invalidate()
+                Zoom(CInt(width / BackglassData.Image.Width * 100))
             ElseIf zoomtext.Contains("%") AndAlso IsNumeric(zoomtext.Replace("%", "")) Then
                 Zoom(CInt(zoomtext.Replace("%", "")))
             End If
@@ -567,6 +559,7 @@ Public Class B2STabPage
             End If
             BackglassData.Zoom = zoomvalue
             Me.Invalidate()
+            UpdateStatusBar(B2SBackglassDesigner.formDesigner, Me)
         End If
     End Sub
 

@@ -1940,6 +1940,7 @@ Public Class formDesigner
                 B2STab.AddBackglass(New B2STabPage(_backglassdata))
                 B2STab.SelectedIndex = B2STab.TabPages.Count - 1
                 Backglass.currentData.IsDirty = False
+                B2STab.SelectedTabPage.Zoom("Window")
             End If
             recent.AddToRecentList(_backglassdata)
         End If
