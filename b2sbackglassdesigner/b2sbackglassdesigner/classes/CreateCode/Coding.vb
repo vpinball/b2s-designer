@@ -223,8 +223,8 @@ Public Class Coding
                 For Each reeltype As String In Backglass.currentData.ReelType.Split(",")
                     reeltype = reeltype.Trim()
                     Dim exportReel As Boolean = False
-                    For Each score As ReelAndLED.ScoreInfo In .Scores
-                        If score.ReelType = reeltype Then
+                    For Each score As KeyValuePair(Of Integer, ReelAndLED.ScoreInfo) In savescores
+                        If score.Value.ReelType = reeltype Then
                             exportReel = True
                         End If
                     Next
