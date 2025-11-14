@@ -351,23 +351,18 @@ Module moduleB2S
         Dim bottom As Integer = 0
         For y As Integer = 0 To (imageData.Height - 1)
             For x As Integer = 0 To (imageData.Width - 1)
-                Dim isNotTransparent As Boolean = imageARGB((((y * imageData.Width) + x) * 4) + 0) > 0
+                Dim isNotTransparent As Boolean = imageARGB((((y * imageData.Width) + x) * 4) + 3) > 0
                 If isNotTransparent Then
-                    If left > x Then
-                        left = x
-                    End If
-                    If right < x Then
-                        right = x
-                    End If
-                    If top > y Then
-                        top = y
-                    End If
-                    If bottom < y Then
-                        bottom = y
-                    End If
+                    If left > x Then left = x
+                    If right < x Then right = x
+                    If top > y Then top = y
+                    If bottom < y Then bottom = y
                 End If
             Next
         Next
+        If left > right Or top > bottom Then
+            Return Rectangle.Empty ' Fully transparent
+        End If
         Return New Rectangle(left, top, right - left + 1, bottom - top + 1)
     End Function
 
