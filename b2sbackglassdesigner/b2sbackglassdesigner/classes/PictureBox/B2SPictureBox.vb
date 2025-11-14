@@ -256,11 +256,11 @@ Public Class B2SPictureBox
                         End If
                     End If
                     ' maybe draw start digit
-                    If .ReelIlluB2SID > 0 Then
+                    If ShowScoreFrames AndAlso .ReelIlluB2SID > 0 Then
                         TextRenderer.DrawText(pe.Graphics, .ReelIlluB2SID.ToString() & If(.ReelIlluB2SValue > 0, "/" & .ReelIlluB2SValue.ToString(), ""), font, New Rectangle(rect.X + 3, rect.Y + rect.Height - 15, 80, 15), framecolor, Color.White, TextFormatFlags.VerticalCenter Or TextFormatFlags.Left Or TextFormatFlags.NoPrefix)
                     End If
                     ' maybe draw reel illumination info
-                    If .B2SStartDigit > 0 Then
+                    If ShowScoreFrames AndAlso .B2SStartDigit > 0 Then
                         Dim toleft As Integer = If(.Equals(Mouse.SelectedScore), 13, 0) 'If(.Equals(Mouse.SelectedBulb), If(isSmallRect, -1, 13), 0)
                         TextRenderer.DrawText(pe.Graphics, If(.B2SPlayerNo <> eB2SPlayerNo.NotUsed, "P" & CInt(.B2SPlayerNo).ToString() & "/", "") & .B2SStartDigit.ToString(), font, New Rectangle(rect.X + rect.Width - 50, rect.Y + 3, 47 - toleft, 15), framecolor, Color.White, TextFormatFlags.VerticalCenter Or TextFormatFlags.Right Or TextFormatFlags.NoPrefix)
                     End If
