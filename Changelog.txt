@@ -19,6 +19,8 @@
 - Fix the Location and Size not updating in the Illumination window when right clicking and selecting a bulb.
 - Change default zoom to "window"
 - Fix zoom combo box to change it values when zoom is changed with mouse wheel.
+- Fix TrimImage wrongfully checking blue channel instead of alpha channel.
+- Fix ID numbers showing when previewing reels.
 
 2.1.0
 - Increased Max ZOrder to 19 from 9 by jonesyUK
