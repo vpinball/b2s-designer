@@ -39,9 +39,16 @@ jobs:
           msbuild B2SVPinMAMEStarter/B2SVPinMAMEStarter.sln /t:Rebuild /p:Configuration=${{ matrix.config }} "/p:Platform=${{ matrix.platform }}"
           msbuild b2sbackglassdesigner/B2SBackglassDesigner.sln /t:Rebuild /p:Configuration=${{ matrix.config }} "/p:Platform=${{ matrix.platform }}"
         shell: cmd
-      - name: Help
+      - name: Cache html-help-workshop
+        uses: actions/cache@v4
+        with:
+          path: C:\ProgramData\chocolatey\lib\html-help-workshop
+          key: html-help-workshop-${{ runner.os }}-v1
+      - name: Install html-help-workshop
+        if: steps.cache-html-help-workshop.outputs.cache-hit != 'true'
+        run: choco install --yes --no-progress html-help-workshop
+      - name: Build Help
         run: |
-          choco install html-help-workshop
           "/c/Program Files (x86)/HTML Help Workshop/hhc.exe" "b2sbackglassdesigner/b2sbackglassdesigner/htmlhelp/B2SBackglassDesigner.hhp" || true
       - name: Bundle 
         run: |
